@@ -1,16 +1,19 @@
 package boat;
-public class Boat {
+
+import interfaces.Asset;
+
+public class Boat implements Asset {
     public String make;
-    public String varient;
+    public String variant;
     public int length;
     public String region;
     public int borrowPrice;
     public int sellPrice;
     public int year;
 
-    public Boat(String make, String varient, int length, String region, int sellPrice, int year) {
+    public Boat(String make, String variant, int length, String region, int sellPrice, int year) {
         this.make = make;
-        this.varient = varient;
+        this.variant = variant;
         this.length = length;
         this.region = region;
         this.sellPrice = sellPrice;
@@ -22,6 +25,54 @@ public class Boat {
     }
 
     public String getVarient() {
-        return varient;
+        return variant;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int[] getPrice() {
+        return new int[0];
+    }
+
+    /**
+     * @param price
+     */
+    @Override
+    public void setPrice(String price) {
+
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Object getOwner() {
+        return null;
+    }
+
+    /**
+     * @param owner
+     */
+    @Override
+    public void setOwner(Object owner) {
+
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Object getUser() {
+        return null;
+    }
+
+    /**
+     * @param user
+     */
+    @Override
+    public void setUser(Object user) {
+
     }
 }
