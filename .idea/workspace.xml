@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CPS2232_FinalProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/2023_MCM_Problem_Y_Boats.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ADT Project format and structure.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/boat/Boat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/boat/BoatCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/csv/CSVImporter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/menu.java" afterDir="false" />
+    <list default="true" id="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" name="Changes" comment="change all the files to java project file, which is more efficient to write codes, run, and debug">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +13,35 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "AlbertZhaoCA"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="64df6a75-bbf5-43c4-b8f3-1da8ce76d452" />
+        <option name="url" value="https://github.com/Lareina2441/CPS2232_FinalProject.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 6
@@ -41,13 +58,17 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "abandonedBranch"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\FinalProject\CPS2232_FinalProject\src\ui" />
+      <recent name="D:\FinalProject\CPS2232_FinalProject\src\csv" />
+      <recent name="D:\FinalProject\CPS2232_FinalProject\src\boat" />
+      <recent name="D:\FinalProject\CPS2232_FinalProject" />
       <recent name="D:\FinalProject\CPS2232_FinalProject\resources" />
-      <recent name="D:\FinalProject\CPS2232_FinalProject\src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -59,6 +80,30 @@
       <option name="presentableId" value="Default" />
       <updated>1701087902886</updated>
     </task>
+    <task id="LOCAL-00001" summary="change all the files to java project file, which is more efficient to write codes, run, and debug">
+      <option name="closed" value="true" />
+      <created>1701088626325</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701088626325</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="change all the files to java project file, which is more efficient to write codes, run, and debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="change all the files to java project file, which is more efficient to write codes, run, and debug" />
   </component>
 </project>
