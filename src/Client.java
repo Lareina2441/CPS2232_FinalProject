@@ -4,11 +4,13 @@ public class Client {
     private int priority;
     private String name;
     private int password;
+    private int phoneNumber;
 
-    public Client(int priority, String name, int password) {
+    public Client(int priority, String name, int password，int phoneNumber) {
         this.priority = priority;
         this.name = name;
         this.password = password;
+        this.phoneNumber = phoneNumber;
     }
 
     public int getPriority() {
