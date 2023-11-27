@@ -28,3 +28,21 @@
 >- 筛选出适合的船，打印出各种类型可供选择
 >- 确认购买，支付船价，对应船型的数量减一
 
+----
+这个地方放接口吧,把比较重要的方法写上就行了
+
+|财产|   |
+|----|---
+|  `getPrice（）`  |这个return三维数组，租价，售价和成本价
+|`getOwner()` `getUser()`|这个可以得到所有人和使用人，然后如果东西租出去，和卖出去，都需要查询船这俩个实体是否为公司
+
+       /*
+        * This interface is used to define the methods that all assets must have.
+        * This interface is implemented by the Boat class.
+        *
+        * An asset is anything that can be bought, sold or borrowed.
+        * its price, owner and user can be modified and got.
+        *
+       */
+---
+
