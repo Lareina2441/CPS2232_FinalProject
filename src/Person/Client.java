@@ -2,7 +2,8 @@ package Person;
 public class Client {
     private int priority;
     private String name;
-    private int password;
+    private int
+            password;
 
     public Client(int priority, String name, int password) {
         this.priority = priority;
