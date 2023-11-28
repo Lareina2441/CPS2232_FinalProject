@@ -1,8 +1,20 @@
-# CPS2232_FinalProject: Boat Manager
-Welcome to our project! This is a final project for CPS2232, Abstract Data Type, of Wenzhou-Kean University, by Zhang Lei, Jiao Luyao, and Zhao Qinjian. This project is intended to help Sailboat Company to manage their special kind of assets, boats. Boats have many features, such as their make, variant, length, region, selling price, and year of make, therefore, we create a Boat class to describe the features of the boats. We use a file reader to read all the data from a CSV file and create boat objects. Then, we use a ??? data type to store all the boats.   
+
+<h1 align="center"> CPS 2232 FinalProject: Boat Manager</h1>  
+<p align="left"> <a href="https://www.wku.edu.cn/en/" target="_blank" rel="noreferrer"> <img src="https://wku.edu.cn/wp-content/uploads/2016/02/logo_en.png" alt="WKU" width="300" height="78"/> </a> 
+
+Welcome to our project !  This is a `final project` for `CPS 2232`, `Abstract Data Type`, of [`Wenzhou-Kean University`][wku].       
+       
+**The authors:**   
+[***Zhang Lei***][ZL]   
+[***Jiao Luyao***][JY]   
+[***Zhao Qinjian***][ZJ]
+
+This project is intended to help Sailboat Company manage their special assets, boats. Boats have many features, such as their maker, variant, length, region, selling price, and year of manufacture; therefore, we created a boat class to describe the features of the boats. We use a file reader to read all the data from a CSV file and create boat objects. Then, we use a ??? data type to store all the boats.   
 Staff can use the Restart.java to clear all the data and read the data from a CSV file.   
-Once read the data, the menu is ready for the client to use. Clients can access this software from Menu.java, and choose to rent, return, or buy a boat. Based on clients' requirements, this software will recommend the fittest boat accordingly. The history of the clients' operation will be recorded in ??? file for the staff to check.   
-For the renters, the software will recommend boats according to their requirements, ask them to pay the deposit, and record their renting and returning time. After return, the software will calculate the rental based on the boats' depreciation fee, which is based on the selling price, and renting time.    
+
+Once read the data, the menu is ready for the client to use. Clients can access this software from Menu.java and choose to rent, return, or buy a boat. Based on clients' requirements, this software will recommend the fittest boat accordingly. The history of the clients' operation will be recorded in ??? file for the staff to check.   
+For the renters, the software will recommend boats according to their requirements, ask them to pay the deposit, and record their renting and returning time. After return, the software will calculate the rental based on the boats' depreciation fee, which is based on the selling price, and renting time.
+
 For the buyers, after recommendations, the software will record the change of the number of the boats.   
 
 **1. 先运行reset，读取数据。后续如果想要重置一切记录，就再运行一遍，重新输入记录**  
@@ -51,4 +63,11 @@ For the buyers, after recommendations, the software will record the change of th
         *
        */
 ---
+
+<p align="left"> <a href="https://www.kean.edu/" target="_blank" rel="noreferrer"> <img src="https://www.kean.edu/themes/custom/kean/logo.svg" alt="KeanU" width="300" height="78"/> </a> 
+
+[ZL]: https://github.com/Lareina2441
+[JY]: https://github.com/GemmaJiao
+[ZJ]: https://github.com/AlbertZhaoCA
+[wku]: https://www.wku.edu.cn/en/
 
