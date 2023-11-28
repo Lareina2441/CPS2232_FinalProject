@@ -1,4 +1,5 @@
-# CPS2232_FinalProject
+# CPS2232_FinalProject: Boat Manager
+### Welcome to our project! This is a final project for CPS2232, Abstract Data Type, of Wenzhou-Kean University, by Zhang Lei, Jiao Luyao, and Zhao Qinjian. This project is intended to help Sailboat Company to manage their special kind of assets, boats. Boats have many features, such as their make,  
 **1. 先运行reset，读取数据。后续如果想要重置一切记录，就再运行一遍，重新输入记录**  
 **2. 再运行menu，开始与用户交互**  
 **3. 打出menu，询问用户意图**
