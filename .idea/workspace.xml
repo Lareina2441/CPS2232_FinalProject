@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" name="Changes" comment="change all the files to java project file, which is more efficient to write codes, run, and debug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/reset.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/reset.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Person/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Person/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/Boat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Asset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Asset.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,15 +67,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "OverrideImplement.generate.javadoc": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\FinalProject\CPS2232_FinalProject\src\csv" />

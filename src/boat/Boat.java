@@ -3,21 +3,31 @@ package boat;
 import interfaces.Asset;
 
 public class Boat implements Asset {
-    public String make;
+    public String maker;
     public String variant;
     public int length;
     public String region;
-    public int borrowPrice;
     public int sellPrice;
+    public int costPrice;
+    public int rentPrice;
     public int year;
+    private int[] prices = new int[3];
+    private Object owner;
+    private Object user;
 
-    public Boat(String make, String variant, int length, String region, int sellPrice, int year) {
-        this.make = make;
+
+    public Boat(String maker, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
+                int year) {
+        this.maker = maker;
         this.variant = variant;
         this.length = length;
         this.region = region;
         this.sellPrice = sellPrice;
         this.year = year;
+        prices[0] = rentPrice;
+        prices[1] = sellPrice;
+        prices[2] = costPrice;
+
     }
 
     public String getMake() {
@@ -33,15 +43,21 @@ public class Boat implements Asset {
      */
     @Override
     public int[] getPrice() {
-        return new int[0];
+        return prices;
     }
 
     /**
-     * @param price
+     *
      */
     @Override
-    public void setPrice(String price) {
+    public void setPrice(int rentPrice,int sellPrice,int costPrice) {
+        this.rentPrice = rentPrice;
+        this.sellPrice = sellPrice;
+        this.costPrice = costPrice;
 
+        prices[0] = rentPrice;
+        prices[1] = sellPrice;
+        prices[2] = costPrice;
     }
 
     /**
@@ -49,7 +65,7 @@ public class Boat implements Asset {
      */
     @Override
     public Object getOwner() {
-        return null;
+        return owner;
     }
 
     /**
@@ -57,6 +73,7 @@ public class Boat implements Asset {
      */
     @Override
     public void setOwner(Object owner) {
+        this.owner = owner;
 
     }
 
@@ -65,7 +82,7 @@ public class Boat implements Asset {
      */
     @Override
     public Object getUser() {
-        return null;
+        return user;
     }
 
     /**
@@ -73,6 +90,6 @@ public class Boat implements Asset {
      */
     @Override
     public void setUser(Object user) {
-
+        this.user = user;
     }
 }
