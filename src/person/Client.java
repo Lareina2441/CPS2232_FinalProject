@@ -1,4 +1,4 @@
-package Person;
+package person1;
 public class Client {
     private int priority;
     private String name;
