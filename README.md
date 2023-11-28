@@ -1,5 +1,8 @@
 # CPS2232_FinalProject: Boat Manager
-### Welcome to our project! This is a final project for CPS2232, Abstract Data Type, of Wenzhou-Kean University, by Zhang Lei, Jiao Luyao, and Zhao Qinjian. This project is intended to help Sailboat Company to manage their special kind of assets, boats. Boats have many features, such as their make,  
+Welcome to our project! This is a final project for CPS2232, Abstract Data Type, of Wenzhou-Kean University, by Zhang Lei, Jiao Luyao, and Zhao Qinjian. This project is intended to help Sailboat Company to manage their special kind of assets, boats. Boats have many features, such as their make, variant, length, region, selling price, and year of make, therefore, we create a Boat class to describe the features of the boats. We use a file reader to read all the data from a CSV file and create boat objects. Then, we use a ??? data type to store all the boats. 
+Staff can use the Restart.java to clear all the data and read the data from a CSV file.  
+Once read the data, the menu is ready for the client to use. Clients can access this software from Menu.java, and choose to rent, return, or buy a boat. Based on clients' requirements, this software will recommend the fittest boat accordingly. The history of the clients' operation will be recorded in ??? file for the staff to check.  
+
 **1. 先运行reset，读取数据。后续如果想要重置一切记录，就再运行一遍，重新输入记录**  
 **2. 再运行menu，开始与用户交互**  
 **3. 打出menu，询问用户意图**
