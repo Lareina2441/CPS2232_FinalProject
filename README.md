@@ -63,7 +63,7 @@ For the buyers, after recommendations, the software will record the change of th
         *
        */
 
-``` 
+```java
 import java.util.HashMap;
 import java.util.Map;
 
@@ -111,6 +111,8 @@ public class Example {
     }
 }
 ```
+
+可以把对象的实例当做hashmap里的key,但是要在这个类写自己的hashcode()和equal()方法才行
 ---
 
 <p align="left"> <a href="https://www.kean.edu/" target="_blank" rel="noreferrer"> <img src="https://www.kean.edu/themes/custom/kean/logo.svg" alt="KeanU" width="300" height="78"/> </a> 
