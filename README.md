@@ -59,9 +59,58 @@ For the buyers, after recommendations, the software will record the change of th
         * This interface is implemented by the Boat class.
         *
         * An asset is anything that can be bought, sold or borrowed.
-        * its price, owner and user can be modified and got.
+        * its price, owner and user can be modified and got
         *
        */
+
+``` 
+import java.util.HashMap;
+import java.util.Map;
+
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // 正确实现 hashCode() 和 equals() 方法
+    @Override
+    public int hashCode() {
+        // 可以根据对象的内容生成哈希码
+        return name.hashCode() + age;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // 比较对象的内容是否相等
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Person person = (Person) obj;
+        return age == person.age && name.equals(person.name);
+    }
+}
+
+public class Example {
+    public static void main(String[] args) {
+        // 创建一个HashMap，使用Person对象作为键
+        Map<Person, String> personMap = new HashMap<>();
+
+        // 添加键值对
+        Person person1 = new Person("John", 25);
+        personMap.put(person1, "Value1");
+
+        Person person2 = new Person("Jane", 30);
+        personMap.put(person2, "Value2");
+
+        // 使用Person对象查找值
+        String value = personMap.get(new Person("John", 25));
+        System.out.println("Value for John: " + value);  // 输出 "Value1"
+    }
+}
+```
 ---
 
 <p align="left"> <a href="https://www.kean.edu/" target="_blank" rel="noreferrer"> <img src="https://www.kean.edu/themes/custom/kean/logo.svg" alt="KeanU" width="300" height="78"/> </a> 
