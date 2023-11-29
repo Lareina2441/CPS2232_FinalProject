@@ -17,11 +17,12 @@ For the renters, the software will recommend boats according to their requiremen
 
 For the buyers, after recommendations, the software will record the change of the number of the boats.  
 
-有一个问题就是我们的main 需要模拟的是公司客户端还是用户端 
+有一个问题就是我们的main 需要模拟的是公司客户端还是用户端  
+ 
 
-**1. 先运行reset，读取数据。后续如果想要重置一切记录，就再运行一遍，重新输入记录**  
-**2. 再运行menu，开始与用户交互**  
-**3. 打出menu，询问用户意图**
+** 1. 先运行reset，读取数据。后续如果想要重置一切记录，就再运行一遍，重新输入记录**  
+** 2. 再运行menu，开始与用户交互**  
+** 3. 打出menu，询问用户意图**
 ---
 |          |  买船：    |借船   |
 |:----------|:-----------:|-------|
