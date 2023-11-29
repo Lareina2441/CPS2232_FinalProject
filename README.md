@@ -15,7 +15,9 @@ Staff can use the Restart.java to clear all the data and read the data from a CS
 Once read the data, the menu is ready for the client to use. Clients can access this software from Menu.java and choose to rent, return, or buy a boat. Based on clients' requirements, this software will recommend the fittest boat accordingly. The history of the clients' operation will be recorded in ??? file for the staff to check.   
 For the renters, the software will recommend boats according to their requirements, ask them to pay the deposit, and record their renting and returning time. After return, the software will calculate the rental based on the boats' depreciation fee, which is based on the selling price, and renting time.
 
-For the buyers, after recommendations, the software will record the change of the number of the boats.   
+For the buyers, after recommendations, the software will record the change of the number of the boats.  
+
+有一个问题就是我们的main 需要模拟的是公司客户端还是用户端 
 
 **1. 先运行reset，读取数据。后续如果想要重置一切记录，就再运行一遍，重新输入记录**  
 **2. 再运行menu，开始与用户交互**  
