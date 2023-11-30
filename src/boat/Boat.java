@@ -4,7 +4,7 @@ import interfaces.Asset;
 import interfaces.Person;
 
 public class Boat implements Asset {
-    private String maker;
+    private String make;
     private String variant;
     private int length;
     private String region;
@@ -18,9 +18,9 @@ public class Boat implements Asset {
     private String uniqueID;
 
 
-    public Boat(String maker, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
+    public Boat(String make, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
                 int year) {
-        this.maker = maker;
+        this.make = make;
         this.variant = variant;
         this.length = length;
         this.region = region;
@@ -37,7 +37,7 @@ public class Boat implements Asset {
     }
 
     public String getMake() {
-        return maker;
+        return make;
     }
 
     public String getVarient() {
@@ -100,11 +100,11 @@ public class Boat implements Asset {
     }
 
     public String getMaker() {
-        return maker;
+        return make;
     }
 
     public void setMaker(String maker) {
-        this.maker = maker;
+        this.make = maker;
     }
 
     public int getLength() {

@@ -1,7 +1,7 @@
 package backend;
 
 import boat.Boat;
-import person.Client;
+
 import person.Sailor;
 
 import java.util.ArrayList;
