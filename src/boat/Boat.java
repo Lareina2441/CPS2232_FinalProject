@@ -3,7 +3,7 @@ package boat;
 import interfaces.Asset;
 import interfaces.Person;
 
-public class Boat implements Asset {
+public class Boat implements Asset,Comparable<Boat> {
     private String make;
     private String variant;
     private int length;
@@ -146,4 +146,16 @@ public class Boat implements Asset {
     public void setYear(int year) {
         this.year = year;
     }
+
+
+    /**
+     * @param o the object to be compared.
+     * @return
+     */
+    @Override
+    public int compareTo(Boat o) {
+        return this.getPrice()[1] - o.getPrice()[1];
+    }
+
+
 }
