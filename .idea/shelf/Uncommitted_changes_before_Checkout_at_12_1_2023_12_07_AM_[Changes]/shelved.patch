@@ -1,0 +1,242 @@
+Index: src/boat/Boat.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package boat;\r\n\r\nimport interfaces.Asset;\r\nimport interfaces.Person;\r\n\r\npublic class Boat implements Asset {\r\n    private String make;\r\n    private String variant;\r\n    private int length;\r\n    private String region;\r\n    private int sellPrice;\r\n    private int costPrice;\r\n    private int rentPrice;\r\n    private int year;\r\n    private int[] prices = new int[3];\r\n    private Person owner;\r\n    private Person user;\r\n    private String uniqueID;\r\n\r\n\r\n    public Boat(String make, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,\r\n                int year) {\r\n        this.make = make;\r\n        this.variant = variant;\r\n        this.length = length;\r\n        this.region = region;\r\n        this.sellPrice = sellPrice;\r\n        this.year = year;\r\n        prices[0] = rentPrice;\r\n        prices[1] = sellPrice;\r\n        prices[2] = costPrice;\r\n\r\n    }\r\n\r\n    public String getUniqueID() {\r\n        return uniqueID;\r\n    }\r\n\r\n    public String getMake() {\r\n        return make;\r\n    }\r\n\r\n    public String getVarient() {\r\n        return variant;\r\n    }\r\n\r\n    /**\r\n     * @return\r\n     */\r\n    @Override\r\n    public int[] getPrice() {\r\n        return prices;\r\n    }\r\n\r\n    /**\r\n     *\r\n     */\r\n    @Override\r\n    public void setPrice(int rentPrice,int sellPrice,int costPrice) {\r\n        this.rentPrice = rentPrice;\r\n        this.sellPrice = sellPrice;\r\n        this.costPrice = costPrice;\r\n\r\n        prices[0] = rentPrice;\r\n        prices[1] = sellPrice;\r\n        prices[2] = costPrice;\r\n    }\r\n\r\n    /**\r\n     * @return\r\n     */\r\n    @Override\r\n    public Person getOwner() {\r\n        return owner;\r\n    }\r\n\r\n    /**\r\n     * @param owner\r\n     */\r\n    @Override\r\n    public void setOwner(Person owner) {\r\n        this.owner = owner;\r\n\r\n    }\r\n\r\n    /**\r\n     * @return\r\n     */\r\n    @Override\r\n    public Person getUser() {\r\n        return user;\r\n    }\r\n\r\n    /**\r\n     * @param user\r\n     */\r\n    @Override\r\n    public void setUser(Person user) {\r\n        this.user = user;\r\n    }\r\n\r\n    public String getMaker() {\r\n        return make;\r\n    }\r\n\r\n    public void setMaker(String maker) {\r\n        this.make = maker;\r\n    }\r\n\r\n    public int getLength() {\r\n        return length;\r\n    }\r\n\r\n    public void setLength(int length) {\r\n        this.length = length;\r\n    }\r\n\r\n    public String getRegion() {\r\n        return region;\r\n    }\r\n\r\n    public void setRegion(String region) {\r\n        this.region = region;\r\n    }\r\n\r\n    public int getCostPrice() {\r\n        return costPrice;\r\n    }\r\n\r\n    public void setCostPrice(int costPrice) {\r\n        this.costPrice = costPrice;\r\n    }\r\n\r\n    public int getRentPrice() {\r\n        return rentPrice;\r\n    }\r\n\r\n    public void setRentPrice(int rentPrice) {\r\n        this.rentPrice = rentPrice;\r\n    }\r\n\r\n    public int getYear() {\r\n        return year;\r\n    }\r\n\r\n    public void setYear(int year) {\r\n        this.year = year;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/boat/Boat.java b/src/boat/Boat.java
+--- a/src/boat/Boat.java	
++++ b/src/boat/Boat.java	
+@@ -3,6 +3,8 @@
+ import interfaces.Asset;
+ import interfaces.Person;
+ 
++import java.util.Comparator;
++
+ public class Boat implements Asset {
+     private String make;
+     private String variant;
+@@ -36,9 +38,6 @@
+         return uniqueID;
+     }
+ 
+-    public String getMake() {
+-        return make;
+-    }
+ 
+     public String getVarient() {
+         return variant;
+@@ -99,12 +98,12 @@
+         this.user = user;
+     }
+ 
+-    public String getMaker() {
++    public String getMake() {
+         return make;
+     }
+ 
+-    public void setMaker(String maker) {
+-        this.make = maker;
++    public void setMake(String maker) {
++        this.make= maker;
+     }
+ 
+     public int getLength() {
+@@ -146,4 +145,22 @@
+     public void setYear(int year) {
+         this.year = year;
+     }
++
++    public int getSellPrice() {
++        return sellPrice;
++    }
++
++    public void setSellPrice(int sellPrice) {
++        this.sellPrice = sellPrice;
++    }
++
++    private static class PriceComparator implements Comparator<Boat> {
++        public int compare(Boat b1, Boat b2){
++            return b1.getSellPrice() - b2.getSellPrice();
++        }
++    }
++
++    public static Comparator<Boat> getComparator(){
++        return new PriceComparator();
++    }
+ }
+\ No newline at end of file
+Index: src/boat/BoatCreator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package boat;\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.FileReader;\r\nimport java.io.IOException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class BoatCreator {\r\n    public static void main(String[] args) {\r\n        String csvFile = \"resources/2023_MCM_Problem_Y_Boats.xlsx\";\r\n        String line;\r\n        String csvSplitBy = \",\";\r\n        List<Boat> boats = new ArrayList<>();\r\n\r\n        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {\r\n            br.readLine();\r\n            br.readLine();\r\n\r\n            while ((line = br.readLine()) != null) {\r\n                line = line.replace(\"\\\"\", \"\");\r\n                String[] data = line.split(csvSplitBy);\r\n                String maker = data[0];\r\n                String variant = data[1];\r\n                int length = Integer.parseInt(data[2]);\r\n                String region = data[3];\r\n                String price = data[5].replaceAll(\"[^\\\\d.]\", \"\"); // Remove non-numeric characters from price\r\n                int sellPrice = Integer.parseInt(price);\r\n                int year = Integer.parseInt(data[6]);\r\n                int costPrice = sellPrice - 100 - length * 2 - year / 10;\r\n                int rentPrice = sellPrice / 100;\r\n                // Create a new Boat object using the constructor\r\n                Boat boat = new Boat(maker, variant, length, region, sellPrice, costPrice,sellPrice, year);\r\n                boats.add(boat);\r\n            }\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        System.out.println(\"Number of boats created: \" + boats.size());\r\n        System.out.println(boats.get(1000).getMake());\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/boat/BoatCreator.java b/src/boat/BoatCreator.java
+--- a/src/boat/BoatCreator.java	
++++ b/src/boat/BoatCreator.java	
+@@ -8,36 +8,45 @@
+ 
+ public class BoatCreator {
+     public static void main(String[] args) {
+-        String csvFile = "resources/2023_MCM_Problem_Y_Boats.xlsx";
++        String csvFile = "D:\\FinalProject\\CPS2232_FinalProject\\resources\\2023_MCM_Problem_Y_Boats.xlsx";
+         String line;
+-        String csvSplitBy = ",";
++        String csvSplitBy = "\t"; // Assuming it's tab-separated
+         List<Boat> boats = new ArrayList<>();
+ 
+         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+-            br.readLine();
+-            br.readLine();
++            br.readLine(); // Skip the header line
+ 
+             while ((line = br.readLine()) != null) {
+-                line = line.replace("\"", "");
+                 String[] data = line.split(csvSplitBy);
+-                String maker = data[0];
+-                String variant = data[1];
+-                int length = Integer.parseInt(data[2]);
+-                String region = data[3];
+-                String price = data[5].replaceAll("[^\\d.]", ""); // Remove non-numeric characters from price
+-                int sellPrice = Integer.parseInt(price);
+-                int year = Integer.parseInt(data[6]);
+-                int costPrice = sellPrice - 100 - length * 2 - year / 10;
+-                int rentPrice = sellPrice / 100;
+-                // Create a new Boat object using the constructor
+-                Boat boat = new Boat(maker, variant, length, region, sellPrice, costPrice,sellPrice, year);
+-                boats.add(boat);
++
++
++                try {
++                    if (data.length >= 7) { // Ensure there are enough elements in the array
++                        String maker = data[0];
++                        String variant = data[1];
++                        int length = Integer.parseInt(data[2]);
++                        String region = data[3];
++                        String price = data[5].replaceAll("[^\\d.]", "");
++                        int sellPrice = Integer.parseInt(price);
++                        int year = Integer.parseInt(data[6]);
++                        int costPrice = sellPrice - 100 - length * 2 - year / 10;
++                        int rentPrice = sellPrice / 100;
++
++                        // Create a new Boat object using the constructor
++                        Boat boat = new Boat(maker, variant, length, region, sellPrice, costPrice, sellPrice, year);
++                        boats.add(boat);
++                    } else {
++
++                    }
++                } catch (NumberFormatException e) {
++                    System.out.println("Error parsing data: " + line);
++                    e.printStackTrace();
++                }
+             }
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+ 
+-        System.out.println("Number of boats created: " + boats.size());
+-        System.out.println(boats.get(1000).getMake());
++        System.out.println(boats);
+     }
+-}
+\ No newline at end of file
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6eae50ce-4e0c-4eaa-9690-e25378fcbeac\" name=\"Changes\" comment=\"change all the files to java project file, which is more efficient to write codes, run, and debug\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/backend/Database.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/backend/Database.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/boat/Boat.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/boat/Boat.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PUSH_TAGS\">\r\n      <GitPushTagMode>\r\n        <option name=\"argument\" value=\"--tags\" />\r\n        <option name=\"title\" value=\"All\" />\r\n      </GitPushTagMode>\r\n    </option>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;AlbertZhaoCA&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"64df6a75-bbf5-43c4-b8f3-1da8ce76d452\" />\r\n        <option name=\"url\" value=\"https://github.com/Lareina2441/CPS2232_FinalProject.git\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 6\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2Yl6cpOVXVm4bUsktyTBEEmGrXp\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"OverrideImplement.generate.javadoc\": \"true\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\FinalProject\\CPS2232_FinalProject\\src\\csv\" />\r\n      <recent name=\"D:\\FinalProject\\CPS2232_FinalProject\\src\\ui\" />\r\n      <recent name=\"D:\\FinalProject\\CPS2232_FinalProject\\src\\boat\" />\r\n      <recent name=\"D:\\FinalProject\\CPS2232_FinalProject\" />\r\n      <recent name=\"D:\\FinalProject\\CPS2232_FinalProject\\resources\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6eae50ce-4e0c-4eaa-9690-e25378fcbeac\" name=\"Changes\" comment=\"\" />\r\n      <created>1701087902886</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1701087902886</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"change all the files to java project file, which is more efficient to write codes, run, and debug\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1701088626325</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701088626325</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"change all the files to java project file, which is more efficient to write codes, run, and debug\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"change all the files to java project file, which is more efficient to write codes, run, and debug\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,8 +5,10 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" name="Changes" comment="change all the files to java project file, which is more efficient to write codes, run, and debug">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/backend/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Database.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/boat/Boat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/Boat.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/boat/BoatCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/BoatCreator.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -120,4 +122,14 @@
+     <MESSAGE value="change all the files to java project file, which is more efficient to write codes, run, and debug" />
+     <option name="LAST_COMMIT_MESSAGE" value="change all the files to java project file, which is more efficient to write codes, run, and debug" />
+   </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <breakpoint enabled="true" type="java-exception">
++          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
++          <option name="timeStamp" value="2" />
++        </breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
++  </component>
+ </project>
+\ No newline at end of file
+Index: src/backend/Database.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package backend;\r\n\r\nimport boat.Boat;\r\n\r\nimport person.Sailor;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.HashMap;\r\nimport java.util.Queue;\r\n\r\npublic class Database {\r\n    HashMap<> boats = new HashMap<>();\r\n    HashMap<> clients = new HashMap<>();\r\n\r\n    ArrayList<Sailor> sailors = new ArrayList<>();\r\n    Queue<Client> clientQueue;\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/backend/Database.java b/src/backend/Database.java
+--- a/src/backend/Database.java	
++++ b/src/backend/Database.java	
+@@ -1,18 +1,45 @@
+ package backend;
+ 
+ import boat.Boat;
+-
++import boat.BoatCreator;
+ import person.Sailor;
+-
+ import java.util.ArrayList;
+ import java.util.HashMap;
+ import java.util.Queue;
++import java.util.TreeMap;
+ 
+ public class Database {
+-    HashMap<> boats = new HashMap<>();
+-    HashMap<> clients = new HashMap<>();
++    HashMap<String,ArrayList<Boat>> byAttributeBoats = new HashMap<>();
++    TreeMap<Integer,Boat> byPriceBoats = new TreeMap(Boat.getComparator());
++    BoatCreator boatCreator = new BoatCreator();
+ 
+     ArrayList<Sailor> sailors = new ArrayList<>();
+-    Queue<Client> clientQueue;
+ 
++    public static void main(String[] args) {
++        Database database = new Database();
++        System.out.println(database.byAttributeBoats.get("Bavaria"));
++        System.out.println(database.byPriceBoats);
++    }
++
++    public Database(){
++        boatCreator.createBoats();
++        ArrayList <Boat> boats = new ArrayList<>();
++        //use different attribute to file the database
++        for (Boat boat : boatCreator.boats
++             ) {
++            byAttributeBoats.computeIfAbsent(boat.getMake(), k -> new ArrayList<>()).add(boat);//by MAKE
++        }
++        for (Boat boat : boatCreator.boats
++        ) {
++            byAttributeBoats.computeIfAbsent(boat.getRegion(), k -> new ArrayList<>()).add(boat);//by REGION
++        }
++        for (Boat boat : boatCreator.boats
++        ) {
++            byAttributeBoats.computeIfAbsent(boat.getVarient(), k -> new ArrayList<>()).add(boat);//by VARIANT
++        }
++        for (Boat boat : boatCreator.boats
++        ) {
++            byPriceBoats.put(boat.getSellPrice(),boat);
++        }
++    }
+ }
