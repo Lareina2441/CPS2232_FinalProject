@@ -14,8 +14,8 @@ public interface Asset {
     // arr[2] is the cost price,
     int[] getPrice();
     void setPrice(int rentPrice,int sellPrice,int costPrice);
-    Object getOwner();
-    void setOwner(Object owner);
-    Object getUser();
-    void setUser(Object user);
+    Person getOwner();
+    void setOwner(Person owner);
+    Person getUser();
+    void setUser(Person user);
 }

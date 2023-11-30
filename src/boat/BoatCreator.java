@@ -20,15 +20,17 @@ public class BoatCreator {
             while ((line = br.readLine()) != null) {
                 line = line.replace("\"", "");
                 String[] data = line.split(csvSplitBy);
-                String make = data[0];
+                String maker = data[0];
                 String variant = data[1];
                 int length = Integer.parseInt(data[2]);
                 String region = data[3];
                 String price = data[5].replaceAll("[^\\d.]", ""); // Remove non-numeric characters from price
                 int sellPrice = Integer.parseInt(price);
                 int year = Integer.parseInt(data[6]);
+                int costPrice = sellPrice - 100 - length * 2 - year / 10;
+                int rentPrice = sellPrice / 100;
                 // Create a new Boat object using the constructor
-                Boat boat = new Boat(make, variant, length, region, sellPrice, year);
+                Boat boat = new Boat(maker, variant, length, region, sellPrice, costPrice,sellPrice, year);
                 boats.add(boat);
             }
         } catch (IOException e) {

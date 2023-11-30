@@ -1,19 +1,21 @@
 package boat;
 
 import interfaces.Asset;
+import interfaces.Person;
 
 public class Boat implements Asset {
-    public String maker;
-    public String variant;
-    public int length;
-    public String region;
-    public int sellPrice;
-    public int costPrice;
-    public int rentPrice;
-    public int year;
+    private String maker;
+    private String variant;
+    private int length;
+    private String region;
+    private int sellPrice;
+    private int costPrice;
+    private int rentPrice;
+    private int year;
     private int[] prices = new int[3];
-    private Object owner;
-    private Object user;
+    private Person owner;
+    private Person user;
+    private String uniqueID;
 
 
     public Boat(String maker, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
@@ -30,8 +32,12 @@ public class Boat implements Asset {
 
     }
 
+    public String getUniqueID() {
+        return uniqueID;
+    }
+
     public String getMake() {
-        return make;
+        return maker;
     }
 
     public String getVarient() {
@@ -64,7 +70,7 @@ public class Boat implements Asset {
      * @return
      */
     @Override
-    public Object getOwner() {
+    public Person getOwner() {
         return owner;
     }
 
@@ -72,7 +78,7 @@ public class Boat implements Asset {
      * @param owner
      */
     @Override
-    public void setOwner(Object owner) {
+    public void setOwner(Person owner) {
         this.owner = owner;
 
     }
@@ -81,7 +87,7 @@ public class Boat implements Asset {
      * @return
      */
     @Override
-    public Object getUser() {
+    public Person getUser() {
         return user;
     }
 
@@ -89,7 +95,55 @@ public class Boat implements Asset {
      * @param user
      */
     @Override
-    public void setUser(Object user) {
+    public void setUser(Person user) {
         this.user = user;
+    }
+
+    public String getMaker() {
+        return maker;
+    }
+
+    public void setMaker(String maker) {
+        this.maker = maker;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public int getCostPrice() {
+        return costPrice;
+    }
+
+    public void setCostPrice(int costPrice) {
+        this.costPrice = costPrice;
+    }
+
+    public int getRentPrice() {
+        return rentPrice;
+    }
+
+    public void setRentPrice(int rentPrice) {
+        this.rentPrice = rentPrice;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }

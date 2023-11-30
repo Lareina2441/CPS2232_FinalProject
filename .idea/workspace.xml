@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" name="Changes" comment="change all the files to java project file, which is more efficient to write codes, run, and debug">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Person/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Person/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/boat/Boat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/Boat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/BoatCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/BoatCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/csv/ClientCsvCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/csv/ClientCsvCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/Asset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Asset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/person/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/person/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/person/Sailor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/person/Sailor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -54,7 +61,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -67,15 +74,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "OverrideImplement.generate.javadoc": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\FinalProject\CPS2232_FinalProject\src\csv" />

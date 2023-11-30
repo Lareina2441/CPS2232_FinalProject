@@ -1,6 +1,6 @@
 package csv;
 
-import Person.Client;
+import person.Client;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
 public class ClientCsvCreator {
     public static void main(String[] args) {
         List<Client> clients = new ArrayList<>();
-        clients.add(new Client(1, "Alice", 1234));
-        clients.add(new Client(2, "Bob", 5678));
-        clients.add(new Client(3, "Charlie", 9876));
+        clients.add(new Client(1, "Alice", "1234"));
+        clients.add(new Client(2, "Bob", "5678"));
+        clients.add(new Client(3, "Charlie", "9012"));
 
         String csvFilePath = "E:\\note\\clients.csv";
 
