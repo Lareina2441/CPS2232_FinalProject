@@ -193,19 +193,271 @@ public class Example {
 
 按销售价格和制造商过滤并显示船只信息的方法。
 
-## 主类方法
+[点这里跳转代码][DC]
 
-### `main(String[] args)`
-
-主类方法，用于初始化 `Database` 对象并展示所有制造商及其船只数量。
-
-## 构造函数
 
 ```java
-public Database()
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
 
-可以把对象的实例当做hashmap里的key,但是要在这个类写自己的hashcode()和equal()方法才行
----
+public class Database {
+    HashMap<String, ArrayList<Boat>> byAttributeBoats = new HashMap<>();
+    HashMap<Boat, Boat> allBoats = new HashMap<>();
+    TreeMap<Integer, ArrayList<Boat>> rPriceBoats = new TreeMap<>();
+    TreeMap<Integer, ArrayList<Boat>> sPriceBoats = new TreeMap<>();
+    TreeMap<Integer, ArrayList<Boat>> lengthBoats = new TreeMap<>();
+    TreeMap<Integer, ArrayList<Boat>> yearBoats = new TreeMap<>();
+
+    public void showAllMakes() {
+        // Method body
+    }
+
+    public void showAllrPrice() {
+        // Method body
+    }
+
+    public void showAllsPrice() {
+        // Method body
+    }
+
+    public double getAveragePrice(String make) {
+        // Method body
+        return 0.0;
+    }
+
+    public void show() {
+        // Method body
+    }
+
+    public void showAllBoats() {
+        // Method body
+    }
+
+    public void showBoatsByMake(String make) {
+        // Method body
+    }
+
+    public void showBoatsByRegion(String region) {
+        // Method body
+    }
+
+    public void showBoatsByVariant(String variant) {
+        // Method body
+    }
+
+    public void showBoatsByrPrice(int price) {
+        // Method body
+    }
+
+    public void showBoatsBysPrice(int price) {
+        // Method body
+    }
+
+    public void showBoatsByYear(int year) {
+        // Method body
+    }
+
+    public void showBoatsByPriceRange(int minPrice, int maxPrice) {
+        // Method body
+    }
+
+    public void showBoatsByLengthRange(int minLength, int maxLength) {
+        // Method body
+    }
+
+    public void showBoatsByYearRange(int minYear, int maxYear) {
+        // Method body
+    }
+
+    public void showBoatsBysPriceAndMake(double price, String make) {
+        // Method body
+    }
+
+    public static void main(String[] args) {
+        Database database = new Database();
+        database.showAllMakes();
+        database.showAllrPrice();
+    }
+
+    public Database() {
+        // Constructor body
+    }
+}
+```
+# Boat 类
+
+## 简介
+
+`Boat` 类是表示船只的 Java 类，实现了 `Asset` 接口并实现了 `Comparable<Boat>` 接口。该类包含船只的各种属性和方法。
+
+## 数据字段
+
+- `private String make`: 船只制造商。
+- `private String variant`: 船只型号。
+- `private int length`: 船只长度。
+- `private String region`: 船只所在地区。
+- `private int sellPrice`: 船只销售价格。
+- `private int costPrice`: 船只成本价格。
+- `private int rentPrice`: 船只租金价格。
+- `private int year`: 船只制造年份。
+- `private int[] prices`: 包含租金、销售和成本价格的数组。
+- `private Person owner`: 船只所有者。
+- `private Person user`: 船只使用者。
+
+
+[点这里跳转代码][BC]
+
+```
+
+public class Boat implements Asset, Comparable<Boat> {
+    private String make;
+    private String variant;
+    private int length;
+    private String region;
+    private int sellPrice;
+    private int costPrice;
+    private int rentPrice;
+    private int year;
+    private int[] prices = new int[3];
+    private Person owner;
+    private Person user;
+
+    // 构造函数
+    public Boat(String make, String variant, int length, String region, int sellPrice, int costPrice, int rentPrice, int year) {
+        // 实现构造函数
+    }
+
+    // 获取制造商
+    public String getMake() {
+        // 实现方法
+    }
+
+    // 获取型号
+    public String getVariant() {
+        // 实现方法
+    }
+
+    // 获取价格
+    @Override
+    public int[] getPrice() {
+        // 实现方法
+    }
+
+    // 设置价格
+    @Override
+    public void setPrice(int rentPrice, int sellPrice, int costPrice) {
+        // 实现方法
+    }
+
+    // 获取所有者
+    @Override
+    public Person getOwner() {
+        // 实现方法
+    }
+
+    // 设置所有者
+    @Override
+    public void setOwner(Person owner) {
+        // 实现方法
+    }
+
+    // 获取使用者
+    @Override
+    public Person getUser() {
+        // 实现方法
+    }
+
+    // 设置使用者
+    @Override
+    public void setUser(Person user) {
+        // 实现方法
+    }
+
+    // 获取制造商（getMaker）
+    public String getMaker() {
+        // 实现方法
+    }
+
+    // 设置制造商（setMaker）
+    public void setMaker(String maker) {
+        // 实现方法
+    }
+
+    // 获取长度
+    public int getLength() {
+        // 实现方法
+    }
+
+    // 设置长度
+    public void setLength(int length) {
+        // 实现方法
+    }
+
+    // 获取地区
+    public String getRegion() {
+        // 实现方法
+    }
+
+    // 设置地区
+    public void setRegion(String region) {
+        // 实现方法
+    }
+
+    // 获取成本价格
+    public int getCostPrice() {
+        // 实现方法
+    }
+
+    // 设置成本价格
+    public void setCostPrice(int costPrice) {
+        // 实现方法
+    }
+
+    // 获取租金价格
+    public int getRentPrice() {
+        // 实现方法
+    }
+
+    // 设置租金价格
+    public void setRentPrice(int rentPrice) {
+        // 实现方法
+    }
+
+    // 获取制造年份
+    public int getYear() {
+        // 实现方法
+    }
+
+    // 设置制造年份
+    public void setYear(int year) {
+        // 实现方法
+    }
+
+    // 比较
+    @Override
+    public int compareTo(Boat o) {
+        // 实现方法
+    }
+
+    // hashCode 方法
+    @Override
+    public int hashCode() {
+        // 实现方法
+    }
+
+    // equals 方法
+    @Override
+    public boolean equals(Object obj) {
+        // 实现方法
+    }
+}
+```
+
+
+
 
 <p align="left"> <a href="https://www.kean.edu/" target="_blank" rel="noreferrer"> <img src="https://www.kean.edu/themes/custom/kean/logo.svg" alt="KeanU" width="300" height="78"/> </a> 
 
@@ -213,4 +465,5 @@ public Database()
 [JY]: https://github.com/GemmaJiao
 [ZJ]: https://github.com/AlbertZhaoCA
 [wku]: https://www.wku.edu.cn/en/
-
+[DC]: ./src/backend/Datastructure
+[BC]: ./src/boat/Boat
