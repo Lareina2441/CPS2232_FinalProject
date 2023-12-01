@@ -12,9 +12,52 @@ public class Database {
     TreeMap<Integer,ArrayList<Boat>> lengthBoats = new TreeMap<>();
 
     TreeMap<Integer,ArrayList<Boat>> yearBoats = new TreeMap<>();
-    Scanner input = new Scanner(System.in);
 
+    public void showAllMakes(){
+        Set<Boat> makes = allBoats.keySet();
+        int count = 0;
+        HashMap<String,Integer> makeCount = new HashMap<>();
 
+        for (Boat make : makes
+        ) {
+            if (!makeCount.containsKey(make.getMake())){
+                makeCount.put(make.getMake(),1);
+            }
+            else {
+                makeCount.put(make.getMake(),makeCount.get(make.getMake())+1);
+            }
+        }
+        for (String make : makeCount.keySet()
+        ) {
+            count++;
+            System.out.print("|" + makeCount.get(make) + " items for "+ make + "| ");
+            if (count%5==0){
+                System.out.println();
+            }
+        }
+    }
+
+    //show rent price
+    public void showAllrPrice(){
+        TreeMap <Integer,ArrayList<Boat>> rPrice = rPriceBoats;
+        int count = 0;
+        HashMap<String,Integer> makeCount = new HashMap<>();
+        rPrice.forEach((k,v)->{
+            int sum = v.size();
+            System.out.print("| " +sum +" items at " + k +" $  each | ");
+        });
+    }
+
+    //show sell price
+    public void showAllsPrice(){
+        TreeMap <Integer,ArrayList<Boat>> sPrice = sPriceBoats;
+        int count = 0;
+        HashMap<String,Integer> makeCount = new HashMap<>();
+        sPrice.forEach((k,v)->{
+            int sum = v.size();
+            System.out.print("| " +sum +" items at " + k +" $  each | ");
+        });
+    }
 
 
     //get average sell price by make
@@ -28,11 +71,14 @@ public class Database {
         return sum/boats.size();
     }
 
-   
+
+
 
     //helper method for showBoatsByAttribute
-
     public void show(){
+        try(Scanner input = new Scanner(System.in)) {
+
+
         System.out.println("If you want to show all the boats, please enter 1");
         System.out.println("If you want to show the boats by make, please enter 2");
         System.out.println("If you want to show the boats by region, please enter 3");
@@ -47,7 +93,7 @@ public class Database {
         System.out.println("If you want to exit, please enter 0");
         System.out.println("Please enter your choice:");
         int i = Integer.parseInt(input.nextLine());
-        switch (i){
+        switch (i) {
             case 1:
                 showAllBoats();
                 break;
@@ -86,31 +132,32 @@ public class Database {
                 int minPrice = Integer.parseInt(input.nextLine());
                 System.out.println("Please enter the max price:");
                 int maxPrice = Integer.parseInt(input.nextLine());
-                showBoatsByPriceRange(minPrice,maxPrice);
+                showBoatsByPriceRange(minPrice, maxPrice);
                 break;
             case 9:
                 System.out.println("Please enter the min length:");
                 int minLength = Integer.parseInt(input.nextLine());
                 System.out.println("Please enter the max length:");
                 int maxLength = Integer.parseInt(input.nextLine());
-                showBoatsByLengthRange(minLength,maxLength);
+                showBoatsByLengthRange(minLength, maxLength);
                 break;
             case 10:
                 System.out.println("Please enter the min year:");
                 int minYear = Integer.parseInt(input.nextLine());
                 System.out.println("Please enter the max year:");
                 int maxYear = Integer.parseInt(input.nextLine());
-                showBoatsByYearRange(minYear,maxYear);
+                showBoatsByYearRange(minYear, maxYear);
                 break;
             case 11:
                 System.out.println("Please enter the price:");
                 double price = Double.parseDouble(input.nextLine());
                 System.out.println("Please enter the make:");
                 String make1 = input.nextLine();
-                showBoatsBysPriceAndMake(price,make1);
+                showBoatsBysPriceAndMake(price, make1);
                 break;
             case 0:
                 break;
+        }
 
         }
 
@@ -279,7 +326,8 @@ public class Database {
 
     public static void main(String[] args) {
         Database database = new Database();
-        database.show();
+        database.showAllMakes();
+        database.showAllrPrice();
     }
 
 
