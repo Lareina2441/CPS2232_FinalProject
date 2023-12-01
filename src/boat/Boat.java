@@ -15,7 +15,6 @@ public class Boat implements Asset,Comparable<Boat> {
     private int[] prices = new int[3];
     private Person owner;
     private Person user;
-    private String uniqueID;
 
 
     public Boat(String make, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
@@ -32,9 +31,6 @@ public class Boat implements Asset,Comparable<Boat> {
 
     }
 
-    public String getUniqueID() {
-        return uniqueID;
-    }
 
     public String getMake() {
         return make;
@@ -157,5 +153,19 @@ public class Boat implements Asset,Comparable<Boat> {
         return this.getPrice()[1] - o.getPrice()[1];
     }
 
+    @Override
+    public int hashCode() {
+        return this.getMake().hashCode() + this.getVarient().hashCode() + this.getLength() + this.getRegion().hashCode()
+                + this.getYear() + this.getPrice()[1];
+    }
 
+    public boolean equals(Object obj) {
+        if (obj instanceof Boat) {
+            Boat boat = (Boat) obj;
+            return this.getMake().equals(boat.getMake()) && this.getVarient().equals(boat.getVarient())
+                    && this.getLength() == boat.getLength() && this.getRegion().equals(boat.getRegion())
+                    && this.getYear() == boat.getYear() && this.getPrice()[1] == boat.getPrice()[1];
+        }
+        return false;
+    }
 }
