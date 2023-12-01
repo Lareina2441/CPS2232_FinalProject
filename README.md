@@ -465,5 +465,5 @@ public class Boat implements Asset, Comparable<Boat> {
 [JY]: https://github.com/GemmaJiao
 [ZJ]: https://github.com/AlbertZhaoCA
 [wku]: https://www.wku.edu.cn/en/
-[DC]: ./src/backend/Datastructure
-[BC]: ./src/boat/Boat
+[DC]: ./src/backend/Datastructure.java
+[BC]: ./src/boat/Boat.java
