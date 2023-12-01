@@ -8,11 +8,10 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 public class Database {
-    //do operations based on the attribute
     HashMap<String,ArrayList<Boat>> byAttributeBoats = new HashMap<>();
+    TreeMap<Integer,ArrayList<Boat>> rPrice = new TreeMap<>();
+    TreeMap<Integer,ArrayList<Boat>> sPrice = new TreeMap<>();
 
-    //use price as default "comparator to sort"
-    TreeMap<Boat,Boat> byPriceBoats = new TreeMap<>();
 
     ArrayList<Sailor> sailors = new ArrayList<>();
 
@@ -22,7 +21,6 @@ public class Database {
     }
 
     public Database(){
-        //testing 
         Boat[] boats = new Boat[3];
         boats[0] = new Boat("Bav", "Cruiser 46", 14, "Mediterranean", 39999990, 200, 10, 20124);
         boats[1] = new Boat("Alamba", "Cruiser 56", 234, "Mediterraneaner", 30000, 2001000, 100400, 20214);
@@ -43,7 +41,8 @@ public class Database {
         }
         for (Boat boat : boats
         ) {
-            price.put(boat,boat);//by PRICE
+            rPrice.computeIfAbsent(boat.getPrice()[0], k -> new ArrayList<>()).add(boat);//by PRICE
+            sPrice.computeIfAbsent(boat.getPrice()[1], k -> new ArrayList<>()).add(boat);//by PRICE
         }
 
     }
