@@ -310,8 +310,7 @@ public class Database {
 
 [点这里跳转代码][BC]
 
-```
-
+```java
 public class Boat implements Asset, Comparable<Boat> {
     private String make;
     private String variant;
