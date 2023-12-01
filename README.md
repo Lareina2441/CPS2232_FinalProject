@@ -114,6 +114,95 @@ public class Example {
     }
 }
 ```
+# Database 类介绍
+
+`Database` 类是一个用于管理船只信息的 Java 类。该类包含各种方法，用于检索、过滤和显示船只的信息。以下是该类的主要方法介绍：
+
+## 成员变量
+
+- `HashMap<String, ArrayList<Boat>> byAttributeBoats`: 通过不同属性组织的船只信息的哈希映射。
+- `HashMap<Boat, Boat> allBoats`: 包含所有船只的哈希映射。
+- `TreeMap<Integer, ArrayList<Boat>> rPriceBoats`: 按租金价格排序的船只信息的有序映射。
+- `TreeMap<Integer, ArrayList<Boat>> sPriceBoats`: 按销售价格排序的船只信息的有序映射。
+- `TreeMap<Integer, ArrayList<Boat>> lengthBoats`: 按长度排序的船只信息的有序映射。
+- `TreeMap<Integer, ArrayList<Boat>> yearBoats`: 按年份排序的船只信息的有序映射。
+
+## 主要方法
+
+### `showAllMakes()`
+
+显示所有制造商及其船只数量的方法。
+
+### `showAllrPrice()`
+
+显示按租金价格分组的船只数量的方法。
+
+### `showAllsPrice()`
+
+显示按销售价格分组的船只数量的方法。
+
+### `getAveragePrice(String make)`
+
+获取指定制造商的平均销售价格的方法。
+
+### `show()`
+
+用户交互方法，根据用户选择展示不同的船只信息。
+
+### `showAllBoats()`
+
+显示所有船只信息的方法。
+
+### `showBoatsByMake(String make)`
+
+按制造商过滤并显示船只信息的方法。
+
+### `showBoatsByRegion(String region)`
+
+按地区过滤并显示船只信息的方法。
+
+### `showBoatsByVariant(String variant)`
+
+按型号过滤并显示船只信息的方法。
+
+### `showBoatsByrPrice(int price)`
+
+按租金价格过滤并显示船只信息的方法。
+
+### `showBoatsBysPrice(int price)`
+
+按销售价格过滤并显示船只信息的方法。
+
+### `showBoatsByYear(int year)`
+
+按年份过滤并显示船只信息的方法。
+
+### `showBoatsByPriceRange(int minPrice, int maxPrice)`
+
+按价格范围过滤并显示船只信息的方法。
+
+### `showBoatsByLengthRange(int minLength, int maxLength)`
+
+按长度范围过滤并显示船只信息的方法。
+
+### `showBoatsByYearRange(int minYear, int maxYear)`
+
+按年份范围过滤并显示船只信息的方法。
+
+### `showBoatsBysPriceAndMake(double price, String make)`
+
+按销售价格和制造商过滤并显示船只信息的方法。
+
+## 主类方法
+
+### `main(String[] args)`
+
+主类方法，用于初始化 `Database` 对象并展示所有制造商及其船只数量。
+
+## 构造函数
+
+```java
+public Database()
 
 可以把对象的实例当做hashmap里的key,但是要在这个类写自己的hashcode()和equal()方法才行
 ---
