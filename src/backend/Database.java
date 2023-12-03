@@ -295,7 +295,7 @@ public class Database {
                 "Variant","Length","Region","RentPrice","SellPrice","CostPrice","Year");
         for (Boat boat : allBoats.keySet()
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
+            System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",boat.getMake(),
                     boat.getVarient(),boat.getLength(),boat.getRegion(),
                     boat.getPrice()[0],boat.getPrice()[1],boat.getPrice()[2],boat.getYear());
         }
@@ -306,9 +306,10 @@ public class Database {
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
-                    boat.getVarient(), boat.getLength(), boat.getRegion(),
-                    boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
+            System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",boat.getMake(),
+                    boat.getVarient(),boat.getLength(),boat.getRegion(),
+                    boat.getPrice()[0],boat.getPrice()[1],boat.getPrice()[2],boat.getYear());
+        }
     }
 
     public void showBoatsByRegion(String region){
@@ -317,9 +318,10 @@ public class Database {
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
-                    boat.getVarient(), boat.getLength(), boat.getRegion(),
-                    boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
+            System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",boat.getMake(),
+                    boat.getVarient(),boat.getLength(),boat.getRegion(),
+                    boat.getPrice()[0],boat.getPrice()[1],boat.getPrice()[2],boat.getYear());
+        }
     }
 
     public void showBoatsByVariant(String variant){
@@ -329,9 +331,9 @@ public class Database {
 
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
-                    boat.getVarient(), boat.getLength(), boat.getRegion(),
-                    boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());
+            System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",boat.getMake(),
+                    boat.getVarient(),boat.getLength(),boat.getRegion(),
+                    boat.getPrice()[0],boat.getPrice()[1],boat.getPrice()[2],boat.getYear());
         }
     }
 
@@ -341,9 +343,10 @@ public class Database {
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
-                    boat.getVarient(), boat.getLength(), boat.getRegion(),
-                    boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
+            System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",boat.getMake(),
+                    boat.getVarient(),boat.getLength(),boat.getRegion(),
+                    boat.getPrice()[0],boat.getPrice()[1],boat.getPrice()[2],boat.getYear());
+        }
     }
 
     public void showBoatsBysPrice(double price){
@@ -352,9 +355,10 @@ public class Database {
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
-                    boat.getVarient(), boat.getLength(), boat.getRegion(),
-                    boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
+            System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",boat.getMake(),
+                    boat.getVarient(),boat.getLength(),boat.getRegion(),
+                    boat.getPrice()[0],boat.getPrice()[1],boat.getPrice()[2],boat.getYear());     
+        }
     }
 
     public void showBoatsByYear(int year){
@@ -363,9 +367,10 @@ public class Database {
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
-                    boat.getVarient(), boat.getLength(), boat.getRegion(),
-                    boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
+            System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",boat.getMake(),
+                    boat.getVarient(),boat.getLength(),boat.getRegion(),
+                    boat.getPrice()[0],boat.getPrice()[1],boat.getPrice()[2],boat.getYear());    
+        }
     }
 
     public void showBoatsByPriceRange(double minPrice, double maxPrice) throws NotFoundByGivenInfo {
@@ -383,7 +388,7 @@ public class Database {
                 ArrayList<Boat> boat = entry.getValue();
                 for (Boat b : boat
                 ) {
-                    System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",b.getMake(),
+                    System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",b.getMake(),
                             b.getVarient(), b.getLength(), b.getRegion(),
                             b.getPrice()[0], b.getPrice()[1], b.getPrice()[2], b.getYear());
                 }
@@ -409,7 +414,7 @@ public class Database {
                foundMatchingEntries.set(true);
                for (Boat b : boat
                ) {
-                   System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",b.getMake(),
+                   System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",b.getMake(),
                            b.getVarient(), b.getLength(), b.getRegion(),
                            b.getPrice()[0], b.getPrice()[1], b.getPrice()[2], b.getYear());
                }
@@ -435,7 +440,7 @@ public class Database {
                 foundMatchingEntries.set(true);
                 for (Boat b : boat
                 ) {
-                    System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",b.getMake(),
+                    System.out.printf("%-15s%-20s%-15s%-20s%-15f.2%-15.2f%-15.2f%-10d%n",b.getMake(),
                             b.getVarient(), b.getLength(), b.getRegion(),
                             b.getPrice()[0], b.getPrice()[1], b.getPrice()[2], b.getYear());
                 }
@@ -461,7 +466,7 @@ public class Database {
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : result
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n", boat.getMake(),
+            System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n", boat.getMake(),
                     boat.getVarient(), boat.getLength(), boat.getRegion(),
                     boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());
         }
