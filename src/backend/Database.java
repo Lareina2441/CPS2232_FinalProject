@@ -1,8 +1,10 @@
 package backend;
 
 import boat.Boat;
+import exceptions.NotFoundByGivenInfo;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Database {
     HashMap<String,ArrayList<Boat>> byAttributeBoats = new HashMap<>();
@@ -21,7 +23,7 @@ public class Database {
         for (Boat make : makes
         ) {
             if (!makeCount.containsKey(make.getMake())){
-                makeCount.put(make.getMake(),1);
+                makeCount.put(make.getMake(),1);//count the number of each make
             }
             else {
                 makeCount.put(make.getMake(),makeCount.get(make.getMake())+1);
@@ -75,89 +77,136 @@ public class Database {
 
 
     //helper method for showBoatsByAttribute
-    public void show(){
+    public void show()  {
         try(Scanner input = new Scanner(System.in)) {
 
+            System.out.println("If you want to show all the boats, please enter 1");
+            System.out.println("If you want to show the boats by make, please enter 2");
+            System.out.println("If you want to show the boats by region, please enter 3");
+            System.out.println("If you want to show the boats by variant, please enter 4");
+            System.out.println("If you want to show the boats by rent price, please enter 5");
+            System.out.println("If you want to show the boats by sell price, please enter 6");
+            System.out.println("If you want to show the boats by year, please enter 7");
+            System.out.println("If you want to show the boats by price range, please enter 8");
+            System.out.println("If you want to show the boats by length range, please enter 9");
+            System.out.println("If you want to show the boats by year range, please enter 10");
+            System.out.println("If you want to show the boats by price and make, please enter 11");
+            System.out.println("If you want to exit, please enter 0");
+            System.out.println("Please enter your choice:");
+        boolean valid = false;
+        do {
+            try{
+            int i = Integer.parseInt(input.nextLine());
+            switch (i) {
+                case 1:
+                    showAllBoats();
+                    break;
+                case 2:
+                    System.out.println("Please enter the make:");
+                    String make = input.nextLine();
+                    showBoatsByMake(make);
+                    break;
+                case 3:
+                    System.out.println("Please enter the region:");
+                    String region = input.nextLine();
+                    showBoatsByRegion(region);
+                    break;
+                case 4:
+                    System.out.println("Please enter the variant:");
+                    String variant = input.nextLine();
+                    showBoatsByVariant(variant);
+                    break;
+                case 5:
+                    System.out.println("Please enter the rent price:");
+                    int rPrice = Integer.parseInt(input.nextLine());
+                    showBoatsByrPrice(rPrice);
+                    break;
+                case 6:
+                    System.out.println("Please enter the sell price:");
+                    int sPrice = Integer.parseInt(input.nextLine());
+                    showBoatsBysPrice(sPrice);
+                    break;
+                case 7:
+                    System.out.println("Please enter the year:");
+                    int year = Integer.parseInt(input.nextLine());
+                    showBoatsByYear(year);
+                    break;
+                case 8:
+                    System.out.println("Please enter the min price:");
+                    int minPrice = Integer.parseInt(input.nextLine());
+                    System.out.println("Please enter the max price:");
+                    int maxPrice = Integer.parseInt(input.nextLine());
+                    showBoatsByPriceRange(minPrice, maxPrice);
+                    break;
+                case 9:
+                    System.out.println("Please enter the min length:");
+                    int minLength = Integer.parseInt(input.nextLine());
+                    System.out.println("Please enter the max length:");
+                    int maxLength = Integer.parseInt(input.nextLine());
+                    showBoatsByLengthRange(minLength, maxLength);
+                    break;
+                case 10:
+                    System.out.println("Please enter the min year:");
+                    int minYear = Integer.parseInt(input.nextLine());
+                    System.out.println("Please enter the max year:");
+                    int maxYear = Integer.parseInt(input.nextLine());
+                    showBoatsByYearRange(minYear, maxYear);
+                    break;
+                case 11:
+                    System.out.println("Please enter the price:");
+                    double price = Double.parseDouble(input.nextLine());
+                    System.out.println("Please enter the make:");
+                    String make1 = input.nextLine();
+                    showBoatsBysPriceAndMake(price, make1);
+                    break;
+                case 0:
+                    break;
 
-        System.out.println("If you want to show all the boats, please enter 1");
-        System.out.println("If you want to show the boats by make, please enter 2");
-        System.out.println("If you want to show the boats by region, please enter 3");
-        System.out.println("If you want to show the boats by variant, please enter 4");
-        System.out.println("If you want to show the boats by rent price, please enter 5");
-        System.out.println("If you want to show the boats by sell price, please enter 6");
-        System.out.println("If you want to show the boats by year, please enter 7");
-        System.out.println("If you want to show the boats by price range, please enter 8");
-        System.out.println("If you want to show the boats by length range, please enter 9");
-        System.out.println("If you want to show the boats by year range, please enter 10");
-        System.out.println("If you want to show the boats by price and make, please enter 11");
-        System.out.println("If you want to exit, please enter 0");
-        System.out.println("Please enter your choice:");
-        int i = Integer.parseInt(input.nextLine());
-        switch (i) {
-            case 1:
-                showAllBoats();
-                break;
-            case 2:
-                System.out.println("Please enter the make:");
-                String make = input.nextLine();
-                showBoatsByMake(make);
-                break;
-            case 3:
-                System.out.println("Please enter the region:");
-                String region = input.nextLine();
-                showBoatsByRegion(region);
-                break;
-            case 4:
-                System.out.println("Please enter the variant:");
-                String variant = input.nextLine();
-                showBoatsByVariant(variant);
-                break;
-            case 5:
-                System.out.println("Please enter the rent price:");
-                int rPrice = Integer.parseInt(input.nextLine());
-                showBoatsByrPrice(rPrice);
-                break;
-            case 6:
-                System.out.println("Please enter the sell price:");
-                int sPrice = Integer.parseInt(input.nextLine());
-                showBoatsBysPrice(sPrice);
-                break;
-            case 7:
-                System.out.println("Please enter the year:");
-                int year = Integer.parseInt(input.nextLine());
-                showBoatsByYear(year);
-                break;
-            case 8:
-                System.out.println("Please enter the min price:");
-                int minPrice = Integer.parseInt(input.nextLine());
-                System.out.println("Please enter the max price:");
-                int maxPrice = Integer.parseInt(input.nextLine());
-                showBoatsByPriceRange(minPrice, maxPrice);
-                break;
-            case 9:
-                System.out.println("Please enter the min length:");
-                int minLength = Integer.parseInt(input.nextLine());
-                System.out.println("Please enter the max length:");
-                int maxLength = Integer.parseInt(input.nextLine());
-                showBoatsByLengthRange(minLength, maxLength);
-                break;
-            case 10:
-                System.out.println("Please enter the min year:");
-                int minYear = Integer.parseInt(input.nextLine());
-                System.out.println("Please enter the max year:");
-                int maxYear = Integer.parseInt(input.nextLine());
-                showBoatsByYearRange(minYear, maxYear);
-                break;
-            case 11:
-                System.out.println("Please enter the price:");
-                double price = Double.parseDouble(input.nextLine());
-                System.out.println("Please enter the make:");
-                String make1 = input.nextLine();
-                showBoatsBysPriceAndMake(price, make1);
-                break;
-            case 0:
-                break;
+            }
+            valid = true;
+            }catch (NumberFormatException e){
+                System.out.println("Please enter a valid number");
+            }
+            catch (NullPointerException e){
+                System.out.println("If you want to show all the boats, please enter 1");
+                System.out.println("If you want to show the boats by make, please enter 2");
+                System.out.println("If you want to show the boats by region, please enter 3");
+                System.out.println("If you want to show the boats by variant, please enter 4");
+                System.out.println("If you want to show the boats by rent price, please enter 5");
+                System.out.println("If you want to show the boats by sell price, please enter 6");
+                System.out.println("If you want to show the boats by year, please enter 7");
+                System.out.println("If you want to show the boats by price range, please enter 8");
+                System.out.println("If you want to show the boats by length range, please enter 9");
+                System.out.println("If you want to show the boats by year range, please enter 10");
+                System.out.println("If you want to show the boats by price and make, please enter 11");
+                System.out.println("If you want to exit, please enter 0");
+                System.out.println("Please enter your choice:");
+                System.out.println("We do not have this boat by your GIVEN INFORMATION,please enter 0 to exit or do the " +
+                        "search again");
+            }
+            catch (NotFoundByGivenInfo e){
+                System.out.println(e+"\n\n\n");
+                System.out.println("If you want to show all the boats, please enter 1");
+                System.out.println("If you want to show the boats by make, please enter 2");
+                System.out.println("If you want to show the boats by region, please enter 3");
+                System.out.println("If you want to show the boats by variant, please enter 4");
+                System.out.println("If you want to show the boats by rent price, please enter 5");
+                System.out.println("If you want to show the boats by sell price, please enter 6");
+                System.out.println("If you want to show the boats by year, please enter 7");
+                System.out.println("If you want to show the boats by price range, please enter 8");
+                System.out.println("If you want to show the boats by length range, please enter 9");
+                System.out.println("If you want to show the boats by year range, please enter 10");
+                System.out.println("If you want to show the boats by price and make, please enter 11");
+                System.out.println("If you want to exit, please enter 0");
+                System.out.println("Please enter your choice:");
+                System.out.println("We do not have this boat by your GIVEN INFORMATION,please enter 0 to exit or do the " +
+                        "search again");
+
+            }
         }
+        while (!valid);
+
+
 
         }
 
@@ -204,11 +253,13 @@ public class Database {
         ArrayList<Boat> boats = byAttributeBoats.get(variant);
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
+
         for (Boat boat : boats
         ) {
             System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",boat.getMake(),
                     boat.getVarient(), boat.getLength(), boat.getRegion(),
-                    boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
+                    boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());
+        }
     }
 
     public void showBoatsByrPrice(int price){
@@ -244,14 +295,18 @@ public class Database {
                     boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
     }
 
-    public void showBoatsByPriceRange(int minPrice, int maxPrice){
+    public void showBoatsByPriceRange(int minPrice, int maxPrice) throws NotFoundByGivenInfo {
         TreeMap<Integer,ArrayList<Boat>> boats = sPriceBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
+        AtomicBoolean foundMatchingEntries = new AtomicBoolean(false);
+        //why use atomic boolean? because we need to use it in the lambda expression
+        // and boolean is forbidden in lambda expression
         Set<Map.Entry<Integer, ArrayList<Boat>> > entries
                 = sPriceBoats.entrySet();
         entries.forEach(entry -> {
             if (entry.getKey()>=minPrice&&entry.getKey()<=maxPrice){
+                foundMatchingEntries.set(true);
                 ArrayList<Boat> boat = entry.getValue();
                 for (Boat b : boat
                 ) {
@@ -261,17 +316,24 @@ public class Database {
                 }
             }
         });
+        if (!foundMatchingEntries.get()) {
+                throw new NotFoundByGivenInfo("No such boats by given information");
+        }
     }
 
-    public void showBoatsByLengthRange(int minLength, int maxLength){
+    public void showBoatsByLengthRange(int minLength, int maxLength) throws NotFoundByGivenInfo {
         TreeMap<Integer,ArrayList<Boat>> lengthRange =  lengthBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
+        AtomicBoolean foundMatchingEntries = new AtomicBoolean(false);
+        //why use atomic boolean? because we need to use it in the lambda expression
+        // and boolean is forbidden in lambda expression
         Set<Map.Entry<Integer, ArrayList<Boat>> > entries
                 = lengthRange.entrySet();
        entries.forEach(entry -> {
            if (entry.getKey()>=minLength&&entry.getKey()<=maxLength){
                ArrayList<Boat> boat = entry.getValue();
+               foundMatchingEntries.set(true);
                for (Boat b : boat
                ) {
                    System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",b.getMake(),
@@ -280,17 +342,24 @@ public class Database {
                }
            }
        });
+        if (!foundMatchingEntries.get()) {
+            throw new NotFoundByGivenInfo("No such boats by given information");
+        }
     }
 
-    public void showBoatsByYearRange(int minYear, int maxYear){
+    public void showBoatsByYearRange(int minYear, int maxYear) throws NotFoundByGivenInfo {
         TreeMap<Integer,ArrayList<Boat>> boats = yearBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
+        AtomicBoolean foundMatchingEntries = new AtomicBoolean(false);
+        //why use atomic boolean? because we need to use it in the lambda expression
+        // and boolean is forbidden in lambda expression
         Set<Map.Entry<Integer, ArrayList<Boat>> > entries
                 = boats.entrySet();
         entries.forEach(entry -> {
             if (entry.getKey()>=minYear&&entry.getKey()<=maxYear) {
                 ArrayList<Boat> boat = entry.getValue();
+                foundMatchingEntries.set(true);
                 for (Boat b : boat
                 ) {
                     System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",b.getMake(),
@@ -300,6 +369,9 @@ public class Database {
 
             }
         });
+        if (!foundMatchingEntries.get()) {
+            throw new NotFoundByGivenInfo("No such boats by given information");
+        }
 
     }
 
@@ -326,11 +398,9 @@ public class Database {
 
     public static void main(String[] args) {
         Database database = new Database();
-        database.showAllMakes();
-        database.showAllrPrice();
+        database.show();
+
     }
-
-
 
 
     public Database(){
