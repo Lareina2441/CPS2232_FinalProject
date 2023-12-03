@@ -12,13 +12,66 @@ public class Database {
     TreeMap<Double,ArrayList<Boat>> sPriceBoats = new TreeMap<>();
     TreeMap<Double,ArrayList<Boat>> lengthBoats = new TreeMap<>();
 
-    TreeMap<Double,ArrayList<Boat>> yearBoats = new TreeMap<>();
+    TreeMap<Integer,ArrayList<Boat>> yearBoats = new TreeMap<>();
 
-    public Boat returnNewBoat(String make, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
-                 int year){
-        return new Boat(make,variant,length,region,sellPrice,costPrice,rentPrice,year);
+
+    public void addBoat() {
+        try (Scanner input = new Scanner(System.in)) {
+            System.out.println("Please enter the make:");
+            String make = input.nextLine();
+            System.out.println("Please enter the variant:");
+            String variant = input.nextLine();
+            System.out.println("Please enter the length:");
+            double length = Integer.parseInt(input.nextLine());
+            System.out.println("Please enter the region:");
+            String region = input.nextLine();
+            System.out.println("Please enter the sell price:");
+            double sellPrice = Integer.parseInt(input.nextLine());
+            System.out.println("Please enter the cost price:");
+            double costPrice = Integer.parseInt(input.nextLine());
+            System.out.println("Please enter the rent price:");
+            double rentPrice = Integer.parseInt(input.nextLine());
+            System.out.println("Please enter the year:");
+            int year = Integer.parseInt(input.nextLine());
+            if (!allBoats.containsKey(new Boat(make,variant,length,region,sellPrice,costPrice,rentPrice,year))){
+            Boat boat = new Boat(make, variant, length, region, sellPrice, costPrice, rentPrice, year);
+            addBoat(boat);
+            }
+            else {
+                System.out.println("The boat you want to add is already in the database");
+            }
+        }
     }
 
+    public void deleteBoat() {
+        try (Scanner input = new Scanner(System.in)) {
+            System.out.println("Please enter the make:");
+            String make = input.nextLine();
+            System.out.println("Please enter the variant:");
+            String variant = input.nextLine();
+            System.out.println("Please enter the length:");
+            double length = Integer.parseInt(input.nextLine());
+            System.out.println("Please enter the region:");
+            String region = input.nextLine();
+            System.out.println("Please enter the sell price:");
+            double sellPrice = Integer.parseInt(input.nextLine());
+            System.out.println("Please enter the cost price:");
+            double costPrice = Integer.parseInt(input.nextLine());
+            System.out.println("Please enter the rent price:");
+            double rentPrice = Integer.parseInt(input.nextLine());
+            System.out.println("Please enter the year:");
+            int year = Integer.parseInt(input.nextLine());
+            if (!allBoats.containsKey(new Boat(make,variant,length,region,sellPrice,costPrice,rentPrice,year))){
+            Boat boat = new Boat(make, variant, length, region, sellPrice, costPrice, rentPrice, year);
+            deleteBoat(boat);
+            }
+            else {
+                System.out.println("The boat you want to delete is not in the database");
+            }
+        }
+    }
+
+    //helper method to add boat
     public void addBoat(Boat boat){
         allBoats.put(boat,boat);
         byAttributeBoats.computeIfAbsent(boat.getMake(), k -> new ArrayList<>()).add(boat);//by MAKE
@@ -242,7 +295,7 @@ public class Database {
                 "Variant","Length","Region","RentPrice","SellPrice","CostPrice","Year");
         for (Boat boat : allBoats.keySet()
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",boat.getMake(),
+            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
                     boat.getVarient(),boat.getLength(),boat.getRegion(),
                     boat.getPrice()[0],boat.getPrice()[1],boat.getPrice()[2],boat.getYear());
         }
@@ -253,7 +306,7 @@ public class Database {
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",boat.getMake(),
+            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
                     boat.getVarient(), boat.getLength(), boat.getRegion(),
                     boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
     }
@@ -264,7 +317,7 @@ public class Database {
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",boat.getMake(),
+            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
                     boat.getVarient(), boat.getLength(), boat.getRegion(),
                     boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
     }
@@ -276,30 +329,30 @@ public class Database {
 
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",boat.getMake(),
+            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
                     boat.getVarient(), boat.getLength(), boat.getRegion(),
                     boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());
         }
     }
 
-    public void showBoatsByrPrice(int price){
+    public void showBoatsByrPrice(double price){
         ArrayList<Boat> boats = rPriceBoats.get(price);
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",boat.getMake(),
+            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
                     boat.getVarient(), boat.getLength(), boat.getRegion(),
                     boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
     }
 
-    public void showBoatsBysPrice(int price){
+    public void showBoatsBysPrice(double price){
         ArrayList<Boat> boats = sPriceBoats.get(price);
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",boat.getMake(),
+            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
                     boat.getVarient(), boat.getLength(), boat.getRegion(),
                     boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
     }
@@ -310,12 +363,12 @@ public class Database {
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : boats
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",boat.getMake(),
+            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",boat.getMake(),
                     boat.getVarient(), boat.getLength(), boat.getRegion(),
                     boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());        }
     }
 
-    public void showBoatsByPriceRange(int minPrice, int maxPrice) throws NotFoundByGivenInfo {
+    public void showBoatsByPriceRange(double minPrice, double maxPrice) throws NotFoundByGivenInfo {
         TreeMap<Double,ArrayList<Boat>> boats = sPriceBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
@@ -330,7 +383,7 @@ public class Database {
                 ArrayList<Boat> boat = entry.getValue();
                 for (Boat b : boat
                 ) {
-                    System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",b.getMake(),
+                    System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",b.getMake(),
                             b.getVarient(), b.getLength(), b.getRegion(),
                             b.getPrice()[0], b.getPrice()[1], b.getPrice()[2], b.getYear());
                 }
@@ -341,7 +394,7 @@ public class Database {
         }
     }
 
-    public void showBoatsByLengthRange(int minLength, int maxLength) throws NotFoundByGivenInfo {
+    public void showBoatsByLengthRange(double minLength, double maxLength) throws NotFoundByGivenInfo {
         TreeMap<Double,ArrayList<Boat>> lengthRange =  lengthBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
@@ -356,7 +409,7 @@ public class Database {
                foundMatchingEntries.set(true);
                for (Boat b : boat
                ) {
-                   System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",b.getMake(),
+                   System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",b.getMake(),
                            b.getVarient(), b.getLength(), b.getRegion(),
                            b.getPrice()[0], b.getPrice()[1], b.getPrice()[2], b.getYear());
                }
@@ -367,14 +420,14 @@ public class Database {
         }
     }
 
-    public void showBoatsByYearRange(int minYear, int maxYear) throws NotFoundByGivenInfo {
-        TreeMap<Double,ArrayList<Boat>> boats = yearBoats;
+    public void showBoatsByYearRange(double minYear, double maxYear) throws NotFoundByGivenInfo {
+        TreeMap<Integer,ArrayList<Boat>> boats = yearBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         AtomicBoolean foundMatchingEntries = new AtomicBoolean(false);
         //why use atomic boolean? because we need to use it in the lambda expression
         // and boolean is forbidden in lambda expression
-        Set<Map.Entry<Double, ArrayList<Boat>> > entries
+        Set<Map.Entry<Integer, ArrayList<Boat>> > entries
                 = boats.entrySet();
         entries.forEach(entry -> {
             if (entry.getKey()>=minYear&&entry.getKey()<=maxYear) {
@@ -382,7 +435,7 @@ public class Database {
                 foundMatchingEntries.set(true);
                 for (Boat b : boat
                 ) {
-                    System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n",b.getMake(),
+                    System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n",b.getMake(),
                             b.getVarient(), b.getLength(), b.getRegion(),
                             b.getPrice()[0], b.getPrice()[1], b.getPrice()[2], b.getYear());
                 }
@@ -408,7 +461,7 @@ public class Database {
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         for (Boat boat : result
         ) {
-            System.out.printf("%-15s%-20s%-15s%-20s%-15d%-15d%-15d%-10d%n", boat.getMake(),
+            System.out.printf("%-15s%-20s%-15s%-20s%-15f%-15f%-15f%-10d%n", boat.getMake(),
                     boat.getVarient(), boat.getLength(), boat.getRegion(),
                     boat.getPrice()[0], boat.getPrice()[1], boat.getPrice()[2], boat.getYear());
         }
