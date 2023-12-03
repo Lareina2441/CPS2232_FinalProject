@@ -2,18 +2,44 @@ package backend;
 
 import boat.Boat;
 import exceptions.NotFoundByGivenInfo;
-
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Database {
     HashMap<String,ArrayList<Boat>> byAttributeBoats = new HashMap<>();
     HashMap<Boat,Boat> allBoats = new HashMap<>();
-    TreeMap<Integer,ArrayList<Boat>> rPriceBoats = new TreeMap<>();
-    TreeMap<Integer,ArrayList<Boat>> sPriceBoats = new TreeMap<>();
-    TreeMap<Integer,ArrayList<Boat>> lengthBoats = new TreeMap<>();
+    TreeMap<Double,ArrayList<Boat>> rPriceBoats = new TreeMap<>();
+    TreeMap<Double,ArrayList<Boat>> sPriceBoats = new TreeMap<>();
+    TreeMap<Double,ArrayList<Boat>> lengthBoats = new TreeMap<>();
 
-    TreeMap<Integer,ArrayList<Boat>> yearBoats = new TreeMap<>();
+    TreeMap<Double,ArrayList<Boat>> yearBoats = new TreeMap<>();
+
+    public Boat returnNewBoat(String make, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
+                 int year){
+        return new Boat(make,variant,length,region,sellPrice,costPrice,rentPrice,year);
+    }
+
+    public void addBoat(Boat boat){
+        allBoats.put(boat,boat);
+        byAttributeBoats.computeIfAbsent(boat.getMake(), k -> new ArrayList<>()).add(boat);//by MAKE
+        byAttributeBoats.computeIfAbsent(boat.getRegion(), k -> new ArrayList<>()).add(boat);//by REGION
+        byAttributeBoats.computeIfAbsent(boat.getVarient(), k -> new ArrayList<>()).add(boat);//by VARIANT
+        rPriceBoats.computeIfAbsent(boat.getPrice()[0], k -> new ArrayList<>()).add(boat);//by PRICE
+        sPriceBoats.computeIfAbsent(boat.getPrice()[1], k -> new ArrayList<>()).add(boat);//by PRICE
+        yearBoats.computeIfAbsent(boat.getYear(), k -> new ArrayList<>()).add(boat);//by PRICE}
+        lengthBoats.computeIfAbsent(boat.getLength(), k -> new ArrayList<>()).add(boat);//by PRICE
+    }
+
+    public void deleteBoat(Boat boat){
+        allBoats.remove(boat);
+        byAttributeBoats.get(boat.getMake()).remove(boat);
+        byAttributeBoats.get(boat.getRegion()).remove(boat);
+        byAttributeBoats.get(boat.getVarient()).remove(boat);
+        rPriceBoats.get(boat.getPrice()[0]).remove(boat);
+        sPriceBoats.get(boat.getPrice()[1]).remove(boat);
+        yearBoats.get(boat.getYear()).remove(boat);
+        lengthBoats.get(boat.getLength()).remove(boat);
+    }
 
     public void showAllMakes(){
         Set<Boat> makes = allBoats.keySet();
@@ -41,7 +67,7 @@ public class Database {
 
     //show rent price
     public void showAllrPrice(){
-        TreeMap <Integer,ArrayList<Boat>> rPrice = rPriceBoats;
+        TreeMap <Double,ArrayList<Boat>> rPrice = rPriceBoats;
         int count = 0;
         HashMap<String,Integer> makeCount = new HashMap<>();
         rPrice.forEach((k,v)->{
@@ -52,7 +78,7 @@ public class Database {
 
     //show sell price
     public void showAllsPrice(){
-        TreeMap <Integer,ArrayList<Boat>> sPrice = sPriceBoats;
+        TreeMap <Double,ArrayList<Boat>> sPrice = sPriceBoats;
         int count = 0;
         HashMap<String,Integer> makeCount = new HashMap<>();
         sPrice.forEach((k,v)->{
@@ -73,13 +99,9 @@ public class Database {
         return sum/boats.size();
     }
 
-
-
-
     //helper method for showBoatsByAttribute
     public void show()  {
         try(Scanner input = new Scanner(System.in)) {
-
             System.out.println("If you want to show all the boats, please enter 1");
             System.out.println("If you want to show the boats by make, please enter 2");
             System.out.println("If you want to show the boats by region, please enter 3");
@@ -206,8 +228,6 @@ public class Database {
         }
         while (!valid);
 
-
-
         }
 
     }
@@ -296,13 +316,13 @@ public class Database {
     }
 
     public void showBoatsByPriceRange(int minPrice, int maxPrice) throws NotFoundByGivenInfo {
-        TreeMap<Integer,ArrayList<Boat>> boats = sPriceBoats;
+        TreeMap<Double,ArrayList<Boat>> boats = sPriceBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         AtomicBoolean foundMatchingEntries = new AtomicBoolean(false);
         //why use atomic boolean? because we need to use it in the lambda expression
         // and boolean is forbidden in lambda expression
-        Set<Map.Entry<Integer, ArrayList<Boat>> > entries
+        Set<Map.Entry<Double, ArrayList<Boat>> > entries
                 = sPriceBoats.entrySet();
         entries.forEach(entry -> {
             if (entry.getKey()>=minPrice&&entry.getKey()<=maxPrice){
@@ -322,13 +342,13 @@ public class Database {
     }
 
     public void showBoatsByLengthRange(int minLength, int maxLength) throws NotFoundByGivenInfo {
-        TreeMap<Integer,ArrayList<Boat>> lengthRange =  lengthBoats;
+        TreeMap<Double,ArrayList<Boat>> lengthRange =  lengthBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         AtomicBoolean foundMatchingEntries = new AtomicBoolean(false);
         //why use atomic boolean? because we need to use it in the lambda expression
         // and boolean is forbidden in lambda expression
-        Set<Map.Entry<Integer, ArrayList<Boat>> > entries
+        Set<Map.Entry<Double, ArrayList<Boat>> > entries
                 = lengthRange.entrySet();
        entries.forEach(entry -> {
            if (entry.getKey()>=minLength&&entry.getKey()<=maxLength){
@@ -348,13 +368,13 @@ public class Database {
     }
 
     public void showBoatsByYearRange(int minYear, int maxYear) throws NotFoundByGivenInfo {
-        TreeMap<Integer,ArrayList<Boat>> boats = yearBoats;
+        TreeMap<Double,ArrayList<Boat>> boats = yearBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         AtomicBoolean foundMatchingEntries = new AtomicBoolean(false);
         //why use atomic boolean? because we need to use it in the lambda expression
         // and boolean is forbidden in lambda expression
-        Set<Map.Entry<Integer, ArrayList<Boat>> > entries
+        Set<Map.Entry<Double, ArrayList<Boat>> > entries
                 = boats.entrySet();
         entries.forEach(entry -> {
             if (entry.getKey()>=minYear&&entry.getKey()<=maxYear) {
