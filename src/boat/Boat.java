@@ -6,19 +6,19 @@ import interfaces.Person;
 public class Boat implements Asset,Comparable<Boat> {
     private String make;
     private String variant;
-    private int length;
+    private double length;
     private String region;
-    private int sellPrice;
-    private int costPrice;
-    private int rentPrice;
-    private int year;
-    private int[] prices = new int[3];
+    private double sellPrice;
+    private double costPrice;
+    private double rentPrice;
+    private double year;
+    private double[] prices = new double[3];
     private Person owner;
     private Person user;
 
 
-    public Boat(String make, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
-                int year) {
+    public Boat(String make, String variant, double length, String region, double sellPrice, double costPrice,double rentPrice,
+                double year) {
         this.make = make;
         this.variant = variant;
         this.length = length;
@@ -44,7 +44,7 @@ public class Boat implements Asset,Comparable<Boat> {
      * @return
      */
     @Override
-    public int[] getPrice() {
+    public double[] getPrice() {
         return prices;
     }
 
@@ -52,7 +52,7 @@ public class Boat implements Asset,Comparable<Boat> {
      *
      */
     @Override
-    public void setPrice(int rentPrice,int sellPrice,int costPrice) {
+    public void setPrice(double rentPrice,double sellPrice,double costPrice) {
         this.rentPrice = rentPrice;
         this.sellPrice = sellPrice;
         this.costPrice = costPrice;
@@ -103,7 +103,7 @@ public class Boat implements Asset,Comparable<Boat> {
         this.make = maker;
     }
 
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 
@@ -119,7 +119,7 @@ public class Boat implements Asset,Comparable<Boat> {
         this.region = region;
     }
 
-    public int getCostPrice() {
+    public double getCostPrice() {
         return costPrice;
     }
 
@@ -127,7 +127,7 @@ public class Boat implements Asset,Comparable<Boat> {
         this.costPrice = costPrice;
     }
 
-    public int getRentPrice() {
+    public double getRentPrice() {
         return rentPrice;
     }
 
@@ -135,7 +135,7 @@ public class Boat implements Asset,Comparable<Boat> {
         this.rentPrice = rentPrice;
     }
 
-    public int getYear() {
+    public double getYear() {
         return year;
     }
 
@@ -150,13 +150,13 @@ public class Boat implements Asset,Comparable<Boat> {
      */
     @Override
     public int compareTo(Boat o) {
-        return this.getPrice()[1] - o.getPrice()[1];
+        return (int) (this.getPrice()[1] - o.getPrice()[1]);
     }
 
     @Override
     public int hashCode() {
-        return this.getMake().hashCode() + this.getVarient().hashCode() + this.getLength() + this.getRegion().hashCode()
-                + this.getYear() + this.getPrice()[1];
+        return (int) (this.getMake().hashCode() + this.getVarient().hashCode() + this.getLength() + this.getRegion().hashCode()
+                        + this.getYear() + this.getPrice()[1]);
     }
 
     public boolean equals(Object obj) {
