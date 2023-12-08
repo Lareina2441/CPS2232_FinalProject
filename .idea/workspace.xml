@@ -5,12 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" name="Changes" comment="change all the files to java project file, which is more efficient to write codes, run, and debug">
-      <change beforePath="$PROJECT_DIR$/src/BoatReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/calculator/A/FInal/BoatReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BoatCreator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/backend/MessageSender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exceptions/InvalidArgumentException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exceptions/NotFoundByGivenInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_27_2023_10_07_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_27_2023_10_07_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/2023_MCM_Problem_Y_Boats.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Boat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Boat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/Boat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/BoatCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/BoatCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/calculator/A/FInal/BoatReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/calculator/A/FInal/BoatReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Asset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Asset.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -72,16 +89,20 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/FinalProject/CPS2232_FinalProject/resources&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\FinalProject\CPS2232_FinalProject\resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\FinalProject\CPS2232_FinalProject\src" />
       <recent name="D:\FinalProject\CPS2232_FinalProject\src\csv" />
       <recent name="D:\FinalProject\CPS2232_FinalProject\src\ui" />
       <recent name="D:\FinalProject\CPS2232_FinalProject\src\boat" />
       <recent name="D:\FinalProject\CPS2232_FinalProject" />
-      <recent name="D:\FinalProject\CPS2232_FinalProject\resources" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

@@ -3,22 +3,21 @@ package boat;
 import interfaces.Asset;
 import interfaces.Person;
 
-public class Boat implements Asset {
+public class Boat implements Asset,Comparable<Boat> {
     private String make;
     private String variant;
-    private int length;
+    private double length;
     private String region;
-    private int sellPrice;
-    private int costPrice;
-    private int rentPrice;
+    private double sellPrice;
+    private double costPrice;
+    private double rentPrice;
     private int year;
-    private int[] prices = new int[3];
+    private double[] prices = new double[3];
     private Person owner;
     private Person user;
-    private String uniqueID;
 
 
-    public Boat(String make, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
+    public Boat(String make, String variant, double length, String region, double sellPrice, double costPrice,double rentPrice,
                 int year) {
         this.make = make;
         this.variant = variant;
@@ -32,9 +31,6 @@ public class Boat implements Asset {
 
     }
 
-    public String getUniqueID() {
-        return uniqueID;
-    }
 
     public String getMake() {
         return make;
@@ -48,7 +44,7 @@ public class Boat implements Asset {
      * @return
      */
     @Override
-    public int[] getPrice() {
+    public double[] getPrice() {
         return prices;
     }
 
@@ -56,7 +52,7 @@ public class Boat implements Asset {
      *
      */
     @Override
-    public void setPrice(int rentPrice,int sellPrice,int costPrice) {
+    public void setPrice(double rentPrice,double sellPrice,double costPrice) {
         this.rentPrice = rentPrice;
         this.sellPrice = sellPrice;
         this.costPrice = costPrice;
@@ -107,7 +103,7 @@ public class Boat implements Asset {
         this.make = maker;
     }
 
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 
@@ -123,7 +119,7 @@ public class Boat implements Asset {
         this.region = region;
     }
 
-    public int getCostPrice() {
+    public double getCostPrice() {
         return costPrice;
     }
 
@@ -131,7 +127,7 @@ public class Boat implements Asset {
         this.costPrice = costPrice;
     }
 
-    public int getRentPrice() {
+    public double getRentPrice() {
         return rentPrice;
     }
 
@@ -145,5 +141,31 @@ public class Boat implements Asset {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+
+    /**
+     * @param o the object to be compared.
+     * @return
+     */
+    @Override
+    public int compareTo(Boat o) {
+        return (int) (this.getPrice()[1] - o.getPrice()[1]);
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (this.getMake().hashCode() + this.getVarient().hashCode() + this.getLength() + this.getRegion().hashCode()
+                        + this.getYear() + this.getPrice()[1]);
+    }
+
+    public boolean equals(Object obj) {
+        if (obj instanceof Boat) {
+            Boat boat = (Boat) obj;
+            return this.getMake().equals(boat.getMake()) && this.getVarient().equals(boat.getVarient())
+                    && this.getLength() == boat.getLength() && this.getRegion().equals(boat.getRegion())
+                    && this.getYear() == boat.getYear() && this.getPrice()[1] == boat.getPrice()[1];
+        }
+        return false;
     }
 }
