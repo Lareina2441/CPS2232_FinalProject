@@ -22,11 +22,11 @@ public class BoatCreator implements Serializable {
                 String variant = data[1];
                 int length = Integer.parseInt(data[2]);
                 String region = data[3];
-                String price = data[5].replaceAll("[^\\d.]", ""); // Remove non-numeric characters from price
-                int costPrice = Integer.parseInt(price);
-                int year = Integer.parseInt(data[6]);
+                int year = Integer.parseInt(data[7]);
+                String price = data[6].replaceAll("[^\\d.]", ""); // Remove non-numeric characters from price
+                double costPrice = Double.parseDouble(price) * 1000 ;
                 double sellPrice = costPrice * (30 + year * 20) / 30000;
-                double rentPrice = sellPrice / 200;
+                double rentPrice = sellPrice / 50.0;
                 // Create a new Boat object using the constructor
                 Boat boat = new Boat(make, variant, length, region, costPrice, sellPrice, rentPrice, year);
                 boats.add(boat);
@@ -37,6 +37,8 @@ public class BoatCreator implements Serializable {
         saveBoatsToFile(boats);
         System.out.println("Number of boats created: " + boats.size());
         System.out.println(boats.get(1000).getMake());
+        System.out.println(boats.get(100).getYear());
+        System.out.println(boats);
     }
 
     private static void saveBoatsToFile(List<Boat> boats) {
