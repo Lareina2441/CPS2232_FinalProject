@@ -1,33 +1,31 @@
-package boat;
+package CPS2232.FinalProject;
 
-import interfaces.Asset;
-import interfaces.Person;
+import java.io.Serializable;
 
-public class Boat implements Asset,Comparable<Boat> {
+public class Boat implements Asset,Comparable<Boat>, Serializable {
+    //
     private String make;
     private String variant;
-    private double length;
+    private int length;
     private String region;
-    private double sellPrice;
     private double costPrice;
-    private double rentPrice;
-    private double year;
+
+    private int year;
     private double[] prices = new double[3];
     private Person owner;
     private Person user;
 
 
-    public Boat(String make, String variant, double length, String region, double sellPrice, double costPrice,double rentPrice,
-                double year) {
+    public Boat(String make, String variant, int length, String region, double costPrice, double sellPrice, double rentPrice,
+                int year) {
         this.make = make;
         this.variant = variant;
         this.length = length;
         this.region = region;
-        this.sellPrice = sellPrice;
         this.year = year;
-        prices[0] = rentPrice;
+        prices[0] = costPrice;
         prices[1] = sellPrice;
-        prices[2] = costPrice;
+        prices[2] = rentPrice;
 
     }
 
@@ -52,9 +50,8 @@ public class Boat implements Asset,Comparable<Boat> {
      *
      */
     @Override
-    public void setPrice(double rentPrice,double sellPrice,double costPrice) {
-        this.rentPrice = rentPrice;
-        this.sellPrice = sellPrice;
+    public void setPrice(int rentPrice,int sellPrice,int costPrice) {
+
         this.costPrice = costPrice;
 
         prices[0] = rentPrice;
@@ -103,7 +100,7 @@ public class Boat implements Asset,Comparable<Boat> {
         this.make = maker;
     }
 
-    public double getLength() {
+    public int getLength() {
         return length;
     }
 
@@ -120,22 +117,16 @@ public class Boat implements Asset,Comparable<Boat> {
     }
 
     public double getCostPrice() {
-        return costPrice;
+        return prices[0];
     }
 
     public void setCostPrice(int costPrice) {
         this.costPrice = costPrice;
     }
 
-    public double getRentPrice() {
-        return rentPrice;
-    }
 
-    public void setRentPrice(int rentPrice) {
-        this.rentPrice = rentPrice;
-    }
 
-    public double getYear() {
+    public int getYear() {
         return year;
     }
 
@@ -167,5 +158,14 @@ public class Boat implements Asset,Comparable<Boat> {
                     && this.getYear() == boat.getYear() && this.getPrice()[1] == boat.getPrice()[1];
         }
         return false;
+    }
+
+    public double getSellPrice() {
+        return costPrice * (30 + year * 20) / 30000;
+    }
+
+    @Override
+    public String toString() {
+        return "" + make + "  " + variant + "   " + prices[0] +"   "+prices[1]+"   "+  prices[2] + "  " + year + "\n";
     }
 }
