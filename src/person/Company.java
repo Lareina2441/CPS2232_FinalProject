@@ -1,19 +1,14 @@
 package person;
 
 import interfaces.Person;
-/*
-    * This class is used to define the methods that all sailors must have.
-    * A sailor is a person who can drive and manage a boat.
-    * If a boat belong to the sailor (Represent our company), the boat could be sold or rented.
-    *
-    *
-    *
- */
-public class Sailor implements Person {
+
+import java.io.Serializable;
+
+public class Company implements Person, Serializable {
     private String name;
     private String password;
 
-    public Sailor(int priority, String name, String password) {
+    public Company(int priority, String name, String password) {
         this.name = name;
         this.password = password;
     }
@@ -24,24 +19,29 @@ public class Sailor implements Person {
     }
 
     /**
-     *
+     * @param name
      */
     @Override
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
+
+
 
     public String getPassword() {
         return password;
     }
 
     /**
-     *
+     * @param password
      */
     @Override
-    public void setPassword() {
+    public void setPassword(String password) {
         this.password = password;
+
     }
+
+
 
     @Override
     public String toString() {
@@ -51,3 +51,4 @@ public class Sailor implements Person {
                 '}';
     }
 }
+

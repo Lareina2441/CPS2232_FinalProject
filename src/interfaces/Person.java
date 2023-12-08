@@ -4,10 +4,13 @@ package interfaces;
     * A client is a person who can borrow or buy a boat.
     *
  */
-public interface Person {
+
+import java.io.Serializable;
+
+public interface Person extends Serializable {
      String getName();
-     void setName();
+     void setName(String name);
      String getPassword();
-     void setPassword();
+     void setPassword(String password);
 
 }

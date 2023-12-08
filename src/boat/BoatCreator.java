@@ -1,62 +1,54 @@
-
 package boat;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+//Create boat array
 
-public class BoatCreator {
+public class BoatCreator implements Serializable {
     public static void main(String[] args) {
-        String csvFile = "resources/2023_MCM_Problem_Y_Boats.xlsx";
+        String csvFile = "D:\\MCMTraining\\dataFolder\\2023_MCM_Problem_Y_Boats.csv";
         String line;
-        String csvSplitBy = "\t"; // Assuming it's tab-separated
+        String csvSplitBy = ",";
         List<Boat> boats = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            br.readLine(); // Skip the header line
+            br.readLine();
+            br.readLine();
 
             while ((line = br.readLine()) != null) {
-                // Print the entire line to help identify the problem
-                System.out.println("Line content: " + line);
-
-                try {
-                    String[] data = line.split(csvSplitBy);
-
-                    if (data.length >= 7) { // Ensure there are enough elements in the array
-                        String maker = data[0];
-                        String variant = data[1];
-                        int length = Integer.parseInt(data[2]);
-                        String region = data[3];
-                        String price = data[5].replaceAll("[^\\d.]", "");
-                        int sellPrice = Integer.parseInt(price);
-                        int year = Integer.parseInt(data[6]);
-                        int costPrice = sellPrice - 100 - length * 2 - year / 10;
-                        int rentPrice = sellPrice / 100;
-
-                        // Create a new Boat object using the constructor
-                        Boat boat = new Boat(maker, variant, length, region, sellPrice, costPrice, sellPrice, year);
-                        boats.add(boat);
-                    } else {
-                        System.out.println("Insufficient data elements in the line: " + line);
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Error parsing data: " + line);
-                    e.printStackTrace();
-                }
+                line = line.replace("\"", "");
+                String[] data = line.split(csvSplitBy);
+                String make = data[0];
+                String variant = data[1];
+                int length = Integer.parseInt(data[2]);
+                String region = data[3];
+                int year = Integer.parseInt(data[7]);
+                String price = data[6].replaceAll("[^\\d.]", ""); // Remove non-numeric characters from price
+                double costPrice = Double.parseDouble(price) * 1000 ;
+                double sellPrice = costPrice * (30 + year * 20) / 30000;
+                double rentPrice = sellPrice / 50.0;
+                // Create a new Boat object using the constructor
+                Boat boat = new Boat(make, variant, length, region, costPrice, sellPrice, rentPrice, year);
+                boats.add(boat);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        saveBoatsToFile(boats);
         System.out.println("Number of boats created: " + boats.size());
+        System.out.println(boats.get(1000).getMake());
+        System.out.println(boats.get(100).getYear());
+        System.out.println(boats);
+    }
 
-        // Check if there are at least 1001 boats before accessing the 1000th index
-        if (boats.size() > 1000) {
-            System.out.println("Make of the 1000th boat: " + boats.get(1000).getMake());
-        } else {
-            System.out.println("Not enough boats in the list.");
+    private static void saveBoatsToFile(List<Boat> boats) {
+        String filePath = "E:\\SessionsAbout2023Fall\\CPS2232\\FinalProject\\Dataset\\allBoat";
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(boats);
+            System.out.println("Boats list has been saved to file: " + filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

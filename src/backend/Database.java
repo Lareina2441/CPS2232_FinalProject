@@ -1,77 +1,32 @@
 package backend;
 
+
 import boat.Boat;
 import exceptions.NotFoundByGivenInfo;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Database {
+
+public class Database implements Serializable {
     HashMap<String,ArrayList<Boat>> byAttributeBoats = new HashMap<>();
     HashMap<Boat,Boat> allBoats = new HashMap<>();
     TreeMap<Double,ArrayList<Boat>> rPriceBoats = new TreeMap<>();
     TreeMap<Double,ArrayList<Boat>> sPriceBoats = new TreeMap<>();
     TreeMap<Double,ArrayList<Boat>> lengthBoats = new TreeMap<>();
+    ArrayList<Boat> boats = loadBoatsFromFile();
 
     TreeMap<Integer,ArrayList<Boat>> yearBoats = new TreeMap<>();
 
-
-    public void addBoat() {
-        try (Scanner input = new Scanner(System.in)) {
-            System.out.println("Please enter the make:");
-            String make = input.nextLine();
-            System.out.println("Please enter the variant:");
-            String variant = input.nextLine();
-            System.out.println("Please enter the length:");
-            double length = Integer.parseInt(input.nextLine());
-            System.out.println("Please enter the region:");
-            String region = input.nextLine();
-            System.out.println("Please enter the sell price:");
-            double sellPrice = Integer.parseInt(input.nextLine());
-            System.out.println("Please enter the cost price:");
-            double costPrice = Integer.parseInt(input.nextLine());
-            System.out.println("Please enter the rent price:");
-            double rentPrice = Integer.parseInt(input.nextLine());
-            System.out.println("Please enter the year:");
-            int year = Integer.parseInt(input.nextLine());
-            if (!allBoats.containsKey(new Boat(make,variant,length,region,sellPrice,costPrice,rentPrice,year))){
-            Boat boat = new Boat(make, variant, length, region, sellPrice, costPrice, rentPrice, year);
-            addBoat(boat);
-            }
-            else {
-                System.out.println("The boat you want to add is already in the database");
-            }
-        }
+    public Boat returnNewBoat(String make, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
+                              int year){
+        return new Boat(make,variant,length,region,sellPrice,costPrice,rentPrice,year);
     }
 
-    public void deleteBoat() {
-        try (Scanner input = new Scanner(System.in)) {
-            System.out.println("Please enter the make:");
-            String make = input.nextLine();
-            System.out.println("Please enter the variant:");
-            String variant = input.nextLine();
-            System.out.println("Please enter the length:");
-            double length = Integer.parseInt(input.nextLine());
-            System.out.println("Please enter the region:");
-            String region = input.nextLine();
-            System.out.println("Please enter the sell price:");
-            double sellPrice = Integer.parseInt(input.nextLine());
-            System.out.println("Please enter the cost price:");
-            double costPrice = Integer.parseInt(input.nextLine());
-            System.out.println("Please enter the rent price:");
-            double rentPrice = Integer.parseInt(input.nextLine());
-            System.out.println("Please enter the year:");
-            int year = Integer.parseInt(input.nextLine());
-            if (!allBoats.containsKey(new Boat(make,variant,length,region,sellPrice,costPrice,rentPrice,year))){
-            Boat boat = new Boat(make, variant, length, region, sellPrice, costPrice, rentPrice, year);
-            deleteBoat(boat);
-            }
-            else {
-                System.out.println("The boat you want to delete is not in the database");
-            }
-        }
-    }
-
-    //helper method to add boat
     public void addBoat(Boat boat){
         allBoats.put(boat,boat);
         byAttributeBoats.computeIfAbsent(boat.getMake(), k -> new ArrayList<>()).add(boat);//by MAKE
@@ -168,118 +123,118 @@ public class Database {
             System.out.println("If you want to show the boats by price and make, please enter 11");
             System.out.println("If you want to exit, please enter 0");
             System.out.println("Please enter your choice:");
-        boolean valid = false;
-        do {
-            try{
-            int i = Integer.parseInt(input.nextLine());
-            switch (i) {
-                case 1:
-                    showAllBoats();
-                    break;
-                case 2:
-                    System.out.println("Please enter the make:");
-                    String make = input.nextLine();
-                    showBoatsByMake(make);
-                    break;
-                case 3:
-                    System.out.println("Please enter the region:");
-                    String region = input.nextLine();
-                    showBoatsByRegion(region);
-                    break;
-                case 4:
-                    System.out.println("Please enter the variant:");
-                    String variant = input.nextLine();
-                    showBoatsByVariant(variant);
-                    break;
-                case 5:
-                    System.out.println("Please enter the rent price:");
-                    int rPrice = Integer.parseInt(input.nextLine());
-                    showBoatsByrPrice(rPrice);
-                    break;
-                case 6:
-                    System.out.println("Please enter the sell price:");
-                    int sPrice = Integer.parseInt(input.nextLine());
-                    showBoatsBysPrice(sPrice);
-                    break;
-                case 7:
-                    System.out.println("Please enter the year:");
-                    int year = Integer.parseInt(input.nextLine());
-                    showBoatsByYear(year);
-                    break;
-                case 8:
-                    System.out.println("Please enter the min price:");
-                    int minPrice = Integer.parseInt(input.nextLine());
-                    System.out.println("Please enter the max price:");
-                    int maxPrice = Integer.parseInt(input.nextLine());
-                    showBoatsByPriceRange(minPrice, maxPrice);
-                    break;
-                case 9:
-                    System.out.println("Please enter the min length:");
-                    int minLength = Integer.parseInt(input.nextLine());
-                    System.out.println("Please enter the max length:");
-                    int maxLength = Integer.parseInt(input.nextLine());
-                    showBoatsByLengthRange(minLength, maxLength);
-                    break;
-                case 10:
-                    System.out.println("Please enter the min year:");
-                    int minYear = Integer.parseInt(input.nextLine());
-                    System.out.println("Please enter the max year:");
-                    int maxYear = Integer.parseInt(input.nextLine());
-                    showBoatsByYearRange(minYear, maxYear);
-                    break;
-                case 11:
-                    System.out.println("Please enter the price:");
-                    double price = Double.parseDouble(input.nextLine());
-                    System.out.println("Please enter the make:");
-                    String make1 = input.nextLine();
-                    showBoatsBysPriceAndMake(price, make1);
-                    break;
-                case 0:
-                    break;
+            boolean valid = false;
+            do {
+                try{
+                    int i = Integer.parseInt(input.nextLine());
+                    switch (i) {
+                        case 1:
+                            showAllBoats();
+                            break;
+                        case 2:
+                            System.out.println("Please enter the make:");
+                            String make = input.nextLine();
+                            showBoatsByMake(make);
+                            break;
+                        case 3:
+                            System.out.println("Please enter the region:");
+                            String region = input.nextLine();
+                            showBoatsByRegion(region);
+                            break;
+                        case 4:
+                            System.out.println("Please enter the variant:");
+                            String variant = input.nextLine();
+                            showBoatsByVariant(variant);
+                            break;
+                        case 5:
+                            System.out.println("Please enter the rent price:");
+                            int rPrice = Integer.parseInt(input.nextLine());
+                            showBoatsByrPrice(rPrice);
+                            break;
+                        case 6:
+                            System.out.println("Please enter the sell price:");
+                            int sPrice = Integer.parseInt(input.nextLine());
+                            showBoatsBysPrice(sPrice);
+                            break;
+                        case 7:
+                            System.out.println("Please enter the year:");
+                            int year = Integer.parseInt(input.nextLine());
+                            showBoatsByYear(year);
+                            break;
+                        case 8:
+                            System.out.println("Please enter the min price:");
+                            int minPrice = Integer.parseInt(input.nextLine());
+                            System.out.println("Please enter the max price:");
+                            int maxPrice = Integer.parseInt(input.nextLine());
+                            showBoatsByPriceRange(minPrice, maxPrice);
+                            break;
+                        case 9:
+                            System.out.println("Please enter the min length:");
+                            int minLength = Integer.parseInt(input.nextLine());
+                            System.out.println("Please enter the max length:");
+                            int maxLength = Integer.parseInt(input.nextLine());
+                            showBoatsByLengthRange(minLength, maxLength);
+                            break;
+                        case 10:
+                            System.out.println("Please enter the min year:");
+                            int minYear = Integer.parseInt(input.nextLine());
+                            System.out.println("Please enter the max year:");
+                            int maxYear = Integer.parseInt(input.nextLine());
+                            showBoatsByYearRange(minYear, maxYear);
+                            break;
+                        case 11:
+                            System.out.println("Please enter the price:");
+                            double price = Double.parseDouble(input.nextLine());
+                            System.out.println("Please enter the make:");
+                            String make1 = input.nextLine();
+                            showBoatsBysPriceAndMake(price, make1);
+                            break;
+                        case 0:
+                            break;
 
-            }
-            valid = true;
-            }catch (NumberFormatException e){
-                System.out.println("Please enter a valid number");
-            }
-            catch (NullPointerException e){
-                System.out.println("If you want to show all the boats, please enter 1");
-                System.out.println("If you want to show the boats by make, please enter 2");
-                System.out.println("If you want to show the boats by region, please enter 3");
-                System.out.println("If you want to show the boats by variant, please enter 4");
-                System.out.println("If you want to show the boats by rent price, please enter 5");
-                System.out.println("If you want to show the boats by sell price, please enter 6");
-                System.out.println("If you want to show the boats by year, please enter 7");
-                System.out.println("If you want to show the boats by price range, please enter 8");
-                System.out.println("If you want to show the boats by length range, please enter 9");
-                System.out.println("If you want to show the boats by year range, please enter 10");
-                System.out.println("If you want to show the boats by price and make, please enter 11");
-                System.out.println("If you want to exit, please enter 0");
-                System.out.println("Please enter your choice:");
-                System.out.println("We do not have this boat by your GIVEN INFORMATION,please enter 0 to exit or do the " +
-                        "search again");
-            }
-            catch (NotFoundByGivenInfo e){
-                System.out.println(e+"\n\n\n");
-                System.out.println("If you want to show all the boats, please enter 1");
-                System.out.println("If you want to show the boats by make, please enter 2");
-                System.out.println("If you want to show the boats by region, please enter 3");
-                System.out.println("If you want to show the boats by variant, please enter 4");
-                System.out.println("If you want to show the boats by rent price, please enter 5");
-                System.out.println("If you want to show the boats by sell price, please enter 6");
-                System.out.println("If you want to show the boats by year, please enter 7");
-                System.out.println("If you want to show the boats by price range, please enter 8");
-                System.out.println("If you want to show the boats by length range, please enter 9");
-                System.out.println("If you want to show the boats by year range, please enter 10");
-                System.out.println("If you want to show the boats by price and make, please enter 11");
-                System.out.println("If you want to exit, please enter 0");
-                System.out.println("Please enter your choice:");
-                System.out.println("We do not have this boat by your GIVEN INFORMATION,please enter 0 to exit or do the " +
-                        "search again");
+                    }
+                    valid = true;
+                }catch (NumberFormatException e){
+                    System.out.println("Please enter a valid number");
+                }
+                catch (NullPointerException e){
+                    System.out.println("If you want to show all the boats, please enter 1");
+                    System.out.println("If you want to show the boats by make, please enter 2");
+                    System.out.println("If you want to show the boats by region, please enter 3");
+                    System.out.println("If you want to show the boats by variant, please enter 4");
+                    System.out.println("If you want to show the boats by rent price, please enter 5");
+                    System.out.println("If you want to show the boats by sell price, please enter 6");
+                    System.out.println("If you want to show the boats by year, please enter 7");
+                    System.out.println("If you want to show the boats by price range, please enter 8");
+                    System.out.println("If you want to show the boats by length range, please enter 9");
+                    System.out.println("If you want to show the boats by year range, please enter 10");
+                    System.out.println("If you want to show the boats by price and make, please enter 11");
+                    System.out.println("If you want to exit, please enter 0");
+                    System.out.println("Please enter your choice:");
+                    System.out.println("We do not have this boat by your GIVEN INFORMATION,please enter 0 to exit or do the " +
+                            "search again");
+                }
+                catch (NotFoundByGivenInfo e){
+                    System.out.println(e+"\n\n\n");
+                    System.out.println("If you want to show all the boats, please enter 1");
+                    System.out.println("If you want to show the boats by make, please enter 2");
+                    System.out.println("If you want to show the boats by region, please enter 3");
+                    System.out.println("If you want to show the boats by variant, please enter 4");
+                    System.out.println("If you want to show the boats by rent price, please enter 5");
+                    System.out.println("If you want to show the boats by sell price, please enter 6");
+                    System.out.println("If you want to show the boats by year, please enter 7");
+                    System.out.println("If you want to show the boats by price range, please enter 8");
+                    System.out.println("If you want to show the boats by length range, please enter 9");
+                    System.out.println("If you want to show the boats by year range, please enter 10");
+                    System.out.println("If you want to show the boats by price and make, please enter 11");
+                    System.out.println("If you want to exit, please enter 0");
+                    System.out.println("Please enter your choice:");
+                    System.out.println("We do not have this boat by your GIVEN INFORMATION,please enter 0 to exit or do the " +
+                            "search again");
 
+                }
             }
-        }
-        while (!valid);
+            while (!valid);
 
         }
 
@@ -372,7 +327,6 @@ public class Database {
                     boat.getPrice()[0],boat.getPrice()[1],boat.getPrice()[2],boat.getYear());
         }
     }
-
     public void showBoatsByPriceRange(double minPrice, double maxPrice) throws NotFoundByGivenInfo {
         TreeMap<Double,ArrayList<Boat>> boats = sPriceBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
@@ -395,31 +349,31 @@ public class Database {
             }
         });
         if (!foundMatchingEntries.get()) {
-                throw new NotFoundByGivenInfo("No such boats by given information");
+            throw new NotFoundByGivenInfo("No such boats by given information");
         }
     }
 
     public void showBoatsByLengthRange(double minLength, double maxLength) throws NotFoundByGivenInfo {
-        TreeMap<Double,ArrayList<Boat>> lengthRange =  lengthBoats;
+        TreeMap<Double, ArrayList<Boat>> lengthRange =  lengthBoats;
         System.out.printf("%-15s%-20s%-15s%-20s%-15s%-15s%-15s%-10s%n","Make",
                 "Variant", "Length", "Region", "RentPrice", "SellPrice", "CostPrice", "Year");
         AtomicBoolean foundMatchingEntries = new AtomicBoolean(false);
         //why use atomic boolean? because we need to use it in the lambda expression
         // and boolean is forbidden in lambda expression
-        Set<Map.Entry<Double, ArrayList<Boat>> > entries
+        Set<Map.Entry<Double, ArrayList<Boat>>> entries
                 = lengthRange.entrySet();
-       entries.forEach(entry -> {
-           if (entry.getKey()>=minLength&&entry.getKey()<=maxLength){
-               ArrayList<Boat> boat = entry.getValue();
-               foundMatchingEntries.set(true);
-               for (Boat b : boat
-               ) {
-                   System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",b.getMake(),
-                           b.getVarient(), b.getLength(), b.getRegion(),
-                           b.getPrice()[0], b.getPrice()[1], b.getPrice()[2], b.getYear());
-               }
-           }
-       });
+        entries.forEach(entry -> {
+            if (entry.getKey()>=minLength&&entry.getKey()<=maxLength){
+                ArrayList<Boat> boat = entry.getValue();
+                foundMatchingEntries.set(true);
+                for (Boat b : boat
+                ) {
+                    System.out.printf("%-15s%-20s%-15s%-20s%-15.2f%-15.2f%-15.2f%-10d%n",b.getMake(),
+                            b.getVarient(), b.getLength(), b.getRegion(),
+                            b.getPrice()[0], b.getPrice()[1], b.getPrice()[2], b.getYear());
+                }
+            }
+        });
         if (!foundMatchingEntries.get()) {
             throw new NotFoundByGivenInfo("No such boats by given information");
         }
@@ -474,21 +428,10 @@ public class Database {
     }//end of the blocks of methods to show the boats by different attributes.
 
 
-    public static void main(String[] args) {
-        Database database = new Database();
-        database.show();
-
-    }
-
-
-    public Database(){
-        Boat[] boats = new Boat[4];
-        boats[0] = new Boat("Bav", "Cruiser 46", 14, "Mediterranean", 39999990, 200, 10, 2024);
-        boats[1] = new Boat("Alamba", "Cruiser 56", 234, "Mediterraneaner", 30000, 2001000, 100400, 202);
-        boats[2] = new Boat("Bavaria", "Cruiser 46", 24, "Mediterraneean", 3000, 2000300, 100100, 2041);
-        boats[3] = new Boat("Bavaria", "Cruiser 46", 24, "Mediterraneean", 30020, 2000300, 100100, 2014);
-
+    public Database(ArrayList<Boat> boats) {
+        this.boats = boats;
         //use different attribute to file the database
+
         for (Boat boat : boats
         ) {
             byAttributeBoats.computeIfAbsent(boat.getMake(), k -> new ArrayList<>()).add(boat);//by MAKE
@@ -519,4 +462,20 @@ public class Database {
             lengthBoats.computeIfAbsent(boat.getLength(), k -> new ArrayList<>()).add(boat);//by PRICE
         }
     }
+    private static ArrayList<Boat> loadBoatsFromFile() {
+        String filePath = "E:\\SessionsAbout2023Fall\\CPS2232\\FinalProject\\Dataset\\allBoat";
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            return (ArrayList<Boat>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Boat> getBoats() {
+        return boats;
+    }
+
+    public Database(){}
 }
