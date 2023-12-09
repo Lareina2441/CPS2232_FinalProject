@@ -120,7 +120,7 @@ public class Database implements Serializable {
             System.out.println("If you want to show the boats by price range, please enter 8");
             System.out.println("If you want to show the boats by length range, please enter 9");
             System.out.println("If you want to show the boats by year range, please enter 10");
-            System.out.println("If you want to show the boats by price and make, please enter 11");
+            System.out.println("If you want to show the boats by make with a largest cost please enter 11");
             System.out.println("If you want to exit, please enter 0");
             System.out.println("Please enter your choice:");
             boolean valid = false;
@@ -148,12 +148,12 @@ public class Database implements Serializable {
                             break;
                         case 5:
                             System.out.println("Please enter the rent price:");
-                            int rPrice = Integer.parseInt(input.nextLine());
+                            double rPrice = Double.parseDouble(input.nextLine());
                             showBoatsByrPrice(rPrice);
                             break;
                         case 6:
                             System.out.println("Please enter the sell price:");
-                            int sPrice = Integer.parseInt(input.nextLine());
+                            double sPrice = Double.parseDouble(input.nextLine());
                             showBoatsBysPrice(sPrice);
                             break;
                         case 7:
@@ -163,16 +163,16 @@ public class Database implements Serializable {
                             break;
                         case 8:
                             System.out.println("Please enter the min price:");
-                            int minPrice = Integer.parseInt(input.nextLine());
+                            double minPrice = Double.parseDouble(input.nextLine());
                             System.out.println("Please enter the max price:");
-                            int maxPrice = Integer.parseInt(input.nextLine());
+                            double maxPrice = Double.parseDouble(input.nextLine());
                             showBoatsByPriceRange(minPrice, maxPrice);
                             break;
                         case 9:
                             System.out.println("Please enter the min length:");
-                            int minLength = Integer.parseInt(input.nextLine());
+                            double minLength = Double.parseDouble(input.nextLine());
                             System.out.println("Please enter the max length:");
-                            int maxLength = Integer.parseInt(input.nextLine());
+                            double maxLength = Double.parseDouble(input.nextLine());
                             showBoatsByLengthRange(minLength, maxLength);
                             break;
                         case 10:
@@ -197,7 +197,8 @@ public class Database implements Serializable {
                 }catch (NumberFormatException e){
                     System.out.println("Please enter a valid number");
                 }
-                catch (NullPointerException e){
+                catch (NullPointerException e){//it's not a good idea to use null pointer exception, but It works here
+                    // cause nothing gonna cause null pointer exception here, and define a new exception is too much work
                     System.out.println("If you want to show all the boats, please enter 1");
                     System.out.println("If you want to show the boats by make, please enter 2");
                     System.out.println("If you want to show the boats by region, please enter 3");
@@ -231,7 +232,6 @@ public class Database implements Serializable {
                     System.out.println("Please enter your choice:");
                     System.out.println("We do not have this boat by your GIVEN INFORMATION,please enter 0 to exit or do the " +
                             "search again");
-
                 }
             }
             while (!valid);
@@ -406,7 +406,10 @@ public class Database implements Serializable {
         }
 
     }
-
+    /**
+     * This method is to show the boats by make and find the price that is less than the condition
+     *
+     */
     public void showBoatsBysPriceAndMake(double price, String make) {
         ArrayList<Boat> boats = byAttributeBoats.get(make);
         ArrayList<Boat> result = new ArrayList<>();
