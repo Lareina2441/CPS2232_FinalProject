@@ -72,10 +72,6 @@ public class CompanyEmailSender{
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(isValidEmail(".123@wku.ed"));
-    }
-
     public static int isValidEmail(String address) {
         int returnValue = 1;//this is for end output
         //idea: if invalid then give return value -1 else valid.

@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" name="Changes" comment="change all the files to java project file, which is more efficient to write codes, run, and debug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

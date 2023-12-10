@@ -45,8 +45,20 @@ public class RegistrationSystem implements Serializable {
         System.out.print("Input your email: ");
         String email = input.next();
         Client client = new Client(name, password, email);
-        userDatabase.put(name,client);
+        userDatabase.put(name, client);
         System.out.println("Register successfully.");
+
+        // 将用户信息写入CSV文件
+        writeUserToCSV(name, password, email);
+    }
+
+    private void writeUserToCSV(String name, String password, String email) {
+        try (FileWriter writer = new FileWriter(FILE_PATH1, true)) {
+            writer.append(name).append(",").append(password).append(",").append(email).append("\n");
+            System.out.println("User information has been written to CSV file.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

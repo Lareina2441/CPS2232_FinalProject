@@ -20,6 +20,8 @@ public class Database implements Serializable {
     TreeMap<Double,ArrayList<Boat>> lengthBoats = new TreeMap<>();
     ArrayList<Boat> boats = loadBoatsFromFile();
 
+
+
     TreeMap<Integer,ArrayList<Boat>> yearBoats = new TreeMap<>();
 
     public Boat returnNewBoat(String make, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
@@ -47,6 +49,181 @@ public class Database implements Serializable {
         sPriceBoats.get(boat.getPrice()[1]).remove(boat);
         yearBoats.get(boat.getYear()).remove(boat);
         lengthBoats.get(boat.getLength()).remove(boat);
+    }
+
+    public Boat searchBoat() throws NotFoundByGivenInfo {
+        try(Scanner input = new Scanner(System.in)) {
+            System.out.println("enter the information that you want to search");
+            System.out.println("Format: 0:make,1:variant,2:length,3:region,4:rentPrice,5:sellPrice,6:costPrice,7:year");
+            System.out.println("For example, 0:Bayliner,1:175,2:17,3:BC,4:100,5:1000,6:500,7:2018\n     " +
+                    "0:Bayliner,1:175,7:2018 works too, but if it still contains duplicate information, we will ask you " +
+                    "to offer more information");
+            System.out.println("Please enter your choice:");
+            String info = input.nextLine();
+            String[] infos = info.split(",");
+            ArrayList<Boat> result = new ArrayList<>();
+            //add boats by first condition, then delete the boats that do not match the second condition
+            switch (infos[0].charAt(0)) {
+                case '0':
+                    infos[0] = infos[0].substring(2);
+                    allBoats.forEach((k,v)->{
+                        if (k.getMake().equals(infos[0])){
+                            result.add(k);
+                        }
+                    } );
+                    break;
+                case '1':
+                    infos[0] = infos[0].substring(2);
+                    allBoats.forEach((k,v)->{
+                        if (k.getVarient().equals(infos[0])){
+                            result.add(k);
+                        }
+                    } );
+                    break;
+                case '2':
+                    infos[0] = infos[0].substring(2);
+                    allBoats.forEach((k,v)->{
+                        if (k.getLength() == Double.parseDouble(infos[0])){
+                            result.add(k);
+                        }
+                    } );
+                    break;
+                case '3':
+                    infos[0] = infos[0].substring(2);
+                    allBoats.forEach((k,v)->{
+                        if (k.getRegion().equals(infos[0])){
+                            result.add(k);
+                        }
+                    } );
+                    break;
+                case '4':
+                    infos[0] = infos[0].substring(2);
+                    allBoats.forEach((k,v)->{
+                        if (k.getPrice()[0] == Double.parseDouble(infos[0])){
+                            result.add(k);
+                        }
+                    } );
+                    break;
+                case '5':
+                    infos[0] = infos[0].substring(2);
+                    allBoats.forEach((k,v)->{
+                        if (k.getPrice()[1] == Double.parseDouble(infos[0])){
+                            result.add(k);
+                        }
+                    } );
+                    break;
+                case '6':
+                    infos[0] = infos[0].substring(2);
+                    allBoats.forEach((k,v)->{
+                        if (k.getPrice()[2] == Double.parseDouble(infos[0])){
+                            result.add(k);
+                        }
+                    } );
+                    break;
+                case '7':
+                    infos[0] = infos[0].substring(2);
+                    allBoats.forEach((k,v)->{
+                        if (k.getYear() == Integer.parseInt(infos[0])){
+                            result.add(k);
+                        }
+                    } );
+                    break;
+            }
+            //delete boats that do not match the second condition
+            for (int i = 1; i < infos.length; i++) {
+                switch (infos[i].charAt(0)) {
+                    case '0':
+                        infos[i] = infos[i].substring(2);
+                        for (Boat boat : result
+                        ) {
+                            if (!boat.getMake().equals(infos[i])) {
+                                result.remove(boat);
+                            }
+                        }
+                        break;
+                    case '1':
+                        infos[i] = infos[i].substring(2);
+                        for (Boat boat : result
+                        ) {
+                            if (!boat.getVarient().equals(infos[i])) {
+                                result.remove(boat);
+                            }
+                        }
+                        break;
+                    case '2':
+                        infos[i] = infos[i].substring(2);
+                        for (Boat boat : result
+                        ) {
+                            if (boat.getLength() != Double.parseDouble(infos[i])) {
+                                result.remove(boat);
+                            }
+                        }
+                        break;
+                    case '3':
+                        infos[i] = infos[i].substring(2);
+                        for (Boat boat : result
+                        ) {
+                            if (!boat.getRegion().equals(infos[i])) {
+                                result.remove(boat);
+                            }
+                        }
+                        break;
+                    case '4':
+                        infos[i] = infos[i].substring(2);
+                        for (Boat boat : result
+                        ) {
+                            if (boat.getPrice()[0] != Double.parseDouble(infos[i])) {
+                                result.remove(boat);
+                            }
+                        }
+                        break;
+                    case '5':
+                        infos[i] = infos[i].substring(2);
+                        for (Boat boat : result
+                        ) {
+                            if (boat.getPrice()[1] != Double.parseDouble(infos[i])) {
+                                result.remove(boat);
+                            }
+                        }
+                        break;
+                    case '6':
+                        infos[i] = infos[i].substring(2);
+                        for (Boat boat : result
+                        ) {
+                            if (boat.getPrice()[2] != Double.parseDouble(infos[i])) {
+                                result.remove(boat);
+                            }
+                        }
+                        break;
+                    case '7':
+                        infos[i] = infos[i].substring(2);
+                        for (Boat boat : result
+                        ) {
+                            if (boat.getYear() != Integer.parseInt(infos[i])) {
+                                result.remove(boat);
+                            }
+                        }
+                        break;
+                }
+
+            }
+            if (result.size()==0){
+                throw new NotFoundByGivenInfo("No such boats by given information");
+            }
+            if (result.size()==1){
+                return result.get(0);
+            }
+            else {
+                System.out.println("We find more than one boat by your given information, please choose one of them");
+                for (int i = 0; i < result.size(); i++) {
+                    System.out.println(i + ":" + result.get(i));
+                }
+                System.out.println("Please enter your choice:");
+                int choice = Integer.parseInt(input.nextLine());
+                return result.get(choice);
+            }
+
+        }
     }
 
     public void showAllMakes(){
