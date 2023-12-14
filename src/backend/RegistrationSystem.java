@@ -1,26 +1,31 @@
 package backend;
 
+import boat.Boat;
 import person.Client;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class RegistrationSystem implements Serializable {
     // This class describes the registration system of the WKU Boat Company.
 
     // Build a database to store the information of the clients.
-    private String FILE_PATH1 = "E:\\SessionsAbout2023Fall\\CPS2232\\FinalProject\\Dataset\\clients.csv";
-    private String FILE_PATH2 = "E:\\SessionsAbout2023Fall\\CPS2232\\FinalProject\\Dataset\\userData";
+    private String FILE_PATH1 = "resources/createdFiles/clients.csv";
+    private String FILE_PATH2 = "resources/createdFiles/userData";
     private Map<String, Client> userDatabase = loadUserDatabaseFromFile();
     private Scanner input = new Scanner(System.in);
+    private HashSet<Boat> own;
+
+    public RegistrationSystem() {
+    }
 
     public Map<String, Client> getUserDatabase() {
         return userDatabase;
     }
 
-    public void saveUserDatabaseToFile() {
+    private HashSet<Boat> use;
+
+    public void saveUserDatabaseToFile(Map<String, Client> userDatabase) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH2,false))) {
             oos.writeObject(userDatabase);
             System.out.println("User database has been saved ");
@@ -38,18 +43,20 @@ public class RegistrationSystem implements Serializable {
     }
 
     // The method to register a new user.
-    public void registerUser() {
+    public Map<String, Client> registerUser() {
         String name = getInputName();
         System.out.print("Input your password: ");
         String password = input.next();
         System.out.print("Input your email: ");
         String email = input.next();
-        Client client = new Client(name, password, email);
+        ArrayList transaction = null;
+        Client client = new Client(name, password, email, use, own);
         userDatabase.put(name, client);
         System.out.println("Register successfully.");
 
         // 将用户信息写入CSV文件
         writeUserToCSV(name, password, email);
+        return userDatabase;
     }
 
     private void writeUserToCSV(String name, String password, String email) {
@@ -60,7 +67,6 @@ public class RegistrationSystem implements Serializable {
             e.printStackTrace();
         }
     }
-
 
     public String getInputName() {
         Scanner input = new Scanner(System.in);
@@ -80,21 +86,19 @@ public class RegistrationSystem implements Serializable {
         return name;
     }
 
-//    private static void saveUserDatabaseToFile() {
-//        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath2))) {
-//            oos.writeObject(userDatabase);
-//            System.out.println("User database has been saved ");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private static Map<String, Client> loadUserDatabaseFromFile() {
-//        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath2))) {
-//            return (Map<String, Client>) ois.readObject();
-//        } catch (IOException | ClassNotFoundException | NullPointerException exception) {
-//            return new HashMap<>();
-//        }
-//
-//    }
+    public HashSet<Boat> getUse() {
+        return use;
+    }
+
+    public void setUse(HashSet<Boat> use) {
+        this.use = use;
+    }
+
+    public HashSet<Boat> getOwn() {
+        return own;
+    }
+
+    public void setOwn(HashSet<Boat> own) {
+        this.own = own;
+    }
 }

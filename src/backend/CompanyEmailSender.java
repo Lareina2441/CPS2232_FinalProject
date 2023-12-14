@@ -1,13 +1,12 @@
 package backend;
 
 import exceptions.InvalidEmailAddress;
-import interfaces.Person;
-import person.Client;
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import interfaces.Person;
+import person.Client;
 
 public class CompanyEmailSender{
     final String username = "seacraft2018@outlook.com";
@@ -18,9 +17,10 @@ public class CompanyEmailSender{
     }
 
     public void sent(String string,Person person) throws InvalidEmailAddress {
-        if (isValidEmail(person.getName())==-1){
+        if (isValidEmail(person.getEmail())==-1){
             throw new InvalidEmailAddress("Invalid email address");
         }
+        printProgressBar();
         // Get the default Session object.
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.office365.com");
@@ -34,8 +34,6 @@ public class CompanyEmailSender{
         });
 
         try {
-
-
             // Create a default MimeMessage object.
             Message message = new MimeMessage(session);
 
@@ -43,16 +41,16 @@ public class CompanyEmailSender{
             message.setFrom(new InternetAddress(username));
 
             // Set To: header field of the header.
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(person.getName()));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(person.getEmail()));
             if (person instanceof Client){
-            // Set Subject: header field
-            message.setSubject("Notification from SeaCraft Company");
+                // Set Subject: header field
+                message.setSubject("Notification from SeaCraft Company");
 
-            // Now set the actual message
-            message.setText(string);
+                // Now set the actual message
+                message.setText(string);
 
-            // Send message
-            Transport.send(message);
+                // Send message
+                Transport.send(message);
             }
             else {
                 message.setSubject("SeaCraft Company management logs");
@@ -63,7 +61,7 @@ public class CompanyEmailSender{
                 // Send message
                 Transport.send(message);
             }
-
+            System.out.println(".......100% Task completed!");
             System.out.println("Email sent successfully!");
 
         }
@@ -71,6 +69,46 @@ public class CompanyEmailSender{
             throw new RuntimeException(e);
         }
     }
+    //fake progress bar to show the process of the program, stop at one point when finish print 100%
+    public static void printProgressBar() {
+        for (int i = 0; i <= 45; i++) {
+            updateProgressBar(i, 45);
+            sleep(10);
+        }
+    }
+    public static void updateProgressBar(int currentStep, int totalSteps) {
+        int barLength = 66;
+        int progress = (int) ((double) currentStep / totalSteps * barLength);
+
+        StringBuilder progressBar = new StringBuilder("[");
+        for (int i = 0; i < barLength; i++) {
+            if (i < progress) {
+                progressBar.append("=");
+            } else {
+                progressBar.append(" ");
+            }
+        }
+        progressBar.append("] ");
+
+        int percent = (int) (((double) currentStep / totalSteps) * 100);
+        if (percent > 95) {
+            return;
+        }
+        progressBar.append(percent).append("%");
+
+        System.out.print("\r" + progressBar);
+        System.out.flush();
+    }
+
+    private static void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public static int isValidEmail(String address) {
         int returnValue = 1;//this is for end output
@@ -78,6 +116,8 @@ public class CompanyEmailSender{
 
         //first:find out the place of "@"
         int placeOfAt = address.indexOf('@');
+        if (placeOfAt == -1)
+            return -1;//return -1 if invalid
         int lengthOfAddress = address.length();
 
 
@@ -133,5 +173,6 @@ public class CompanyEmailSender{
 
         return returnValue;
     }
+
 
 }

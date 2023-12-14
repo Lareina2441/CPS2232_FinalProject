@@ -1,8 +1,8 @@
 package boat;
 
-
 import interfaces.Asset;
 import interfaces.Person;
+import person.Company;
 
 import java.io.Serializable;
 
@@ -10,23 +10,24 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
     //
     private String make;
     private String variant;
-    private double length;
+    private int length;
     private String region;
     private double costPrice;
-
     private int year;
     private double[] prices = new double[3];
-    private Person owner;
-    private Person user;
+    private Person owner = new Company(0,"CPS","2232");
+    private Person user = new Company(0,"CPS","2232");
+    private int index;
 
 
-    public Boat(String make, String variant, double length, String region, double costPrice, double sellPrice, double rentPrice,
-                int year) {
+    public Boat(String make, String variant, int length, String region, double costPrice, double sellPrice, double rentPrice,
+                int year,int index) {
         this.make = make;
         this.variant = variant;
         this.length = length;
         this.region = region;
         this.year = year;
+        this.index=index;
         prices[0] = costPrice;
         prices[1] = sellPrice;
         prices[2] = rentPrice;
@@ -51,12 +52,10 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
     }
 
     /**
-     * @param rentPrice
-     * @param sellPrice
-     * @param costPrice
+     *
      */
     @Override
-    public void setPrice(double rentPrice,double sellPrice,double costPrice) {
+    public void setPrice(int rentPrice,int sellPrice,int costPrice) {
 
         this.costPrice = costPrice;
 
@@ -98,12 +97,15 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
         this.user = user;
     }
 
+    public String getMaker() {
+        return make;
+    }
 
     public void setMaker(String maker) {
         this.make = maker;
     }
 
-    public double getLength() {
+    public int getLength() {
         return length;
     }
 
@@ -123,7 +125,7 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
         return prices[0];
     }
 
-    public void setCostPrice(double costPrice) {
+    public void setCostPrice(int costPrice) {
         this.costPrice = costPrice;
     }
 
@@ -148,10 +150,10 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
     }
 
     @Override
-    public int hashCode() {
+/*    public int hashCode() {
         return (int) (this.getMake().hashCode() + this.getVarient().hashCode() + this.getLength() + this.getRegion().hashCode()
-                + this.getYear() + this.getPrice()[1]);
-    }
+                        + this.getYear() + this.getPrice()[1]);
+    }*/
 
     public boolean equals(Object obj) {
         if (obj instanceof Boat) {
@@ -169,6 +171,16 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
 
     @Override
     public String toString() {
-        return "" + make + "  " + variant + "   " + prices[0] +"   "+prices[1]+"   "+  prices[2] + "  " + year + "\n";
+        return "" + make + "  " + variant + "   " + prices[1]+"   "+  prices[2] + "  " + year ;
+    }
+
+    public Boat(){};
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

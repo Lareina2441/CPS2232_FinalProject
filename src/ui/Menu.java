@@ -1,5 +1,8 @@
-package backend;
+package ui;
 
+import backend.CompanyEmailSender;
+import backend.Database;
+import backend.RegistrationSystem;
 import boat.Boat;
 import exceptions.FailedTransactionException;
 import exceptions.NotFoundByGivenInfo;
@@ -70,7 +73,7 @@ public class Menu implements Serializable {
         return java.time.LocalDateTime.now().toString();
     }
 
-    public static void login() throws exceptions.NotFoundByGivenInfo, FailedTransactionException {
+    public static void login() throws NotFoundByGivenInfo, FailedTransactionException {
 
         // to log in;
         System.out.print("Please enter your user name:");
@@ -123,7 +126,7 @@ public class Menu implements Serializable {
     }
 
     // display basic function: choose borrow, buy or sell;
-    public static void fiveRequest(String name) throws exceptions.NotFoundByGivenInfo, FailedTransactionException {
+    public static void fiveRequest(String name) throws NotFoundByGivenInfo, FailedTransactionException {
         int input1;
 
         while (true) {
@@ -162,12 +165,12 @@ public class Menu implements Serializable {
         scanner.nextLine();
     }
 
-    public static void borrowBoat(String name) throws exceptions.NotFoundByGivenInfo, FailedTransactionException {
+    public static void borrowBoat(String name) throws NotFoundByGivenInfo, FailedTransactionException {
         Boat boat = recommendBoat();
         borrowTransaction(name, boat);
     }
 
-    public static void buyBoat(String name) throws exceptions.NotFoundByGivenInfo, FailedTransactionException {
+    public static void buyBoat(String name) throws NotFoundByGivenInfo, FailedTransactionException {
         Boat boat = recommendBoat();
         buyTransaction(name, boat);
     }
@@ -195,7 +198,7 @@ public class Menu implements Serializable {
 
     }
 
-    public static Boat recommendBoat() throws exceptions.NotFoundByGivenInfo, FailedTransactionException {
+    public static Boat recommendBoat() throws NotFoundByGivenInfo, FailedTransactionException {
         System.out.println("Are there any requirements for the boat? ");
         System.out.println("You can select your boat's make, model, length, current docking area and year of production.");
         System.out.print("y/n : ");
@@ -223,7 +226,7 @@ public class Menu implements Serializable {
         if (input2.equals("n")) {
             int i = 0;
             System.out.println("I will recommend any boat to you. The following is information about the boat:");
-            for (Map.Entry<Double, ArrayList<Boat>> entry : database.rPriceBoats.subMap(12000.0, 19000.0).entrySet()) {
+            for (Map.Entry<Double, ArrayList<Boat>> entry : database.getrPriceBoats().subMap(12000.0, 19000.0).entrySet()) {
                 System.out.println("---> Price: " + entry.getKey());
                 for (Boat boat : entry.getValue()) {
                     i++;
@@ -235,7 +238,7 @@ public class Menu implements Serializable {
             int count = scanner.nextInt();
             int j = 0;
             b:
-            for (Map.Entry<Double, ArrayList<Boat>> entry : database.rPriceBoats.subMap(12000.0, 19000.0).entrySet()) {
+            for (Map.Entry<Double, ArrayList<Boat>> entry : database.getrPriceBoats().subMap(12000.0, 19000.0).entrySet()) {
                 for (Boat boat : entry.getValue()) {
                     j++;
                     if (j == count)
@@ -289,7 +292,7 @@ public class Menu implements Serializable {
     }
 
     public static ArrayList<Boat> loadBoatsFromFile() {
-        String filePath = "resources/createdFiles/allboats";
+        String filePath = "C:\\Users\\QinJian\\Desktop\\allBoats";
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
             return (ArrayList<Boat>) ois.readObject();
@@ -300,7 +303,7 @@ public class Menu implements Serializable {
     }
 
     public static void saveBoatsToFile(ArrayList<Boat> boats) {
-        String filePath = "resources/createdFiles/allboats";
+        String filePath = "C:\\Users\\QinJian\\Desktop\\allBoats";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(boats);
         } catch (IOException e) {
@@ -308,4 +311,5 @@ public class Menu implements Serializable {
         }
     }
 }
+
 

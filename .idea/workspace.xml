@@ -5,7 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" name="Changes" comment="change all the files to java project file, which is more efficient to write codes, run, and debug">
+      <change afterPath="$PROJECT_DIR$/src/backend/Log.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exceptions/FailedTransactionException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/2023_MCM_Problem_Y_Boats.csv" beforeDir="false" afterPath="$PROJECT_DIR$/resources/2023_MCM_Problem_Y_Boats.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/CompanyEmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/CompanyEmailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/RegistrationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/RegistrationSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/Boat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/BoatCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/BoatCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_0_Boat_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_10_getLength_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_11_setLength_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_12_getRegion_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_13_setRegion_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_14_getCostPrice_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_15_setCostPrice_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_16_getYear_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_17_setYear_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_18_compareTo_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_19_hashCode_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_1_getMake_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_20_equals_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_21_getSellPrice_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_22_toString_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_2_getVarient_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_3_getPrice_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_4_setPrice_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_5_getOwner_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_6_setOwner_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_7_getUser_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_8_setUser_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_9_setMaker_calls.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/Boat_structure.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Asset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Asset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/person/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/person/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/person/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/person/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/menu.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,8 +127,8 @@
       <recent name="D:\FinalProject\CPS2232_FinalProject\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\FinalProject\CPS2232_FinalProject\src\backend" />
       <recent name="D:\FinalProject\CPS2232_FinalProject\resources" />
+      <recent name="D:\FinalProject\CPS2232_FinalProject\src\backend" />
       <recent name="D:\FinalProject\CPS2232_FinalProject\src" />
       <recent name="D:\FinalProject\CPS2232_FinalProject\src\csv" />
       <recent name="D:\FinalProject\CPS2232_FinalProject\src\ui" />

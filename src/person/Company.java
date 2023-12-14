@@ -1,12 +1,11 @@
 package person;
-
-import interfaces.Person;
-
 import java.io.Serializable;
+import interfaces.Person;
 
 public class Company implements Person, Serializable {
     private String name;
     private String password;
+    String email = "zhaoq@kean.edu";
 
     public Company(int priority, String name, String password) {
         this.name = name;
@@ -19,29 +18,29 @@ public class Company implements Person, Serializable {
     }
 
     /**
-     * @param name
+     *
      */
     @Override
-    public void setName(String name) {
+    public void setName() {
         this.name = name;
     }
 
+    public String getEmail() {
 
+        return email;
+    }
 
     public String getPassword() {
         return password;
     }
 
     /**
-     * @param password
+     *
      */
     @Override
-    public void setPassword(String password) {
+    public void setPassword() {
         this.password = password;
-
     }
-
-
 
     @Override
     public String toString() {

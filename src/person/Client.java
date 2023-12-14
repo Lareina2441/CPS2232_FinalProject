@@ -1,10 +1,13 @@
 package person;
 
-import boat.Boat;
-import interfaces.Person;
+
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+
+import boat.Boat;
+import interfaces.Person;
 
 public class Client implements Person, Serializable {
 
@@ -12,57 +15,93 @@ public class Client implements Person, Serializable {
     private String name;
     private String password;
     private String email;
-    //  The credit of the client depends on the money that the client has paid.
-    private int credit;
+
+    private ArrayList transaction;    //  The credit of the client depends on the money that the client has paid.
+    private String log;
+
     //  The appointment is the set of boats that the client has booked.
     private HashSet<Boat> appointment = new HashSet<Boat>();
     //  The own is the set of boats that the client has bought.
     private HashSet<Boat> own = new HashSet<Boat>();
+    private HashSet<Boat> use = new HashSet<Boat>();
 
+    /*    Comparator<Client> comparator = new Comparator<Client>() {
+            @Override
+            public int compare(Client c1, Client c2) {
+                return c1.credit().compareTo(c2.credit());
+            }
+        };*/
     private String uniqueID;
 
-    public Client(String name, String password, String email) {
+    public Client(String name, String password, String email, HashSet<Boat> use, HashSet<Boat> own) {
         this.name = name;
         this.password = password;
         this.email = email;
+        this.use = use;
+        this.own = own;
     }
 
     public String getUniqueID() {
         return uniqueID;
     }
 
-    /**
-     * @return
-     */
-    @Override
     public String getName() {
         return name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     /**
      *
      */
     @Override
-    public void setName(String name) {
+    public void setName() {
         this.name = name;
     }
 
-    /**
-     * @return
-     */
-    @Override
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     /**
      *
      */
     @Override
-    public void setPassword(String password) {
+    public void setPassword() {
         this.password = password;
+    }
 
+    @Override
+    public String toString() {
+        return "Client{" +
+                ", name='" + name + '\'' +
+                ", password=" + password +
+                '}';
+    }
+
+    public ArrayList getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(ArrayList transaction) {
+        this.transaction = transaction;
+    }
+
+    public HashSet<Boat> getOwn() {
+        return own;
+    }
+
+    public void setOwn(HashSet<Boat> own) {
+        this.own = own;
+    }
+
+    public HashSet<Boat> getUse() {
+        return use;
+    }
+
+    public void setUse(HashSet<Boat> use) {
+        this.use = use;
     }
 }
-
-

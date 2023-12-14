@@ -1,12 +1,13 @@
 package boat;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-//Create boat array
+  //Create boat array
 
 public class BoatCreator implements Serializable {
     public static void main(String[] args) {
-        String csvFile = "D:\\MCMTraining\\dataFolder\\2023_MCM_Problem_Y_Boats.csv";
+        String csvFile = "resources/2023_MCM_Problem_Y_Boats.csv";
         String line;
         String csvSplitBy = ",";
         List<Boat> boats = new ArrayList<>();
@@ -22,13 +23,13 @@ public class BoatCreator implements Serializable {
                 String variant = data[1];
                 int length = Integer.parseInt(data[2]);
                 String region = data[3];
-                int year = Integer.parseInt(data[7]);
-                String price = data[6].replaceAll("[^\\d.]", ""); // Remove non-numeric characters from price
-                double costPrice = Double.parseDouble(price) * 1000 ;
-                double sellPrice = costPrice * (30 + year * 20) / 30000;
-                double rentPrice = sellPrice / 50.0;
+                int year = Integer.parseInt(data[6]);
+                String price = data[5].replaceAll("[^\\d.]", ""); // Remove non-numeric characters from price
+                double costPrice = Double.parseDouble(price) * 100 ;
+                double sellPrice = costPrice * (4-( 2030d - year )/10) ;
+                double rentPrice = Double.parseDouble(price) ;
                 // Create a new Boat object using the constructor
-                Boat boat = new Boat(make, variant, length, region, costPrice, sellPrice, rentPrice, year);
+                Boat boat = new Boat(make, variant, length, region, costPrice, sellPrice, rentPrice, year,boats.size()-1);
                 boats.add(boat);
             }
         } catch (IOException e) {
@@ -42,7 +43,7 @@ public class BoatCreator implements Serializable {
     }
 
     private static void saveBoatsToFile(List<Boat> boats) {
-        String filePath = "E:\\SessionsAbout2023Fall\\CPS2232\\FinalProject\\Dataset\\allBoat";
+        String filePath = "resources/createdFiles/allboats";
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(boats);

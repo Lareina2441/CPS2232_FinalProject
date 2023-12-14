@@ -5,12 +5,14 @@ package interfaces;
     *
  */
 
+
 import java.io.Serializable;
 
 public interface Person extends Serializable {
      String getName();
-     void setName(String name);
+     void setName();
      String getPassword();
-     void setPassword(String password);
+     void setPassword();
+     String getEmail();
 
 }
