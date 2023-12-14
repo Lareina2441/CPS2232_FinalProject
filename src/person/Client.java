@@ -1,13 +1,12 @@
 package person;
 
 
+import boat.Boat;
+import interfaces.Person;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
-
-import boat.Boat;
-import interfaces.Person;
 
 public class Client implements Person, Serializable {
 
@@ -22,8 +21,8 @@ public class Client implements Person, Serializable {
     //  The appointment is the set of boats that the client has booked.
     private HashSet<Boat> appointment = new HashSet<Boat>();
     //  The own is the set of boats that the client has bought.
-    private HashSet<Boat> own = new HashSet<Boat>();
-    private HashSet<Boat> use = new HashSet<Boat>();
+    private ArrayList<Boat> own ;
+    private ArrayList<Boat> use ;
 
     /*    Comparator<Client> comparator = new Comparator<Client>() {
             @Override
@@ -33,7 +32,7 @@ public class Client implements Person, Serializable {
         };*/
     private String uniqueID;
 
-    public Client(String name, String password, String email, HashSet<Boat> use, HashSet<Boat> own) {
+    public Client(String name, String password, String email, ArrayList<Boat> use, ArrayList<Boat> own) {
         this.name = name;
         this.password = password;
         this.email = email;
@@ -89,19 +88,26 @@ public class Client implements Person, Serializable {
         this.transaction = transaction;
     }
 
-    public HashSet<Boat> getOwn() {
+    public ArrayList<Boat> getOwn() {
+        if(own == null){
+            own = new ArrayList<>();
+        }
         return own;
     }
 
-    public void setOwn(HashSet<Boat> own) {
+    public void setOwn(ArrayList<Boat> own) {
         this.own = own;
     }
 
-    public HashSet<Boat> getUse() {
+    public ArrayList<Boat> getUse() {
+        if(use == null){
+            use = new ArrayList<>();
+        }
         return use;
     }
 
-    public void setUse(HashSet<Boat> use) {
+
+    public void setUse(ArrayList<Boat> use) {
         this.use = use;
     }
 }

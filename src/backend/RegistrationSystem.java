@@ -14,7 +14,7 @@ public class RegistrationSystem implements Serializable {
     private String FILE_PATH2 = "resources/createdFiles/userData";
     private Map<String, Client> userDatabase = loadUserDatabaseFromFile();
     private Scanner input = new Scanner(System.in);
-    private HashSet<Boat> own;
+    private ArrayList<Boat> own = new ArrayList<>();
 
     public RegistrationSystem() {
     }
@@ -23,7 +23,7 @@ public class RegistrationSystem implements Serializable {
         return userDatabase;
     }
 
-    private HashSet<Boat> use;
+    private ArrayList<Boat> use = new ArrayList<>();
 
     public void saveUserDatabaseToFile(Map<String, Client> userDatabase) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH2,false))) {
@@ -50,7 +50,7 @@ public class RegistrationSystem implements Serializable {
         System.out.print("Input your email: ");
         String email = input.next();
         ArrayList transaction = null;
-        Client client = new Client(name, password, email, use, own);
+        Client client = new Client(name, password, email, new ArrayList<>(), new ArrayList<>());
         userDatabase.put(name, client);
         System.out.println("Register successfully.");
 
@@ -86,19 +86,19 @@ public class RegistrationSystem implements Serializable {
         return name;
     }
 
-    public HashSet<Boat> getUse() {
+    public ArrayList<Boat> getUse() {
         return use;
     }
 
-    public void setUse(HashSet<Boat> use) {
+    public void setUse(ArrayList<Boat> use) {
         this.use = use;
     }
 
-    public HashSet<Boat> getOwn() {
+    public ArrayList<Boat> getOwn() {
         return own;
     }
 
-    public void setOwn(HashSet<Boat> own) {
+    public void setOwn(ArrayList<Boat> own) {
         this.own = own;
     }
 }

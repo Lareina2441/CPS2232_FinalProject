@@ -171,7 +171,7 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
 
     @Override
     public String toString() {
-        return "" + make + "  " + variant + "   " + prices[1]+"   "+  prices[2] + "  " + year ;
+        return "Make: " + make + " Variant: " + variant + " Sell Price: " + prices[1]+ "Rent Price: "+  prices[2] + "Year: " + year+"\n" ;
     }
 
     public Boat(){};

@@ -2,6 +2,7 @@ package backend;
 
 import boat.Boat;
 import exceptions.FailedTransactionException;
+import exceptions.InvalidEmailAddress;
 import exceptions.NotFoundByGivenInfo;
 import person.Client;
 import person.Company;
@@ -9,7 +10,7 @@ import person.Company;
 import java.io.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -22,13 +23,15 @@ public class Menu implements Serializable {
     static CompanyEmailSender companyEmailSender;
 
 
-    public static void main(String[] args) throws ClassNotFoundException, NotFoundByGivenInfo, FailedTransactionException {
+    public static void main(String[] args) throws ClassNotFoundException, NotFoundByGivenInfo, FailedTransactionException, InvalidEmailAddress {
         //Initializing
         System.out.println("We are sending your information to our server, please wait a moment...");
 
 
         LocalTime constructedTime = LocalTime.now();
-        /*try {
+
+/*
+        try {
             companyEmailSender = new CompanyEmailSender();
             companyEmailSender.sent("System is working at " + getCurrentTime(), new Company(0, "zhaoq@kean.edu", "2232"));
         } catch (MessagingException e) {
@@ -36,41 +39,54 @@ public class Menu implements Serializable {
         } catch (InvalidEmailAddress e) {
             System.out.println("Something badly happen in our server, email notification is not available ");
             ;
-        }*/
+        }
 
+*/
 
         //first, client log in their accounts
         System.out.println("Welcome to our company!");
         System.out.println("Time: " + getCurrentTime());
 
+        Boolean flag = true;
         a:
-        while (true) {
+        do {
+
             System.out.println("You can choose 1. register  2. login  3. quit ");
-            int log = scanner.nextInt();
+            try{
+                int log = scanner.nextInt();
             switch (log) {
                 case 1:
+                     flag = true;
                     // Use the register method in the RegistrationSystem class to register a new client;
                     Map<String, Client> userDatabase = system.registerUser();
                     system.saveUserDatabaseToFile(userDatabase);
                     break;
                 case 2:
+                    flag = true;
                     system.loadUserDatabaseFromFile();
                     login();
                     saveBoatsToFile(boats);
                     System.out.println("..................................");
                     break a;
                 case 3:
+                    flag = true;
                     System.out.println("Thank you for your visit!");
+                    flag = false;
                     return;
+
             }
-        }
+            }catch (InputMismatchException e){
+                System.out.println("Wrong input, please enter 1 or 2 or 3");
+                scanner.next();
+            }
+        }while (flag);
     }
 
     public static String getCurrentTime() {
         return java.time.LocalDateTime.now().toString();
     }
 
-    public static void login() throws exceptions.NotFoundByGivenInfo, FailedTransactionException {
+    public static void login() throws exceptions.NotFoundByGivenInfo, FailedTransactionException, InvalidEmailAddress {
 
         // to log in;
         System.out.print("Please enter your user name:");
@@ -98,7 +114,7 @@ public class Menu implements Serializable {
                 System.out.println("Login successfully!");
                 System.out.println("We are sending your login information to your email, please wait a moment...");
 
-/*                try {
+                /*try {
                     if (companyEmailSender.isValidEmail(userDatabase.get(name).getEmail()) == -1) {
                         System.out.println("Invalid email address, so we cannot send email to you please register again");
                     }
@@ -123,7 +139,7 @@ public class Menu implements Serializable {
     }
 
     // display basic function: choose borrow, buy or sell;
-    public static void fiveRequest(String name) throws exceptions.NotFoundByGivenInfo, FailedTransactionException {
+    public static void fiveRequest(String name) throws exceptions.NotFoundByGivenInfo, FailedTransactionException, InvalidEmailAddress {
         int input1;
 
         while (true) {
@@ -162,14 +178,26 @@ public class Menu implements Serializable {
         scanner.nextLine();
     }
 
-    public static void borrowBoat(String name) throws exceptions.NotFoundByGivenInfo, FailedTransactionException {
-        Boat boat = recommendBoat();
-        borrowTransaction(name, boat);
+    public static void borrowBoat(String name) throws exceptions.NotFoundByGivenInfo, InvalidEmailAddress {
+        Map<String, Client> userDatabase = system.loadUserDatabaseFromFile();
+        Client currentClient = userDatabase.remove(name);
+        try {
+            Boat boat = recommendBoat();
+            borrowTransaction(name, boat);
+        }catch (FailedTransactionException e) {
+            companyEmailSender.sent("Sorry, the dealing is failed, please try again later\n\n"+e.getMessage(),currentClient);
+        }
     }
 
-    public static void buyBoat(String name) throws exceptions.NotFoundByGivenInfo, FailedTransactionException {
+    public static void buyBoat(String name) throws exceptions.NotFoundByGivenInfo, FailedTransactionException, InvalidEmailAddress {
+        Map<String, Client> userDatabase = system.loadUserDatabaseFromFile();
+        Client currentClient = userDatabase.remove(name);
+        try {
         Boat boat = recommendBoat();
         buyTransaction(name, boat);
+        }catch (FailedTransactionException e) {
+            companyEmailSender.sent("Sorry, the dealing is failed, please try again later\n\n"+e.getMessage(),currentClient);
+        }
     }
 
     public static void returnBoat(String name) {
@@ -213,21 +241,28 @@ public class Menu implements Serializable {
                 System.out.println("Please enter y or n ~");
             }
         }
-        if (input2.equals("y")) {
+        if (input2.equals("y")){
             database.show(scanner);
+            Boat currentBoat;
+            try{
+                currentBoat = Database.searchBoat(scanner);
+            }
+            catch (NotFoundByGivenInfo e){
+                System.out.println("Sorry, we cannot find the boat you want, please try again later");
+                return borrowBoat;
+            }
             scanner.nextLine();
-            Boat currentBoat = Database.searchBoat(scanner);
 
             return currentBoat;
         }
         if (input2.equals("n")) {
             int i = 0;
             System.out.println("I will recommend any boat to you. The following is information about the boat:");
-            for (Map.Entry<Double, ArrayList<Boat>> entry : database.rPriceBoats.subMap(12000.0, 19000.0).entrySet()) {
+            for (Map.Entry<Double, ArrayList<Boat>> entry : database.rPriceBoats.subMap(480000.0,500000.0).entrySet()) {
                 System.out.println("---> Price: " + entry.getKey());
                 for (Boat boat : entry.getValue()) {
                     i++;
-                    System.out.println("boat" + i + " : " + boat);
+                    System.out.println("boat " + i + " : " + boat);
                 }
                 System.out.println();
             }
@@ -235,10 +270,10 @@ public class Menu implements Serializable {
             int count = scanner.nextInt();
             int j = 0;
             b:
-            for (Map.Entry<Double, ArrayList<Boat>> entry : database.rPriceBoats.subMap(12000.0, 19000.0).entrySet()) {
+            for (Map.Entry<Double, ArrayList<Boat>> entry : database.rPriceBoats.subMap(480000.0,500000.0).entrySet()) {
                 for (Boat boat : entry.getValue()) {
                     j++;
-                    if (j == count)
+                    if(j == count)
                         return boat;
                 }
             }
@@ -255,33 +290,26 @@ public class Menu implements Serializable {
         else if (boat.getUser() instanceof Client)
             throw new FailedTransactionException("The boat is rented");
         boat.setUser(currentClient);
-        boats.set(boat.getIndex(), boat);
         //Boat oldBoat=boats.get(boat.getIndex());
-        boats.set(boat.getIndex(), boat);
         currentClient.getUse().add(boat);
-
         System.out.println("Now, you can use: " + currentClient.getUse());
         userDatabase.put(name, currentClient);
         system.saveUserDatabaseToFile(userDatabase);
     }
-
     public static void buyTransaction(String name, Boat boat) throws FailedTransactionException {
         System.out.println("Dealing.....\nPlease Wait a moment");
         Map<String, Client> userDatabase = system.loadUserDatabaseFromFile();
-        Client currentClient = userDatabase.remove(name);
+        Client currentClient = userDatabase.get(name);
         if (!(boat.getOwner() instanceof Company))
             throw new FailedTransactionException("The boat is sold out");
         else if (boat.getUser() instanceof Client)
             throw new FailedTransactionException("The boat is rented");
         boat.setUser(currentClient);
         boat.setOwner(currentClient);
-        boats.set(boat.getIndex(), boat);
         //saveBoatsToFile(boats);
-        HashSet<Boat> set = currentClient.getOwn();
+        ArrayList<Boat> set = currentClient.getOwn();
         set.add(boat);
-        currentClient.getOwn().add(boat);
-        currentClient.setOwn(set);
-        System.out.println("Now, you own : " + currentClient.getUse());
+        System.out.println("Now, you own : " + currentClient.getOwn());
         userDatabase.put(name, currentClient);
         system.saveUserDatabaseToFile(userDatabase);
 

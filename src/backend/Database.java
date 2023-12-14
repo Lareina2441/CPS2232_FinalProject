@@ -50,6 +50,7 @@ public class Database implements Serializable {
     }
 
     public static Boat searchBoat(Scanner input) throws NotFoundByGivenInfo {
+        System.out.println("\n\n\nEnter any key to continue:");
         System.out.println("enter the information that you want to search");
         System.out.println("Format: 0:make,1:variant,2:length,3:region,4:rentPrice,5:sellPrice,6:costPrice,7:year");
         System.out.println("For example, 0:Bayliner,1:175,2:17,3:BC,4:100,5:1000,6:500,7:2018\n     " +
@@ -57,7 +58,6 @@ public class Database implements Serializable {
                 "to offer more information");
         System.out.println("Please enter your choice:");
 
-        System.out.println("\n\n\nEnter any key to continue:");
 
 
         String info = input.nextLine();
@@ -134,28 +134,30 @@ public class Database implements Serializable {
         }
 
         //delete boats that do not match the second condition
+        Iterator<Boat> it = result.iterator();
         for (int i = 1; i < infos.length; i++) {
             switch (infos[i].charAt(0)) {
                 case '0':
                     infos[i] = infos[i].substring(2);
-                    for (Boat boat : result
-                    ) {
+                    while (it.hasNext())
+                    {
+                        Boat boat = it.next();
                         if (!boat.getMake().equals(infos[i])) {
-                            result.iterator().remove();
+                            it.remove();
                         }
                     }
                     break;
                 case '1':
                     infos[i] = infos[i].substring(2);
-                    for (Boat boat : result
-                    ) {
+                    while (it.hasNext())
+                    {
+                        Boat boat = it.next();
                         if (!boat.getVarient().equals(infos[i])) {
-                            result.iterator().remove();
+                            it.remove();
                         }
                     }
                     break;
                 case '2':
-                    Iterator<Boat> it = result.iterator();
                     infos[i] = infos[i].substring(2);
                     while (it.hasNext())
                     {
@@ -167,46 +169,51 @@ public class Database implements Serializable {
                     break;
                 case '3':
                     infos[i] = infos[i].substring(2);
-                    for (Boat boat : result
-                    ) {
+                    while (it.hasNext())
+                    {
+                        Boat boat = it.next();
                         if (!boat.getRegion().equals(infos[i])) {
-                            result.iterator().remove();
+                            it.remove();
                         }
                     }
                     break;
                 case '4':
                     infos[i] = infos[i].substring(2);
-                    for (Boat boat : result
-                    ) {
+                    while (it.hasNext())
+                    {
+                        Boat boat = it.next();
                         if (boat.getPrice()[0] != Double.parseDouble(infos[i])) {
-                            result.iterator().remove();
+                            it.remove();
                         }
                     }
                     break;
                 case '5':
                     infos[i] = infos[i].substring(2);
-                    for (Boat boat : result
-                    ) {
+                    while (it.hasNext())
+                    {
+                        Boat boat = it.next();
                         if (boat.getPrice()[1] != Double.parseDouble(infos[i])) {
-                            result.iterator().remove();
+                            it.remove();
                         }
                     }
                     break;
                 case '6':
                     infos[i] = infos[i].substring(2);
-                    for (Boat boat : result
-                    ) {
+                    while (it.hasNext())
+                    {
+                        Boat boat = it.next();
                         if (boat.getPrice()[2] != Double.parseDouble(infos[i])) {
-                            result.iterator().remove();
+                            it.remove();
                         }
                     }
                     break;
                 case '7':
                     infos[i] = infos[i].substring(2);
-                    for (Boat boat : result
-                    ) {
+                    while (it.hasNext())
+                    {
+                        Boat boat = it.next();
                         if (boat.getYear() != Integer.parseInt(infos[i])) {
-                            result.iterator().remove();
+                            it.remove();
                         }
                     }
                     break;
