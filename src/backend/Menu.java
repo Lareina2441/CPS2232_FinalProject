@@ -26,6 +26,22 @@ public class Menu implements Serializable {
     public static void main(String[] args) throws ClassNotFoundException, NotFoundByGivenInfo, FailedTransactionException, InvalidEmailAddress {
         //Initializing
         System.out.println("We are sending your information to our server, please wait a moment...");
+        CompanyEnd companyEnd = new CompanyEnd(database);
+        try {
+            companyEnd.ui(scanner);
+        }catch (NotFoundByGivenInfo e){
+            System.out.println("Sorry, we cannot find the boat you want, please try again later");
+            System.out.println("Continue? y/n");
+            String s = scanner.next();
+            if (s.equals("y")){
+                companyEnd.ui(scanner);
+            }
+            else {
+                System.out.println("Thank you for your visit!");
+                return;
+            }
+        }
+
 
 
         LocalTime constructedTime = LocalTime.now();
@@ -105,7 +121,7 @@ public class Menu implements Serializable {
         scanner.nextLine();
         // Get the user info for the entered username
 
-        String storedPassword = userDatabase.get(name).getPassword();
+        String storedPassword = RegistrationSystem.storedPassword(userDatabase.get(name).getPassword());
 
 
         // Check if the entered password matches the stored password

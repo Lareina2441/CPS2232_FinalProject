@@ -1,13 +1,9 @@
 package backend;
 
-
 import boat.Boat;
 import exceptions.NotFoundByGivenInfo;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -17,14 +13,26 @@ public class Database implements Serializable {
     static HashMap<Boat,Boat> allBoats = new HashMap<>();
     TreeMap<Double,ArrayList<Boat>> rPriceBoats = new TreeMap<>();
     TreeMap<Double,ArrayList<Boat>> sPriceBoats = new TreeMap<>();
-    TreeMap<Double,ArrayList<Boat>> lengthBoats = new TreeMap<>();
+    TreeMap<Integer,ArrayList<Boat>> lengthBoats = new TreeMap<>();
     ArrayList<Boat> boats = loadBoatsFromFile();
+
 
     TreeMap<Integer,ArrayList<Boat>> yearBoats = new TreeMap<>();
 
-    public Boat returnNewBoat(String make, String variant, int length, String region, int sellPrice, int costPrice,int rentPrice,
+    public Boat returnNewBoat(String make, String variant, int length, String region, double sellPrice, double costPrice,double rentPrice,
                               int year){
         return new Boat(make,variant,length,region,sellPrice,costPrice,rentPrice,year,boats.size()-1);
+    }
+
+    private static void saveBoatsToFile(List<Boat> boats) {
+        String filePath = "resources/createdFiles/allboats";
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(boats);
+            System.out.println("Boats list has been saved to file: " + filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addBoat(Boat boat){
@@ -35,7 +43,9 @@ public class Database implements Serializable {
         rPriceBoats.computeIfAbsent(boat.getPrice()[0], k -> new ArrayList<>()).add(boat);//by PRICE
         sPriceBoats.computeIfAbsent(boat.getPrice()[1], k -> new ArrayList<>()).add(boat);//by PRICE
         yearBoats.computeIfAbsent(boat.getYear(), k -> new ArrayList<>()).add(boat);//by PRICE}
-        lengthBoats.computeIfAbsent((double) boat.getLength(), k -> new ArrayList<>()).add(boat);//by PRICE
+        lengthBoats.computeIfAbsent( boat.getLength(), k -> new ArrayList<>()).add(boat);//by PRICE
+        boats.add(boat);
+        saveBoatsToFile(boats);
     }
 
     public void deleteBoat(Boat boat){
@@ -47,14 +57,42 @@ public class Database implements Serializable {
         sPriceBoats.get(boat.getPrice()[1]).remove(boat);
         yearBoats.get(boat.getYear()).remove(boat);
         lengthBoats.get(boat.getLength()).remove(boat);
+        boats.remove(boat);
+        saveBoatsToFile(boats);
+    }
+
+    public void modifyBoat(Scanner input,Boat boat){
+        System.out.println("Please input the make of the boat:");
+        String make = input.next();
+        System.out.println("Please input the variant of the boat:");
+        String variant = input.next();
+        System.out.println("Please input the length of the boat:");
+        int length = input.nextInt();
+        System.out.println("Please input the region of the boat:");
+        String region = input.next();
+        System.out.println("Please input the year of the boat:");
+        int year = input.nextInt();
+        System.out.println("Please input the cost price of the boat:");
+        double costPrice = input.nextDouble();
+        System.out.println("Please input the sell price of the boat:");
+        double sellPrice = input.nextDouble();
+        System.out.println("Please input the rent price of the boat:");
+        double rentPrice = input.nextDouble();
+        deleteBoat(boat);
+        boats.remove(boat);
+
+        addBoat(returnNewBoat(make,variant,length,region,sellPrice,costPrice,rentPrice,year));
+        boats.add(boat);
+        saveBoatsToFile(boats);
     }
 
     public static Boat searchBoat(Scanner input) throws NotFoundByGivenInfo {
         System.out.println("\n\n\nEnter any key to continue:");
+        input.nextLine();
         System.out.println("enter the information that you want to search");
         System.out.println("Format: 0:make,1:variant,2:length,3:region,4:rentPrice,5:sellPrice,6:costPrice,7:year");
-        System.out.println("For example, 0:Bayliner,1:175,2:17,3:BC,4:100,5:1000,6:500,7:2018\n     " +
-                "0:Bayliner,1:175,7:2018 works too, but if it still contains duplicate information, we will ask you " +
+        System.out.println("For example, 0:Bayliner,1:175,2:17,3:BC,4:100,5:1000,6:500,7:2018,\n     " +
+                "0:Bayliner,1:175,7:2018 works \n0:seacraft,\npay attention to enter, at last \n If it still contains duplicate information, we will ask you " +
                 "to offer more information");
         System.out.println("Please enter your choice:");
 
@@ -62,6 +100,7 @@ public class Database implements Serializable {
 
         String info = input.nextLine();
         String[] infos = info.split(",");
+        System.out.println("Searching....: ");
         ArrayList<Boat> result = new ArrayList<>();
         //add boats by first condition, then delete the boats that do not match the second condition
         switch (infos[0].charAt(0)) {
@@ -132,6 +171,7 @@ public class Database implements Serializable {
                 } );
                 break;
         }
+
 
         //delete boats that do not match the second condition
         Iterator<Boat> it = result.iterator();
@@ -224,6 +264,7 @@ public class Database implements Serializable {
             throw new NotFoundByGivenInfo("No such boats by given information");
         }
         if (result.size()==1){
+            System.out.println(result.get(0));
             return result.get(0);
         }
         else {
@@ -546,13 +587,13 @@ public class Database implements Serializable {
     }
 
     public void showBoatsByLengthRange(double minLength, double maxLength) throws NotFoundByGivenInfo {
-        TreeMap<Double, ArrayList<Boat>> lengthRange =  lengthBoats;
+        TreeMap<Integer, ArrayList<Boat>> lengthRange =  lengthBoats;
         System.out.printf("%-30s%-35s%-30s%-30s%-15s%-15s%-10s%n","Make",
                 "Variant","Length","Region","SellPrice","RentPrice","Year");
         AtomicBoolean foundMatchingEntries = new AtomicBoolean(false);
         //why use atomic boolean? because we need to use it in the lambda expression
         // and boolean is forbidden in lambda expression
-        Set<Map.Entry<Double, ArrayList<Boat>>> entries
+        Set<Map.Entry<Integer, ArrayList<Boat>>> entries
                 = lengthRange.entrySet();
         entries.forEach(entry -> {
             if (entry.getKey()>=minLength&&entry.getKey()<=maxLength){
@@ -622,6 +663,9 @@ public class Database implements Serializable {
 
     }//end of the blocks of methods to show the boats by different attributes.
 
+    public Database(){
+
+    }
 
     public Database(ArrayList<Boat> boats) {
         this.boats = boats;
@@ -654,7 +698,7 @@ public class Database implements Serializable {
         }
         for (Boat boat : boats
         ) {
-            lengthBoats.computeIfAbsent((double) boat.getLength(), k -> new ArrayList<>()).add(boat);//by PRICE
+            lengthBoats.computeIfAbsent( boat.getLength(), k -> new ArrayList<>()).add(boat);//by PRICE
         }
     }
     public static ArrayList<Boat> loadBoatsFromFile() {
@@ -672,7 +716,7 @@ public class Database implements Serializable {
         return boats;
     }
 
-    public Database(){}
+
 
     public HashMap<String, ArrayList<Boat>> getByAttributeBoats() {
         return byAttributeBoats;
@@ -706,11 +750,11 @@ public class Database implements Serializable {
         this.sPriceBoats = sPriceBoats;
     }
 
-    public TreeMap<Double, ArrayList<Boat>> getLengthBoats() {
+    public TreeMap<Integer, ArrayList<Boat>> getLengthBoats() {
         return lengthBoats;
     }
 
-    public void setLengthBoats(TreeMap<Double, ArrayList<Boat>> lengthBoats) {
+    public void setLengthBoats(TreeMap<Integer, ArrayList<Boat>> lengthBoats) {
         this.lengthBoats = lengthBoats;
     }
 

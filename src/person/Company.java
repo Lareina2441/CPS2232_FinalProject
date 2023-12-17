@@ -1,10 +1,12 @@
 package person;
-import java.io.Serializable;
+
 import interfaces.Person;
+
+import java.io.Serializable;
 
 public class Company implements Person, Serializable {
     private String name;
-    private String password;
+    private String password = "cps";
     String email = "zhaoq@kean.edu";
 
     public Company(int priority, String name, String password) {

@@ -47,6 +47,8 @@ public class RegistrationSystem implements Serializable {
         String name = getInputName();
         System.out.print("Input your password: ");
         String password = input.next();
+        password = storedPassword(password);
+        //hash the password
         System.out.print("Input your email: ");
         String email = input.next();
         ArrayList transaction = null;
@@ -58,6 +60,19 @@ public class RegistrationSystem implements Serializable {
         writeUserToCSV(name, password, email);
         return userDatabase;
     }
+
+    public static String storedPassword(String password) {
+        int hash = 0;
+        for (int i = 0; i < password.length(); i++) {
+            password = password.replace(password.charAt(i), (char) (password.charAt(i) * 31));
+            if (password.charAt(i) % 3 == 0) {
+                password = password.replace(password.charAt(i), (char) (password.charAt(i) -31));
+            }
+
+        }
+        return password;
+    }
+
 
     private void writeUserToCSV(String name, String password, String email) {
         try (FileWriter writer = new FileWriter(FILE_PATH1, true)) {

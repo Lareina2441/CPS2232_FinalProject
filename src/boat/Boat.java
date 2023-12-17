@@ -55,7 +55,7 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
      *
      */
     @Override
-    public void setPrice(int rentPrice,int sellPrice,int costPrice) {
+    public void setPrice(double rentPrice,double sellPrice,double costPrice) {
 
         this.costPrice = costPrice;
 
@@ -125,7 +125,7 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
         return prices[0];
     }
 
-    public void setCostPrice(int costPrice) {
+    public void setCostPrice(double costPrice) {
         this.costPrice = costPrice;
     }
 
@@ -182,5 +182,11 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public void setMake(String make) {
+    }
+
+    public void setVarient(String variant) {
     }
 }
