@@ -3,9 +3,18 @@ package backend;
 import boat.Boat;
 import person.Client;
 
+import javax.mail.MessagingException;
 import java.io.*;
 import java.util.*;
 
+/**
+ * This class describes the registration system of the Seacraft2018 Boat Company.
+ * This class is used to register a new user.
+ * the user information is stored in a binary file.
+ * @version 1.0
+ * @since 2023-12-17
+ *
+ */
 public class RegistrationSystem implements Serializable {
     // This class describes the registration system of the WKU Boat Company.
 
@@ -22,9 +31,12 @@ public class RegistrationSystem implements Serializable {
     public Map<String, Client> getUserDatabase() {
         return userDatabase;
     }
-
     private ArrayList<Boat> use = new ArrayList<>();
 
+    /**
+     * This method is used to save the user database to a binary file.
+     * @param userDatabase
+     */
     public void saveUserDatabaseToFile(Map<String, Client> userDatabase) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH2,false))) {
             oos.writeObject(userDatabase);
@@ -34,6 +46,10 @@ public class RegistrationSystem implements Serializable {
         }
     }
 
+    /**
+     * This method is used to load the user database from a binary file.
+     * @return Map<String, Client>
+     */
     public Map<String, Client> loadUserDatabaseFromFile() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_PATH2))) {
             return (Map<String, Client>) ois.readObject();
@@ -42,11 +58,16 @@ public class RegistrationSystem implements Serializable {
         }
     }
 
-    // The method to register a new user.
-    public Map<String, Client> registerUser() {
+    /**
+     * This method is used to register a new user.
+     * @return Map<String, Client>
+     * @throws MessagingException
+     */
+    public Map<String, Client> registerUser() throws MessagingException {
         String name = getInputName();
         System.out.print("Input your password: ");
         String password = input.next();
+
         password = storedPassword(password);
         //hash the password
         System.out.print("Input your email: ");
@@ -61,10 +82,15 @@ public class RegistrationSystem implements Serializable {
         return userDatabase;
     }
 
+    /**
+     * This method is used to hide the password.
+     * @param password
+     * @return String
+     */
     public static String storedPassword(String password) {
         int hash = 0;
         for (int i = 0; i < password.length(); i++) {
-            password = password.replace(password.charAt(i), (char) (password.charAt(i) * 31));
+            password = password.replace(password.charAt(i), (char) (password.charAt(i)*password.charAt(password.length()-1-i) * 31));
             if (password.charAt(i) % 3 == 0) {
                 password = password.replace(password.charAt(i), (char) (password.charAt(i) -31));
             }
@@ -73,7 +99,12 @@ public class RegistrationSystem implements Serializable {
         return password;
     }
 
-
+    /**
+     * This method is used to write the user information to a CSV file.
+     * @param name
+     * @param password
+     * @param email
+     */
     private void writeUserToCSV(String name, String password, String email) {
         try (FileWriter writer = new FileWriter(FILE_PATH1, true)) {
             writer.append(name).append(",").append(password).append(",").append(email).append("\n");
@@ -97,7 +128,6 @@ public class RegistrationSystem implements Serializable {
 
             System.out.println("Name already exists. Please enter a different name.");
         }
-
         return name;
     }
 

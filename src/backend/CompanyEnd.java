@@ -12,15 +12,17 @@ import java.util.Scanner;
 import static backend.Database.allBoats;
 import static backend.Database.searchBoat;
 
+/**
+ * Purpose: This class is used to provide the functions for the company end
+ * @version 1.0
+ * @since 2023-12-17
+ */
+
 public class CompanyEnd {
     Database database;
     Company company = new Company(1,"Seacraft 2018 Boat Company","cps");
     RegistrationSystem registrationSystem = new RegistrationSystem();
     Map<String, Client> userInfo =  registrationSystem.loadUserDatabaseFromFile();
-
-
-
-
 
     public CompanyEnd(Database database) {
         this.database = database;
@@ -64,8 +66,8 @@ public class CompanyEnd {
         System.out.println("4 Search a boat");
         System.out.println("5 show user information");
         System.out.println("6 show boats information");
-        System.out.println("7 show logs");
         System.out.print("Enter Your choice please: ");
+
         int choice = input.nextInt();
 
         switch (choice) {
@@ -143,7 +145,7 @@ public class CompanyEnd {
             case 5:
                 System.out.println("user information:");
                 userInfo.forEach((k,v)->{
-                    System.out.printf("[name:%-10spassword:%10semail:%20s]\n",k,v.getPassword(),v.getEmail());
+                    System.out.printf("[name:%-10spassword:%-10semail:%-20s]\n",k,v.getPassword(),v.getEmail());
                 });
                 System.out.println("continue?\ny/n");
                  s=input.next();
@@ -167,20 +169,6 @@ public class CompanyEnd {
                     System.exit(0);
                 }
                 break;
-            case 7:
-                userInfo.forEach((k,v)->{
-                    System.out.printf("[name:%-10spassword:%-12semail:%-15s]\n",k,v.getPassword(),v.getEmail());
-                });
-                System.out.println("continue?\ny/n");
-                s = input.next();
-                if(s.equals("y")){
-                    menu(input);
-                }
-                else{
-                    System.out.println("Thank you for using the Seacraft2018 Boat Company!");
-                    System.exit(0);
-                }
-                break;
             default:
                 System.out.println("Invalid input. Please try again.");
                 menu(input);
@@ -188,6 +176,13 @@ public class CompanyEnd {
 
     }
 
+    /**
+     * This method is used to ask the user to input the information of the boat.
+     * @param input
+     * @param action
+     * @return Boat
+     * @throws NotFoundByGivenInfo
+     */
     public Boat askBoatInfo(Scanner input,String action) throws NotFoundByGivenInfo {
         System.out.println("Please input the information of the boat you want to"  + action +":");
         Boat boat = database.searchBoat(input);

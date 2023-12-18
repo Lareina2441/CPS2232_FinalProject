@@ -5,17 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" name="Changes" comment="change all the files to java project file, which is more efficient to write codes, run, and debug">
-      <change afterPath="$PROJECT_DIR$/src/backend/CompanyEnd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/backend/Logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/createdFiles/allboats" beforeDir="false" afterPath="$PROJECT_DIR$/resources/createdFiles/allboats" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/createdFiles/clients.csv" beforeDir="false" afterPath="$PROJECT_DIR$/resources/createdFiles/clients.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/createdFiles/userData" beforeDir="false" afterPath="$PROJECT_DIR$/resources/createdFiles/userData" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/CompanyEmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/CompanyEmailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/CompanyEnd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/CompanyEnd.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/backend/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/Log.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/backend/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/backend/RegistrationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/RegistrationSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/boat/Boat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/Boat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boat/BoatCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boat/BoatCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/csv/CSVImporter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/FailedTransactionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/FailedTransactionException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/InvalidArgumentException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/InvalidArgumentException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/InvalidEmailAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/InvalidEmailAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/NotFoundByGivenInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/NotFoundByGivenInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/Asset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Asset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/person/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/person/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/person/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/person/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/menu.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/reset.md" beforeDir="false" />
+    </list>
+    <list id="3731514d-7692-4586-a5c7-d286dff8e8cc" name="Changes by 715" comment="">
+      <change beforePath="$PROJECT_DIR$/src/backend/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +89,60 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$PROJECT_DIR$/../../Apps/Java/temurin-18.0.2.1/lib/src.zip!/java.base/java/lang/NullPointerException.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/backend/Menu.java">
+      <ranges>
+        <range start1="8" end1="9" start2="8" end2="9" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="11" end1="15" start2="11" end2="19" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="19" end1="19" start2="23" end2="25" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="23" end1="23" start2="29" end2="38" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="28" end1="46" start2="43" end2="43" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="48" end1="49" start2="45" end2="46" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="51" end1="52" start2="48" end2="56" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="53" end1="53" start2="57" end2="58" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="58" end1="60" start2="63" end2="88" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="63" end1="64" start2="91" end2="92" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="72" end1="91" start2="100" end2="119" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="92" end1="98" start2="120" end2="129" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="119" end1="121" start2="150" end2="151" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="122" end1="122" start2="152" end2="153" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="123" end1="126" start2="154" end2="155" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="131" end1="131" start2="160" end2="161" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="132" end1="133" start2="162" end2="163" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="136" end1="137" start2="166" end2="189" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="138" end1="138" start2="190" end2="192" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="139" end1="140" start2="193" end2="194" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="159" end1="162" start2="213" end2="216" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="163" end1="164" start2="217" end2="218" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="165" end1="189" start2="219" end2="251" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="190" end1="192" start2="252" end2="252" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="193" end1="194" start2="253" end2="253" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="195" end1="195" start2="254" end2="255" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="197" end1="197" start2="257" end2="258" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="199" end1="199" start2="260" end2="261" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="202" end1="202" start2="264" end2="268" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="203" end1="203" start2="269" end2="271" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="210" end1="210" start2="278" end2="279" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="211" end1="213" start2="280" end2="286" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="214" end1="215" start2="287" end2="290" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="221" end1="221" start2="296" end2="297" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="222" end1="224" start2="298" end2="299" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="226" end1="227" start2="301" end2="305" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="228" end1="228" start2="306" end2="314" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="229" end1="230" start2="315" end2="315" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="231" end1="235" start2="316" end2="316" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="236" end1="237" start2="317" end2="318" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="238" end1="240" start2="319" end2="324" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+        <range start1="246" end1="247" start2="330" end2="331" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="251" end1="297" start2="335" end2="383" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="298" end1="299" start2="384" end2="384" changelist="3731514d-7692-4586-a5c7-d286dff8e8cc" />
+        <range start1="354" end1="354" start2="439" end2="440" changelist="6eae50ce-4e0c-4eaa-9690-e25378fcbeac" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -78,32 +160,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.BoatCreator.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CompanyEnd.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Menu.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RegistrationSystem.executor&quot;: &quot;Run&quot;,
-    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/FinalProject/CPS2232_FinalProject&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BoatCreator.executor": "Run",
+    "Application.CompanyEnd.executor": "Run",
+    "Application.Logger.executor": "Run",
+    "Application.Menu.executor": "Run",
+    "Application.RegistrationSystem.executor": "Run",
+    "OverrideImplement.generate.javadoc": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/FinalProject/CPS2232_FinalProject",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\FinalProject\CPS2232_FinalProject\resources" />
@@ -119,7 +202,20 @@
       <recent name="boat" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Menu">
+    <configuration name="BoatCreator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="boat.BoatCreator" />
+      <module name="CPS2232_FinalProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="boat.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Menu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="backend.Menu" />
       <module name="CPS2232_FinalProject" />
@@ -136,6 +232,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Menu" />
+        <item itemvalue="Application.BoatCreator" />
       </list>
     </recent_temporary>
   </component>
@@ -150,6 +247,10 @@
       <workItem from="1702699690504" duration="8474000" />
       <workItem from="1702728256467" duration="2274000" />
       <workItem from="1702731467435" duration="484000" />
+      <workItem from="1702788310833" duration="134000" />
+      <workItem from="1702788505106" duration="26280000" />
+      <workItem from="1702825216268" duration="1949000" />
+      <workItem from="1702886825218" duration="5955000" />
     </task>
     <task id="LOCAL-00001" summary="change all the files to java project file, which is more efficient to write codes, run, and debug">
       <option name="closed" value="true" />

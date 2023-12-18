@@ -7,6 +7,11 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * This class is to store all the boats and offer methods to search the boats by different attributes
+ * @version 1.0
+ * @since 2023-12-17
+ */
 
 public class Database implements Serializable {
     HashMap<String,ArrayList<Boat>> byAttributeBoats = new HashMap<>();
@@ -15,9 +20,46 @@ public class Database implements Serializable {
     TreeMap<Double,ArrayList<Boat>> sPriceBoats = new TreeMap<>();
     TreeMap<Integer,ArrayList<Boat>> lengthBoats = new TreeMap<>();
     ArrayList<Boat> boats = loadBoatsFromFile();
-
-
     TreeMap<Integer,ArrayList<Boat>> yearBoats = new TreeMap<>();
+
+    public Database(){
+
+    }
+
+    public Database(ArrayList<Boat> boats) {
+        this.boats = boats;
+        //use different attribute to file the database
+
+        for (Boat boat : boats
+        ) {
+            byAttributeBoats.computeIfAbsent(boat.getMake(), k -> new ArrayList<>()).add(boat);//by MAKE
+        }
+        for (Boat boat : boats
+        ) {
+            byAttributeBoats.computeIfAbsent(boat.getRegion(), k -> new ArrayList<>()).add(boat);//by REGION
+        }
+        for (Boat boat : boats
+        ) {
+            byAttributeBoats.computeIfAbsent(boat.getVarient(), k -> new ArrayList<>()).add(boat);//by VARIANT
+        }
+        for (Boat boat : boats
+        ) {
+            rPriceBoats.computeIfAbsent(boat.getPrice()[0], k -> new ArrayList<>()).add(boat);//by PRICE
+            sPriceBoats.computeIfAbsent(boat.getPrice()[1], k -> new ArrayList<>()).add(boat);//by PRICE
+        }
+        for (Boat boat : boats
+        ) {
+            yearBoats.computeIfAbsent(boat.getYear(), k -> new ArrayList<>()).add(boat);//by PRICE}
+        }
+        for (Boat boat : boats
+        ) {
+            allBoats.put(boat,boat);
+        }
+        for (Boat boat : boats
+        ) {
+            lengthBoats.computeIfAbsent( boat.getLength(), k -> new ArrayList<>()).add(boat);//by PRICE
+        }
+    }
 
     public Boat returnNewBoat(String make, String variant, int length, String region, double sellPrice, double costPrice,double rentPrice,
                               int year){
@@ -89,14 +131,12 @@ public class Database implements Serializable {
     public static Boat searchBoat(Scanner input) throws NotFoundByGivenInfo {
         System.out.println("\n\n\nEnter any key to continue:");
         input.nextLine();
-        System.out.println("enter the information that you want to search");
+        System.out.println("Enter the information that you want to search");
         System.out.println("Format: 0:make,1:variant,2:length,3:region,4:rentPrice,5:sellPrice,6:costPrice,7:year");
         System.out.println("For example, 0:Bayliner,1:175,2:17,3:BC,4:100,5:1000,6:500,7:2018,\n     " +
                 "0:Bayliner,1:175,7:2018 works \n0:seacraft,\npay attention to enter, at last \n If it still contains duplicate information, we will ask you " +
                 "to offer more information");
         System.out.println("Please enter your choice:");
-
-
 
         String info = input.nextLine();
         String[] infos = info.split(",");
@@ -663,44 +703,7 @@ public class Database implements Serializable {
 
     }//end of the blocks of methods to show the boats by different attributes.
 
-    public Database(){
 
-    }
-
-    public Database(ArrayList<Boat> boats) {
-        this.boats = boats;
-        //use different attribute to file the database
-
-        for (Boat boat : boats
-        ) {
-            byAttributeBoats.computeIfAbsent(boat.getMake(), k -> new ArrayList<>()).add(boat);//by MAKE
-        }
-        for (Boat boat : boats
-        ) {
-            byAttributeBoats.computeIfAbsent(boat.getRegion(), k -> new ArrayList<>()).add(boat);//by REGION
-        }
-        for (Boat boat : boats
-        ) {
-            byAttributeBoats.computeIfAbsent(boat.getVarient(), k -> new ArrayList<>()).add(boat);//by VARIANT
-        }
-        for (Boat boat : boats
-        ) {
-            rPriceBoats.computeIfAbsent(boat.getPrice()[0], k -> new ArrayList<>()).add(boat);//by PRICE
-            sPriceBoats.computeIfAbsent(boat.getPrice()[1], k -> new ArrayList<>()).add(boat);//by PRICE
-        }
-        for (Boat boat : boats
-        ) {
-            yearBoats.computeIfAbsent(boat.getYear(), k -> new ArrayList<>()).add(boat);//by PRICE}
-        }
-        for (Boat boat : boats
-        ) {
-            allBoats.put(boat,boat);
-        }
-        for (Boat boat : boats
-        ) {
-            lengthBoats.computeIfAbsent( boat.getLength(), k -> new ArrayList<>()).add(boat);//by PRICE
-        }
-    }
     public static ArrayList<Boat> loadBoatsFromFile() {
         String filePath = "resources/createdFiles/allboats";
 
@@ -715,8 +718,6 @@ public class Database implements Serializable {
     public ArrayList<Boat> getBoats() {
         return boats;
     }
-
-
 
     public HashMap<String, ArrayList<Boat>> getByAttributeBoats() {
         return byAttributeBoats;

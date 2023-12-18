@@ -6,6 +6,12 @@ import person.Company;
 
 import java.io.Serializable;
 
+/**
+    * This class describes the attributes and operations of boats.
+    * @version 1.0
+    * @since 2023-12-17
+    *
+ */
 public class Boat implements Asset,Comparable<Boat>, Serializable {
     //
     private String make;
@@ -15,8 +21,8 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
     private double costPrice;
     private int year;
     private double[] prices = new double[3];
-    private Person owner = new Company(0,"CPS","2232");
-    private Person user = new Company(0,"CPS","2232");
+    private Person owner = new Company(0,"Sea Craft 2018","cps");
+    private Person user = new Company(0,"Sea Craft 2018","cps");
     private int index;
 
 
@@ -65,7 +71,7 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
     }
 
     /**
-     * @return
+     * @return owner
      */
     @Override
     public Person getOwner() {
@@ -82,7 +88,7 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
     }
 
     /**
-     * @return
+     * @return user
      */
     @Override
     public Person getUser() {
@@ -107,6 +113,10 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
 
     public int getLength() {
         return length;
+    }
+
+    public double getRentPrice() {
+        return prices[0];
     }
 
     public void setLength(int length) {
@@ -142,7 +152,7 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
 
     /**
      * @param o the object to be compared.
-     * @return
+     * @return 0 if the objects are equal, a negative integer if this object is less than the other,
      */
     @Override
     public int compareTo(Boat o) {
@@ -150,10 +160,10 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
     }
 
     @Override
-/*    public int hashCode() {
+    public int hashCode() {
         return (int) (this.getMake().hashCode() + this.getVarient().hashCode() + this.getLength() + this.getRegion().hashCode()
                         + this.getYear() + this.getPrice()[1]);
-    }*/
+    }
 
     public boolean equals(Object obj) {
         if (obj instanceof Boat) {
@@ -169,9 +179,12 @@ public class Boat implements Asset,Comparable<Boat>, Serializable {
         return costPrice * (30 + year * 20) / 30000;
     }
 
+
     @Override
     public String toString() {
-        return "Make: " + make + " Variant: " + variant + " Sell Price: " + prices[1]+ "Rent Price: "+  prices[2] + "Year: " + year+"\n" ;
+        return String.format("Make: %-20sVariant: %-20sLength: %-20dRegion: %-10sYear: %-5dCost Price: %-15.2fSell Price: %-15.2f" +
+                        "Rent Price: %-15.2fOwner: %s    User: %s\n", make, variant, length, region, year,
+                prices[0], prices[1], prices[2],owner.getName(),user.getName());
     }
 
     public Boat(){};

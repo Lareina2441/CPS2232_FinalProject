@@ -1,14 +1,21 @@
 package backend;
 
 import exceptions.InvalidEmailAddress;
+import interfaces.Person;
+import person.Client;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.Serializable;
 import java.util.Properties;
-import interfaces.Person;
-import person.Client;
 
-public class CompanyEmailSender{
+/**
+ * Purpose: This class is used to send email to the client or company administrator
+ * @version 1.0
+ * @since 2023-12-17
+ */
+
+public class CompanyEmailSender implements Serializable {
     final String username = "seacraft2018@outlook.com";
     final String password ="cps2232finalproject";
 
@@ -16,6 +23,12 @@ public class CompanyEmailSender{
     public CompanyEmailSender() throws MessagingException {
     }
 
+    /**
+     * This method is used to send email to the client or company administrator
+     * @param string the content of the email
+     * @param person the person who will receive the email
+     * @throws InvalidEmailAddress if the email address is invalid
+     */
     public void sent(String string,Person person) throws InvalidEmailAddress {
         if (isValidEmail(person.getEmail())==-1){
             throw new InvalidEmailAddress("Invalid email address");
@@ -69,6 +82,7 @@ public class CompanyEmailSender{
             throw new RuntimeException(e);
         }
     }
+
     //fake progress bar to show the process of the program, stop at one point when finish print 100%
     public static void printProgressBar() {
         for (int i = 0; i <= 45; i++) {
@@ -76,6 +90,7 @@ public class CompanyEmailSender{
             sleep(10);
         }
     }
+    //progress bar in the console, it is a fake progress bar, just for relax the user
     public static void updateProgressBar(int currentStep, int totalSteps) {
         int barLength = 66;
         int progress = (int) ((double) currentStep / totalSteps * barLength);
@@ -100,6 +115,7 @@ public class CompanyEmailSender{
         System.out.flush();
     }
 
+    //used for progress bar
     private static void sleep(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
@@ -109,7 +125,11 @@ public class CompanyEmailSender{
     }
 
 
-
+    /**
+     * This method is used to check whether the email address is valid
+     * @param address the email address
+     * @return -1 if the email address is invalid, 1 if the email address is valid
+     */
     public static int isValidEmail(String address) {
         int returnValue = 1;//this is for end output
         //idea: if invalid then give return value -1 else valid.

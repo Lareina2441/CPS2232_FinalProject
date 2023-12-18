@@ -1,11 +1,14 @@
 package interfaces;
 
-/*
+/**
+ *
  * This interface is used to define the methods that all assets must have.
  * This interface is implemented by the Boat class.
- *
  * An asset is anything that can be bought, sold or borrowed.
  * its price, owner and user can be modified and got.
+ * @version 1.0
+ * @since 2023-12-17
+ *
  *
 */
 

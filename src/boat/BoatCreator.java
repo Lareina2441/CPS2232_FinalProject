@@ -3,7 +3,14 @@ package boat;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-  //Create boat array
+
+/**
+ * This class is used to create a list of boats from a csv file and save it as binary object file.
+ * you need to run this program first and once to create the binary file.
+ * @version 1.0
+ * @since 2023-12-17
+ *
+ */
 
 public class BoatCreator implements Serializable {
     public static void main(String[] args) {
@@ -37,8 +44,6 @@ public class BoatCreator implements Serializable {
         }
         saveBoatsToFile(boats);
         System.out.println("Number of boats created: " + boats.size());
-        System.out.println(boats.get(1000).getMake());
-        System.out.println(boats.get(100).getYear());
         System.out.println(boats);
     }
 
