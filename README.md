@@ -57,18 +57,18 @@ emphasize: the reason we use ArrayList
 1. traverse/ access by index
 2. low efficiency in "add" or "remove". but we avoid it.
 
-###register()
+### register()
 <img width="677" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/dd4f3f04-0750-4851-9477-cf902528ff44">
 we also save clients' info in File and offer method to load it.
 <img width="630" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/00615819-2840-4332-b2da-b93725294b6a">
 <img width="568" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/5003bc5c-3929-498c-9d28-c47843767676">
 when client register their count, new entry <String, Client> will be put in Map.
 Map: without duplicate so without same user name(!containsKey(key)), just O(1) to find specific Client.
-###login()
+### login()
 <img width="703" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/ed248400-3ddf-4e8f-ac61-2f23fa8ae578">
 when login successfully, "fiveRequest(name)"will be invoked to let client do following operation. In this step, "name" be a parameter passed in following method.
 <img width="512" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/8f0e2410-a694-44a7-991d-5aa9fed440a6">
-####borrow and boat
+#### borrow and buy
 <img width="800" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/d1a26c2a-b4eb-41ca-b38d-51b430874520">
 all use method recommandBoat to return the boat the client want to operate.
 <img width="731" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/82648cda-c627-471a-8534-12cd264fb9ea">
@@ -80,7 +80,7 @@ After client know which boat to buy/borrow, transaction start.
 <img width="734" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/e57b3614-8972-49f8-9bda-88f46ff964b1">
 buyTransaction is same as borrowTransaction in aspect of judge the boat is busy or not. but a little differnet:
 <img width="189" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/7773f6e1-e3b3-42de-bc39-8dd43b4cde45">
-####return
+#### return
 <img width="564" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/80a8e76c-b158-4c45-8783-2365870e9679">
 we not expect that client will return the boat which is sold out, so we just check use() list.
 
