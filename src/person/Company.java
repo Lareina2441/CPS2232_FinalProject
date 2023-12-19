@@ -17,7 +17,7 @@ public class Company implements Person, Serializable {
     //use this password to login company system
     private String password = "cps";
     //email to receive the system notification
-    String email = "zhaoq@kean.edu";
+    String email = "administrator email, define your own";
 
     public Company(int priority, String name, String password) {
         this.name = name;
