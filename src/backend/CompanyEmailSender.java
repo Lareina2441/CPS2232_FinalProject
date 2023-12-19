@@ -16,8 +16,8 @@ import java.util.Properties;
  */
 
 public class CompanyEmailSender implements Serializable {
-    final String username = "seacraft2018@outlook.com";
-    final String password ="cps2232finalproject";
+    final String username = "define your own outlook sender";
+    final String password ="password";
 
 
     public CompanyEmailSender() throws MessagingException {
