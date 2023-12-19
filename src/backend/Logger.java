@@ -4,7 +4,6 @@ import boat.Boat;
 import exceptions.FailedTransactionException;
 import exceptions.InvalidEmailAddress;
 import interfaces.Person;
-import person.Company;
 
 import javax.mail.MessagingException;
 import java.io.Serializable;
@@ -25,28 +24,7 @@ public class Logger implements Serializable {
     CompanyEmailSender companyEmailSender = new CompanyEmailSender();
     Person person;
 
-    public static void main(String[] args) throws MessagingException {
-        Logger logger = new Logger(new Company(1,"CPS","2232"));
-        logger.writeLog("test",1);
-        logger.writeExceptionErrorAndTransLog(new Boat("make","variant",1,"region",1,1,1,1,1));
-        logger.writeExceptionErrorAndTransLog(new FailedTransactionException("Failed Transaction"));
-        logger.writeExceptionErrorAndTransLog(new Error("Error"));
-        logger.writeLog("test",1);
-        logger.writeExceptionErrorAndTransLog(new Boat("make","variant",1,"region",1,1,1,1,1));
-        logger.writeExceptionErrorAndTransLog(new FailedTransactionException("Failed Transaction"));
-        logger.writeExceptionErrorAndTransLog(new Error("Error"));
-        logger.writeLog("test",1);
-        logger.writeExceptionErrorAndTransLog(new Boat("make","variant",1,"region",1,1,1,1,1));
-        logger.writeExceptionErrorAndTransLog(new FailedTransactionException("Failed Transaction"));
-        logger.writeExceptionErrorAndTransLog(new Error("Error"));
-        logger.writeLog("test",1);
-        logger.writeExceptionErrorAndTransLog(new Boat("make","variant",1,"region",1,1,1,1,1));
-        logger.writeExceptionErrorAndTransLog(new FailedTransactionException("Failed Transaction"));
-        logger.writeExceptionErrorAndTransLog(new Error("Error"));
-        logger.writeExceptionErrorAndTransLog(new Exception("Exception"));
 
-
-    }
 
     public Logger(Person person) throws MessagingException {
         this.person = person;
@@ -62,7 +40,7 @@ public class Logger implements Serializable {
     public void writeLog(String message, int priority){
         LogMessage logMessage = new LogMessage();
         logMessage.setPriority(priority);
-        logMessage.setMessage(message + "Time at" + LocalTime.now()+"\n");
+        logMessage.setMessage(message + "  Time at" + LocalTime.now()+"\n");
         logMessages.add(logMessage);
         if (logMessages.size()>=10)
             try {
@@ -72,35 +50,35 @@ public class Logger implements Serializable {
             }
     }
 
+
     /**
-     *Error message: 5
-     *FailedTransactionException: 4
+     *Error message: 1
+     *FailedTransactionException: 2
      *Transaction succeed: 3
-     *others: 2
-     *own defined: 1
+     *others: 4
+     *own defined: 5
      */
     public void writeExceptionErrorAndTransLog(Object e){
         LogMessage logMessage = new LogMessage();
         if(e instanceof FailedTransactionException){
-            logMessage.setPriority(4);
+            logMessage.setPriority(2);
             logMessage.setMessage(((Exception)e).getMessage()+"Time at" + LocalTime.now()+"\n");
             logMessages.add(logMessage);
         }
         else if(e instanceof Error){
-            logMessage.setPriority(5);
+            logMessage.setPriority(1);
             logMessage.setMessage(e + "Time at" + LocalTime.now()+"\n");
             logMessages.add(logMessage);
         }
         else if (e instanceof Boat) {
             Boat boat = (Boat)e;
             logMessages.add(new LogMessage(" Make["+boat.getMake()+"] Variant["+boat.getVarient()+"] "
-                    + "Year["+boat.getYear()+"] User[:"+boat.getUser()+"] Owner["+boat.getOwner()+"\n Transaction finished at " + LocalTime.now()+"\n",3));
-
+                    + "Year["+boat.getYear()+"] User[:"+boat.getUser().getName()+"] Owner["+boat.getOwner().getName()+"\n Transaction finished at " + LocalTime.now()+"\n",3));
             return;
         }
         else {
-            logMessage.setPriority(2);
-            logMessages.add(new LogMessage((e.toString()+"Time at" + LocalTime.now()+"\n"),2));
+            logMessage.setPriority(4);
+            logMessages.add(new LogMessage((e.toString()+"  Time at" + LocalTime.now()+"\n"),2));
         }
 
         if (logMessages.size()>=10)
@@ -113,7 +91,7 @@ public class Logger implements Serializable {
 
     public void sentLog() throws InvalidEmailAddress {
             String info = "";
-            for (int i = 0; i < logMessages.size(); i++)
+            while (!logMessages.isEmpty())
                 info += logMessages.poll().getMessage()+"\n\n\n";
 
             companyEmailSender.sent(info,person);
@@ -121,7 +99,7 @@ public class Logger implements Serializable {
     }
 
 
-    class LogMessage implements Comparable<LogMessage>,Serializable{
+    public class LogMessage implements Comparable<LogMessage>,Serializable{
 
         private int priority ;
         private String message;
