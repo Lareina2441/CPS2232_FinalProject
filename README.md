@@ -1,4 +1,4 @@
- b 
+ 
 <h1 align="center"> CPS 2232 FinalProject: Boat Manager</h1>  
 <p align="left"> <a href="https://www.wku.edu.cn/en/" target="_blank" rel="noreferrer"> <img src="https://wku.edu.cn/wp-content/uploads/2016/02/logo_en.png" alt="WKU" width="300" height="78"/> </a>   
 
