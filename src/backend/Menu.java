@@ -319,7 +319,10 @@ public class Menu implements Serializable {
         Map<String, Client> userDatabase = system.loadUserDatabaseFromFile();
         Client currentClient = userDatabase.get(name);
         System.out.println("user: " + currentClient.getName()+"\n We are sending log info to your email, please wait a moment...");
-            currentClient.getLogger().sentLog();
+        currentClient.getLogger().sentLog();
+        userDatabase.put(name, currentClient);
+        system.saveUserDatabaseToFile(userDatabase);
+
         }
 
 
@@ -386,30 +389,42 @@ public class Menu implements Serializable {
         System.out.println("Dealing.....\nPlease Wait a moment");
         Map<String, Client> userDatabase = system.loadUserDatabaseFromFile();
         Client currentClient = userDatabase.get(name);
-        if (!(boat.getOwner() instanceof Company))
+        if (!(boat.getOwner() instanceof Company)) {
+            currentClient.getLogger().writeExceptionErrorAndTransLog(new FailedTransactionException("The boat is sold out"));
+            system.saveUserDatabaseToFile(userDatabase);
             throw new FailedTransactionException("The boat is sold out");
-        else if (boat.getUser() instanceof Client)
+        }
+        else if (boat.getUser() instanceof Client){
+            currentClient.getLogger().writeExceptionErrorAndTransLog(new FailedTransactionException("The boat is rented"));
+            system.saveUserDatabaseToFile(userDatabase);
             throw new FailedTransactionException("The boat is rented");
+        }
         boat.setUser(currentClient);
         //Boat oldBoat=boats.get(boat.getIndex());
         currentClient.getUse().add(boat);
+        currentClient.getLogger().writeExceptionErrorAndTransLog(boat);
         System.out.println("Now, you can use: " + currentClient.getUse());
         userDatabase.put(name, currentClient);
         system.saveUserDatabaseToFile(userDatabase);
+        saveBoatsToFile(boats);
     }
     public static void buyTransaction(String name, Boat boat) throws FailedTransactionException {
         System.out.println("Dealing.....\nPlease Wait a moment");
         Map<String, Client> userDatabase = system.loadUserDatabaseFromFile();
         Client currentClient = userDatabase.get(name);
-        if (!(boat.getOwner() instanceof Company))
-            throw new FailedTransactionException("The boat is sold out");
-        else if (boat.getUser() instanceof Client)
-            throw new FailedTransactionException("The boat is rented");
+        if (!(boat.getOwner() instanceof Company)){
+            currentClient.getLogger().writeExceptionErrorAndTransLog(new FailedTransactionException("The boat is sold out"));
+            system.saveUserDatabaseToFile(userDatabase);
+            throw new FailedTransactionException("The boat is sold out");}
+        else if (boat.getUser() instanceof Client){
+            currentClient.getLogger().writeExceptionErrorAndTransLog(new FailedTransactionException("The boat is rented"));
+            system.saveUserDatabaseToFile(userDatabase);
+            throw new FailedTransactionException("The boat is rented");}
         boat.setUser(currentClient);
         boat.setOwner(currentClient);
         //saveBoatsToFile(boats);
-        ArrayList<Boat> set = currentClient.getOwn();
-        set.add(boat);
+        saveBoatsToFile(boats);
+        currentClient.getLogger().writeExceptionErrorAndTransLog(boat);
         System.out.println("Now, you own : " + currentClient.getOwn());
         userDatabase.put(name, currentClient);
         system.saveUserDatabaseToFile(userDatabase);
@@ -437,5 +452,3 @@ public class Menu implements Serializable {
         }
     }
 }
-
-
