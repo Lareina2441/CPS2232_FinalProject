@@ -46,52 +46,64 @@ CHANGE EMAIL INFORMATION IN [COMPANY.JAVA](./src/backend/CompanyEmailSender.java
 ![img_9.png](resources/img_9.png)
 
 ### Client System :
-**REGISTER** : you can register a new account in the system.
-![img_3.png](resources/img_3.png)
-<p align="left"> <a href="https://www.kean.edu/" target="_blank" rel="noreferrer"> <img src="https://www.kean.edu/themes/custom/kean/logo.svg" alt="KeanU" width="300" height="78"/> </a>
+**REGISTER** : you can register a new account in the system.  
+
 
 <img width="512" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/f7014579-9702-4cb0-9be1-0997393958b4">
 <img width="680" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/053409d2-7852-43e6-b011-8732a4d740a3">
-<img width="734" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/a8e6fc11-44ab-4757-9bf6-f466245e9fe6">
-Use data from csv to create object "boat". put all boats in ArrayList and give their index. 
+<img width="734" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/a8e6fc11-44ab-4757-9bf6-f466245e9fe6">  
+
+Use data from csv to create object "boat". put all boats in ArrayList and give their index.   
 <img width="563" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/240e4ee5-b6ae-493c-8dbd-eafd447ba936">
-<img width="539" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/3fcb3a32-8333-45ee-8484-259c860c2bb7">
+<img width="539" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/3fcb3a32-8333-45ee-8484-259c860c2bb7">  
+
 use objectOutputStream, write object "ArrayList" in file.
 emphasize: the reason we use ArrayList
 1. traverse/ access by index
 2. low efficiency in "add" or "remove". but we avoid it.
 
 ### register()
-<img width="677" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/dd4f3f04-0750-4851-9477-cf902528ff44">
-we also save clients' info in File and offer method to load it.
-<img width="630" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/00615819-2840-4332-b2da-b93725294b6a">
+<img width="677" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/dd4f3f04-0750-4851-9477-cf902528ff44"> 
+
+we also save clients' info in File and offer method to load it.  
+
+<img width="630" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/00615819-2840-4332-b2da-b93725294b6a">  
 <img width="568" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/5003bc5c-3929-498c-9d28-c47843767676">
-when client register their count, new entry <String, Client> will be put in Map.
-Map: without duplicate so without same user name(!containsKey(key)), just O(1) to find specific Client.
+
+when client register their count, new entry <String, Client> will be put in Map.  
+Map: without duplicate so without same user name(!containsKey(key)), just O(1) to find specific Client.  
  
 ### login()
-<img width="703" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/ed248400-3ddf-4e8f-ac61-2f23fa8ae578">
-when login successfully, "fiveRequest(name)"will be invoked to let client do following operation. In this step, "name" be a parameter passed in following method.
-<img width="512" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/8f0e2410-a694-44a7-991d-5aa9fed440a6">
+<img width="703" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/ed248400-3ddf-4e8f-ac61-2f23fa8ae578"> 
+
+when login successfully, "fiveRequest(name)"will be invoked to let client do following operation. In this step, "name" be a parameter passed in following method.  
+
+<img width="512" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/8f0e2410-a694-44a7-991d-5aa9fed440a6">  
  
 #### 1. borrow and buy
-<img width="800" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/d1a26c2a-b4eb-41ca-b38d-51b430874520">
-all use method recommandBoat to return the boat the client want to operate.
-<img width="731" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/82648cda-c627-471a-8534-12cd264fb9ea">
-<img width="694" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/a445a110-453f-4b68-bcc7-6572b8594384">
-Client may not know which boat to choose, we will use subMap to recommand boat by price.
-After client know which boat to buy/borrow, transaction start.
-<img width="466" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/79b4fd04-46c5-4746-bb68-3de0bc779da7">
+<img width="800" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/d1a26c2a-b4eb-41ca-b38d-51b430874520"> 
+
+all use method recommandBoat to return the boat the client want to operate.  
+<img width="731" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/82648cda-c627-471a-8534-12cd264fb9ea">  
+<img width="694" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/a445a110-453f-4b68-bcc7-6572b8594384"> 
+
+Client may not know which boat to choose, we will use subMap to recommand boat by price.  
+After client know which boat to buy/borrow, transaction start.  
+
+<img width="466" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/79b4fd04-46c5-4746-bb68-3de0bc779da7">  
 
 <img width="734" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/e57b3614-8972-49f8-9bda-88f46ff964b1">
-buyTransaction is same as borrowTransaction in aspect of judge the boat is busy or not. but a little differnet:
 
-<img width="189" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/7773f6e1-e3b3-42de-bc39-8dd43b4cde45">
+buyTransaction is same as borrowTransaction in aspect of judge the boat is busy or not. but a little differnet:  
 
+<img width="189" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/7773f6e1-e3b3-42de-bc39-8dd43b4cde45">  
+ 
 #### 2. return
-<img width="564" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/80a8e76c-b158-4c45-8783-2365870e9679">
-we not expect that client will return the boat which is sold out, so we just check use() list.
+<img width="564" alt="image" src="https://github.com/Lareina2441/CPS2232_FinalProject/assets/152167380/80a8e76c-b158-4c45-8783-2365870e9679"> 
 
+we not expect that client will return the boat which is sold out, so we just check use() list.    
+  
+<p align="left"> <a href="https://www.kean.edu/" target="_blank" rel="noreferrer"> <img src="https://www.kean.edu/themes/custom/kean/logo.svg" alt="KeanU" width="300" height="78"/> </a>  
 
 [ZL]: https://github.com/Lareina2441
 [JY]: https://github.com/GemmaJiao
