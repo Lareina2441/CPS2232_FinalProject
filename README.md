@@ -17,6 +17,8 @@ Find `project structure`  then click dependencies. Add the jars file in [resourc
 
 ![image](https://github.com/Lareina2441/CPS2232_FinalProject/assets/111401870/81bfb7f9-e870-4aef-bf8e-1c4067f3e969)
 
+### CHANGE EMAIL INFORMATION IN [COMPANY.JAVA][./src/backend/CompanyEmailSender.java] and [COMANY.JAVA][./src/person/Company.java]  
+
 ## 1. Run the [BoatCreater](./src/boat/BoatCreator.java) class first, when the binary code generated successfully, run the [Menu](./src/backend/Menu.java)
 
 ![img.png](resources/img.png)
