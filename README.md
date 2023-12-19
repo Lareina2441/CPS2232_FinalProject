@@ -1,6 +1,6 @@
  b 
 <h1 align="center"> CPS 2232 FinalProject: Boat Manager</h1>  
-<p align="left"> <a href="https://www.wku.edu.cn/en/" target="_blank" rel="noreferrer"> <img src="https://wku.edu.cn/wp-content/uploads/2016/02/logo_en.png" alt="WKU" width="300" height="78"/> </a> 
+<p align="left"> <a href="https://www.wku.edu.cn/en/" target="_blank" rel="noreferrer"> <img src="https://wku.edu.cn/wp-content/uploads/2016/02/logo_en.png" alt="WKU" width="300" height="78"/> </a>   
 
 Welcome to our project !  This is the `final project` for `CPS 2232`, `Abstract Data Type`, of [`Wenzhou-Kean University`][wku].       
        
@@ -15,9 +15,11 @@ Welcome to our project !  This is the `final project` for `CPS 2232`, `Abstract 
 Open this project in your local IDE (the following is an example using IDEA).
 Find `project structure`  then click dependencies. Add the jars file in [resources](./resources)
 
-![image](https://github.com/Lareina2441/CPS2232_FinalProject/assets/111401870/81bfb7f9-e870-4aef-bf8e-1c4067f3e969)
+![image](https://github.com/Lareina2441/CPS2232_FinalProject/assets/111401870/81bfb7f9-e870-4aef-bf8e-1c4067f3e969)                   
 
-### CHANGE EMAIL INFORMATION IN [COMPANY.JAVA][./src/backend/CompanyEmailSender.java] and [COMANY.JAVA][./src/person/Company.java]  
+
+CHANGE EMAIL INFORMATION IN [COMPANY.JAVA](./src/backend/CompanyEmailSender.java) and [COMANY.JAVA](./src/person/Company.java)  
+
 
 ## 1. Run the [BoatCreater](./src/boat/BoatCreator.java) class first, when the binary code generated successfully, run the [Menu](./src/backend/Menu.java)
 
